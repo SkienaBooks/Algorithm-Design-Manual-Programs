@@ -203,7 +203,7 @@ tree-demo:	tree-demo.o
 		$(CC) -o $@ tree-demo.o $(LFLAGS)
 
 first:		first.o
-		$(CC) -o $@ first.o $(LFLAGS)
+		$(CC) -o $@ first.o $(LFLAGS) -lcriterion
 
 lint:	
 	lint -h $(SOURCES)
