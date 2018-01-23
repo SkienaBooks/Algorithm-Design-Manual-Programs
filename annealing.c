@@ -19,7 +19,7 @@ int solution_count;                     /* how many solutions evaluated */
 
 solution_count_update(tsp_solution *s, tsp_instance *t)
 {
-	double solution_cost();
+	// double solution_cost();
 
         solution_count = solution_count+1;
         if ((solution_count % PRINT_FREQUENCY) == 0)
@@ -67,7 +67,7 @@ hill_climbing(tsp_instance *t, tsp_solution *s)
 	double delta;			/* swap cost */
         int i,j;			/* counters */
 	bool stuck;			/* did I get a better solution? */
-	double transition();
+	// double transition();
 
         initialize_solution(t->n,s);
 	random_solution(s);
@@ -146,8 +146,8 @@ anneal(tsp_instance *t, tsp_solution *s)
 	double delta;				/* value after swap */
 	double merit, flip;			/* hold swap accept conditions*/
 	double exponent;			/* exponent for energy funct*/
-	double random_float();
-	double solution_cost(), transition(); 
+	// double random_float();
+	// double solution_cost(), transition(); 
 
 	temperature = INITIAL_TEMPERATURE;
 
