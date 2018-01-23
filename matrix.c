@@ -1,0 +1,123 @@
+
+/*	matrix.c
+
+	Multiply two matrices.
+
+	by: Steven Skiena
+	begun: July 28, 2005
+*/
+
+/*
+Copyright 2005 by Steven S. Skiena; all rights reserved. 
+
+Permission is granted for use in non-commerical applications
+provided this copyright notice remains intact and unchanged.
+
+This program appears in my book:
+
+"Programming Challenges: The Programming Contest Training Manual"
+by Steven Skiena and Miguel Revilla, Springer-Verlag, New York 2003.
+
+See our website www.programming-challenges.com for additional information.
+
+This book can be ordered from Amazon.com at
+
+http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
+
+*/
+
+
+#include <stdlib.h>
+#include "bool.h"
+
+
+/************************************************************/
+
+
+
+#define	MAXV		100		/* maximum number of vertices */
+#define MAXDEGREE	50		/* maximum outdegree of a vertex */
+
+#define MAXINT	100007
+
+typedef struct {
+        int m[MAXV+1][MAXV+1];    	/* adjacency/weight info */
+	int rows;			/* number of rows */
+	int columns;			/* number of columns */
+} matrix;
+
+
+initialize_matrix(matrix *m)
+{
+	int i,j;			/* counters */
+
+	for (i=1; i<=m->rows; i++)
+		for (j=1; j<=m->columns; j++)
+			m->m[i][j] = 0;
+}
+
+read_matrix(matrix *m)
+{
+	int i,j;			/* counters */
+
+
+	scanf("%d %d\n",&(m->rows),&(m->columns));
+
+	for (i=1; i<=m->rows; i++) {
+		for (j=1; j<=m->columns; j++) 
+			scanf("%d",&m->m[i][j]);
+	}
+}
+
+
+print_matrix(matrix *g)
+{
+	int i,j;			/* counters */
+
+	for (i=1; i<=g->rows; i++) {
+		for (j=1; j<=g->columns; j++)
+			printf(" %d",g->m[i][j]);
+		printf("\n");
+	}
+	printf("\n");
+}
+
+
+void multiply(matrix *a, matrix *b, matrix *c)
+{
+	int i,j,k;			/* dimension counters */
+
+	if (a->columns != b->rows) {
+		printf("Error: bounds dont match!\n");
+		return;
+	}
+
+	c->rows = a->rows;
+	c->columns = b->columns;
+
+	for (i=1; i<=a->rows; i++)
+		for (j=1; j<=b->columns; j++) {
+			c->m[i][j] = 0;
+	        	for (k=1; k<=b->rows; k++)
+		   		c->m[i][j] += a->m[i][k] * b->m[k][j];
+		}
+}
+
+
+main()
+{
+	matrix a,b,c;
+
+	read_matrix(&a);
+	print_matrix(&a);
+
+        read_matrix(&b);
+        print_matrix(&b);
+
+	multiply(&a,&b,&c);
+
+	print_matrix(&c);
+
+}
+
+

@@ -1,0 +1,104 @@
+
+/*
+Copyright 2003 by Steven S. Skiena; all rights reserved. 
+Permission is granted for use in non-commerical applications
+provided this copyright notice remains intact and unchanged.
+
+These programs all appear in my book:
+"Programming Challenges: The Programming Contest Training Manual"
+by Steven Skiena and Miguel Revilla, Springer-Verlag, New York 2003.
+See our website www.programming-challenges.com for additional information.
+
+This book can be ordered from Amazon.com at
+http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
+*/
+
+
+What follows are a list of all the files in this directory with a
+brief description of what they are:
+
+
+10055.c		/* program demonstrating standard IO in C */
+10055.cc	/* program demonstrating standard IO in C++ */
+10055.java	/* program demonstrating standard IO in Java */
+10055.pascal	/* program demonstrating standard IO in Pascal */
+
+8-queens.c	/* solve the eight queens problem using backtracking */
+
+Makefile	/* instructions on how to compile all of our programs */
+
+README		/* this file; a description of all programs in distribution */
+
+backtrack.c	/* a generic implementation of backtracking */
+backtrack.h	/* header file for generic backtracking */
+
+bfs-demo.c	/* driver program demonstrating breadth-first search */
+bfs-dfs.c	/* a generic implementation of graph traversal */
+
+bignum.c	/* implementation of large integer arithmetic */
+binomial.c	/* compute the binomial coefficients using dynamic programming */
+
+bool.h		/* header file for boolean datatype */
+cgtest.c	/* driver program for computational geometry routines */
+
+connected.c	/* compute connected components of a graph */
+
+convex-hull.c	/* compute convex hulls of points in the plane */
+
+datafiles/	/* a directory with test files for all the programs, see test-script */
+
+dfs-demo.c	/* driver program demonstrating depth-first search */
+
+dijkstra.c	/* compute shortest paths in weighted graphs */
+distance.c	/* compute Euclidian distances */
+
+editbrute.c	/* compute string edit distance *without* dynamic programming */
+editdistance.c	/* a generic implementation of string comparison via dp */
+editdistance.h	/* header file for string comparison */
+
+elevator.c	/* elevator stop optimization via dynamic programming */
+findcycle.c	/* identify a cycle in a graph, if one exists */
+floyd.c		/* compute all-pairs shortest paths in weighted graphs */
+gcd.c		/* compute the greatest common divisor of two integers */
+
+geometry.c	/* basic geometric primitives and data types */
+geometry.h	/* header file for geometric data types */
+geotest.c	/* driver program for geometry routines */
+
+graph.c		/* a generic adjacency list-in-array graph data type */
+graph.h		/* header file for graph data type */
+
+lcs.c		/* longest common subsequence of two strings */
+name.c		/* corporate name changing program -- string example */
+netflow.c	/* network flow implementation -- augmenting path algorithm */
+
+order.c		/* demonstrate traversal orders on a grid */
+permutations.c	/* construct all permutations via backtracking */
+plates.c	/* compute the number of circles in two different packings */
+
+polly.c		/* rank the desirability of suitors -- sorting example */
+prim.c		/* compute minimum spanning trees of graphs via Prim's algorithm */
+primes.c	/* compute the prime factorization of an integer */
+
+queue.c		/* implementation of a FIFO queue abstract data type */
+queue.h		/* header file for queue implementation */
+
+random.c	/* compute random numbers within given ranges */
+sentinel.c	/* example search program using sentinels */
+sorting.c	/* implementations of primary sorting algorithms */
+
+stringedit.c	/* compute the optimal alignment matching two strings */
+subsets.c	/* construct all subsets via backtracking */
+
+substringedit.c	/* approximately match one string as a substring of another */
+superman.c	/* compute Superman's flight path -- geometry example */
+
+test-script*	/* run tests on each of the programs created by Makefile */
+
+topsort.c	/* topologically sort a directed acyclic graph */
+triangulate.c	/* triangulate a polygon via ear-clipping, and compute area */
+war.c		/* simulation of the children's card game War */
+
+wgraph.c	/* a generic weighted graph data type */
+wgraph.h	/* header file for weighted graph type */
+
