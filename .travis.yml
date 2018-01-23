@@ -1,2 +1,2 @@
 language: c
-script: make && ./temp_test
+script: make && ./temp_test.sh
