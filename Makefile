@@ -46,7 +46,7 @@ BINARIES = 8-queens permutations subsets war sorting bfs-demo \
 	lcs substringedit superman convex-hull triangulate 10055 distance name \
 	polly gcd primes bignum editbrute elevator order plates geotest cgtest \
 	netflow paths sudoku tsp fib partition biconnected strong topsort \
-	bipartite kruskal matrix tree-demo first criterion_test
+	bipartite kruskal matrix tree-demo first criterion_test distance_test
 INCLUDES = bool.h backtrack.h queue.h graph.h editdistance.h \
 	   geometry.h annealing.h tsp.h stack.h priority_queue.h set_union.h \
 	   list.h tree.h item.h
@@ -207,6 +207,9 @@ first:		first.o
 
 criterion_test:		criterion_test.o
 		$(CC) -o $@ criterion_test.o $(LFLAGS) -lcriterion
+
+distance_test:		./tests/distance_test.o
+		$(CC) -o $@ ./tests/distance_test.o distance.o $(LFLAGS) -lcriterion
 
 lint:	
 	lint -h $(SOURCES)
