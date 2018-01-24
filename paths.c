@@ -71,7 +71,7 @@ construct_candidates(int a[], int k, int n, int c[], int *ncandidates)
 	int last;			/* last vertex on current path */
 
         for (i=1; i<NMAX; i++) in_sol[i] = FALSE;
-	for (i=1; i<k; i++) in_sol[ a[i] ] = TRUE;
+	for (i=0; i<k; i++) in_sol[ a[i] ] = TRUE;
 
 	if (k==1) {			/* always start from vertex 1 */
 		c[0] = 1;

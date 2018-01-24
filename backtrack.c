@@ -54,8 +54,8 @@ void backtrack(int a[], int k, data input)
                         make_move(a,k,input);
 
                         backtrack(a,k,input);
-                        if (finished) return;	/* terminate early */
                         unmake_move(a,k,input);
+                        if (finished) return;	/* terminate early */
                 }
         }
 }

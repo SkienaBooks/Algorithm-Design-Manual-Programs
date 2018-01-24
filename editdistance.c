@@ -41,7 +41,7 @@ int string_compare(char *s, char *t)
 	int i,j,k;		/* counters */
 	int opt[3];		/* cost of the three options */
 
-	for (i=0; i<MAXLEN; i++) {
+	for (i=0; i<=MAXLEN; i++) {
 		row_init(i);
 		column_init(i);
 	}
