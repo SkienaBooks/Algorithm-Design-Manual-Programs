@@ -1,4 +1,5 @@
 #include <criterion/criterion.h>
+#include <string.h>
 #include "../distance.h"
 
 
@@ -11,6 +12,9 @@ Test(distance_test, simple) {
 
 	result = distance(a, b);
 
-	cr_assert_eq(result, EXPECTED_DISTANCE,
+	int x = (int)(EXPECTED_DISTANCE * 1000000);
+	int y = (int)(result * 1000000);
+
+	cr_assert_eq(y, x
 	"Distance not what was expected. Expected: [%.6f] Actual: [%.6f]\n", EXPECTED_DISTANCE, result);
 }
