@@ -12,6 +12,6 @@ Test(distance_test, simple) {
 
 	result = distance(a, b);
 
-	cr_assert_eq(result, EXPECTED_DISTANCE,
+	cr_expect_eq(result, EXPECTED_DISTANCE,
 	"Distance not what was expected. Expected: [%.6f] Actual: [%.6f]\n", EXPECTED_DISTANCE, result);
 }
