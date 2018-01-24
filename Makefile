@@ -30,7 +30,7 @@ SOURCES = backtrack.c 8-queens.c permutations.c subsets.c queue.c war.c \
 	plates.c geotest.c cgtest.c netflow.c paths.c sudoku.c annealing.c \
 	tsp.c fib.c partition.c  biconnected.c stack.c strong.c topsort1.c \
 	bipartite.c priority_queue.c kruskal.c set_union.c list-demo.c \
-	tree-demo.c matrix.c first.c criterion_test.c
+	tree-demo.c matrix.c criterion_test.c
 OBJECTS = backtrack.o 8-queens.o permutations.o subsets.o queue.o war.o \
 	graph.o random.o sorting.o bfs-dfs.o bfs-demo.o dfs-demo.o \
 	connected.o topsort.o wgraph.o prim.o dijkstra.o floyd.o findcycle.o \
@@ -40,13 +40,13 @@ OBJECTS = backtrack.o 8-queens.o permutations.o subsets.o queue.o war.o \
 	plates.o geotest.o cgtest.o netflow.o paths.o sudoku.o annealing.o \
 	tsp.o fib.o partition.o biconnected.o stack.o strong.o topsort1.o \
 	bipartite.o priority_queue.o kruskal.o set_union.o list-demo.o \
-	tree-demo.o matrix.o first.o criterion_test.o
+	tree-demo.o matrix.o criterion_test.o
 BINARIES = 8-queens permutations subsets war sorting bfs-demo \
 	dfs-demo connected topsort prim dijkstra floyd findcycle stringedit \
 	lcs substringedit superman convex-hull triangulate 10055 distance name \
 	polly gcd primes bignum editbrute elevator order plates geotest cgtest \
 	netflow paths sudoku tsp fib partition biconnected strong topsort \
-	bipartite kruskal matrix tree-demo first criterion_test distance_test
+	bipartite kruskal matrix tree-demo criterion_test distance_test
 INCLUDES = bool.h backtrack.h queue.h graph.h editdistance.h \
 	   geometry.h annealing.h tsp.h stack.h priority_queue.h set_union.h \
 	   list.h tree.h item.h
@@ -201,9 +201,6 @@ list-demo:	list-demo.o
 
 tree-demo:	tree-demo.o
 		$(CC) -o $@ tree-demo.o $(LFLAGS)
-
-first:		first.o
-		$(CC) -o $@ first.o $(LFLAGS)
 
 criterion_test:		criterion_test.o
 		$(CC) -o $@ criterion_test.o $(LFLAGS) -lcriterion
