@@ -30,7 +30,7 @@ SOURCES = backtrack.c 8-queens.c permutations.c subsets.c queue.c war.c \
 	plates.c geotest.c cgtest.c netflow.c paths.c sudoku.c annealing.c \
 	tsp.c fib.c partition.c  biconnected.c stack.c strong.c topsort1.c \
 	bipartite.c priority_queue.c kruskal.c set_union.c list-demo.c \
-	tree-demo.c matrix.c criterion_test.c
+	tree-demo.c matrix.c criterion_test.c test/distance_test.c
 OBJECTS = backtrack.o 8-queens.o permutations.o subsets.o queue.o war.o \
 	graph.o random.o sorting.o bfs-dfs.o bfs-demo.o dfs-demo.o \
 	connected.o topsort.o wgraph.o prim.o dijkstra.o floyd.o findcycle.o \
@@ -40,7 +40,7 @@ OBJECTS = backtrack.o 8-queens.o permutations.o subsets.o queue.o war.o \
 	plates.o geotest.o cgtest.o netflow.o paths.o sudoku.o annealing.o \
 	tsp.o fib.o partition.o biconnected.o stack.o strong.o topsort1.o \
 	bipartite.o priority_queue.o kruskal.o set_union.o list-demo.o \
-	tree-demo.o matrix.o criterion_test.o
+	tree-demo.o matrix.o criterion_test.o distance_test.o
 BINARIES = 8-queens permutations subsets war sorting bfs-demo \
 	dfs-demo connected topsort prim dijkstra floyd findcycle stringedit \
 	lcs substringedit superman convex-hull triangulate 10055 distance name \
@@ -161,7 +161,7 @@ triangulate:	geometry.o triangulate.o
 		$(CC) -o $@ 10055.o $(LFLAGS)
 
 distance:	distance.o
-		$(CC) -o $@ distance.o $(LFLAGS)
+		$(CC) -c -o $@ distance.o -lm
 
 name:		name.o
 		$(CC) -o $@ name.o $(LFLAGS)
@@ -217,6 +217,7 @@ backup:	$(SOURCES) $(INCLUDES)
  
 clean: 	
 	rm -f core *.o a.out $(BINARIES)
+	rm -f ./tests/*.o
 
 tar:	
 	make clean
