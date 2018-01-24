@@ -25,10 +25,11 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 */
 
 
-#define	DIMENSION	3
-#include <math.h>
+// #define	DIMENSION	3
+// #include <math.h>
+#include "distance.h"
 
-typedef int point[DIMENSION];
+// typedef int point[DIMENSION];
 
 main(){
 	point a={6,2,3};

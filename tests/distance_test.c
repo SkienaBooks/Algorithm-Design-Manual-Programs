@@ -1,5 +1,5 @@
 #include <criterion/criterion.h>
-#include "../distance.c"
+#include "../distance.h"
 
 
 #define EXPECTED_DISTANCE 1.414214
