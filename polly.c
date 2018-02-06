@@ -47,7 +47,7 @@ typedef struct {
 suitor suitors[NSUITORS];		/* database of suitors */
 int nsuitors;				/* number of suitors */
 
-read_suitors()
+void read_suitors()
 {
 	char first[NAMELENGTH], last[NAMELENGTH];
 	int height, weight;
@@ -68,7 +68,7 @@ read_suitors()
 }
 
 
-main()
+int main()
 {
 	int i;				/* counter */
 	int suitor_compare();

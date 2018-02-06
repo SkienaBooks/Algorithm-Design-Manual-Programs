@@ -25,7 +25,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "graph.h"
 #include "queue.h"
@@ -75,7 +75,7 @@ void process_vertex_late(int v)
 		reachable_ancestor[parent[v]] = reachable_ancestor[v];
 }
 
-process_edge(int x, int y)
+void process_edge(int x, int y)
 {
 	int class;		/* edge class */
 
@@ -93,7 +93,7 @@ process_edge(int x, int y)
 
 
 
-articulation_vertices(graph *g)
+void articulation_vertices(graph *g)
 {
 	int i;				/* counter */
 
@@ -107,7 +107,7 @@ articulation_vertices(graph *g)
 }
 
 
-main()
+int main()
 {
 	graph g;
 	int i;

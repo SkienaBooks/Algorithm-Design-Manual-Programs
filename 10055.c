@@ -1,5 +1,5 @@
 
-#include<stdio.h>
+#include <stdio.h>
 
 int main() {
       long p,q,r;

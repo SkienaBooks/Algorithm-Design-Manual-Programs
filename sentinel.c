@@ -25,11 +25,11 @@ This book can be ordered from Amazon.com at
 http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
-
+#include <stdio.h>
 #define MAXINT	1000000
 int a[100];
 
-main() {
+int main() {
 	int i,n, x;
 
 	for (i=1; i<=20; i++) a[i]=i;

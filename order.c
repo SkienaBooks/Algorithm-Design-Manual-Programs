@@ -25,10 +25,16 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "geometry.h"
 
-row_major(int n, int m)
+
+void process(int i, int j)
+{
+	printf("(%d,%d)\n",i,j);
+}
+
+void row_major(int n, int m)
 {
 	int i,j;	/* counters */
 
@@ -37,7 +43,7 @@ row_major(int n, int m)
 			process(i,j);
 }
 
-column_major(int n, int m)
+void column_major(int n, int m)
 {
 	int i,j;	/* counters */
 
@@ -47,7 +53,7 @@ column_major(int n, int m)
 }
 
 
-snake_order(int n, int m)
+void snake_order(int n, int m)
 {
 	int i,j;	/* counters */
 
@@ -56,7 +62,7 @@ snake_order(int n, int m)
 			process(i, j + (m+1-2*j) * ((i+1) % 2));
 }
 
-diagonal_order(int n, int m)
+void diagonal_order(int n, int m)
 {
 	int d,j;	/* diagonal and point counters */
 	int pcount;	/* points on diagonal */
@@ -70,12 +76,7 @@ diagonal_order(int n, int m)
 	}
 }
 
-process(int i, int j)
-{
-	printf("(%d,%d)\n",i,j);
-}
-
-main()
+int main()
 {
 	printf("row_major\n");
 	row_major(5,5);

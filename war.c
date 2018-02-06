@@ -47,6 +47,35 @@ char values[] = "23456789TJQKA";
 char suits[] = "cdhs";
 
 
+/*	Return the suit and value of the given card.	 */
+
+char suit(int card)
+{
+	return( suits[card % NSUITS] );
+}
+
+char value(int card)
+{
+	return( values[card/NSUITS] );
+}
+
+
+void print_card_queue(queue *q)
+{
+        int i,j;
+
+        i=q->first;
+
+        while (i != q->last) {
+                /*printf("%2d ",q->q[i]);*/
+                printf("%c%c ",value(q->q[i]),suit(q->q[i]));
+                i = (i+1) % QUEUESIZE;
+        }
+
+        printf("%2d ",q->q[i]);
+        printf("\n");
+}
+
 
 /* 	Rank the card with given value and suit.	*/
 
@@ -64,20 +93,7 @@ int rank_card(char value, char suit)
 }
 
 
-/*	Return the suit and value of the given card.	 */
-
-char suit(int card)
-{
-	return( suits[card % NSUITS] );
-}
-
-char value(int card)
-{
-	return( values[card/NSUITS] );
-}
-
-
-testcards(){
+void testcards(){
 	int i;				/* counter */
 	char suit(), value();		/* reconstructed card */
 
@@ -88,8 +104,7 @@ testcards(){
 
 /************************************************************/
 
-random_init_decks(a,b)
-queue *a,*b;
+void random_init_decks(queue *a, queue *b)
 {
 	int i;				/* counter */
 	int perm[NCARDS+1];
@@ -113,7 +128,7 @@ queue *a,*b;
 
 }
 
-war(queue *a, queue *b)
+void war(queue *a, queue *b)
 {
 	int steps=0;			/* step counter */
 	int x,y;			/* top cards */
@@ -163,24 +178,6 @@ print_card_queue(b);
 }
 
 
-print_card_queue(q)
-queue *q;
-{
-        int i,j;
-
-        i=q->first;
-
-        while (i != q->last) {
-                /*printf("%2d ",q->q[i]);*/
-                printf("%c%c ",value(q->q[i]),suit(q->q[i]));
-                i = (i+1) % QUEUESIZE;
-        }
-
-        printf("%2d ",q->q[i]);
-        printf("\n");
-}
-
-
 clear_queue(queue *a, queue *b)
 {
 	/*printf("war ends with %d cards \n",a->count);*/
@@ -188,7 +185,7 @@ clear_queue(queue *a, queue *b)
 		enqueue(b,dequeue(a));
 }
 
-old_main(){
+int old_main(){
 	queue a,b;
 	int i;
 

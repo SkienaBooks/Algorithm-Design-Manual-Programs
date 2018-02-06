@@ -25,7 +25,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "graph.h"
 #include "queue.h"
@@ -44,17 +44,17 @@ extern int exit_time[MAXV+1];	/* time of vertex exit */
 int color[MAXV+1];		/* assigned color of v */
 bool bipartite;			/* is the graph bipartite? */
 
-process_vertex_early(int v)
+void process_vertex_early(int v)
 {
 }
 
-process_vertex_late(int v)
+void process_vertex_late(int v)
 {
 }
 
 
 
-process_edge(int x, int y)
+void process_edge(int x, int y)
 {
 	if (color[x] == color[y]) {
 		bipartite = FALSE;
@@ -65,7 +65,7 @@ process_edge(int x, int y)
 }
 
 
-complement(int color)
+int complement(int color)
 {
 	if (color == WHITE) return(BLACK);
 	if (color == BLACK) return(WHITE);
@@ -73,7 +73,7 @@ complement(int color)
 	return(UNCOLORED);
 }
 
-twocolor(graph *g)
+void twocolor(graph *g)
 {
 	int i;				/* counter */
 
@@ -92,7 +92,7 @@ twocolor(graph *g)
 }
 
 
-main()
+int main()
 {
 	graph g;
 	int i;

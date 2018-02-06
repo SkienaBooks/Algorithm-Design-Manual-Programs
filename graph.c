@@ -27,12 +27,12 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "queue.h"
 #include "graph.h"
 
-initialize_graph(graph *g, bool directed)
+void initialize_graph(graph *g, bool directed)
 {
 	int i;				/* counter */
 
@@ -44,23 +44,8 @@ initialize_graph(graph *g, bool directed)
 	for (i=1; i<=MAXV; i++) g->edges[i] = NULL;
 }
 
-read_graph(graph *g, bool directed)
-{
-	int i;				/* counter */
-	int m;				/* number of edges */
-	int x, y;			/* vertices in edge (x,y) */
 
-	initialize_graph(g, directed);
-
-	scanf("%d %d",&(g->nvertices),&m);
-
-	for (i=1; i<=m; i++) {
-		scanf("%d %d",&x,&y);
-		insert_edge(g,x,y,directed);
-	}
-}
-
-insert_edge(graph *g, int x, int y, bool directed)
+void insert_edge(graph *g, int x, int y, bool directed)
 {
 	edgenode *p;			/* temporary pointer */
 
@@ -78,6 +63,23 @@ insert_edge(graph *g, int x, int y, bool directed)
 		insert_edge(g,y,x,TRUE);
 	else
 		g->nedges ++;
+}
+
+
+void read_graph(graph *g, bool directed)
+{
+	int i;				/* counter */
+	int m;				/* number of edges */
+	int x, y;			/* vertices in edge (x,y) */
+
+	initialize_graph(g, directed);
+
+	scanf("%d %d",&(g->nvertices),&m);
+
+	for (i=1; i<=m; i++) {
+		scanf("%d %d",&x,&y);
+		insert_edge(g,x,y,directed);
+	}
 }
 
 
@@ -112,7 +114,7 @@ void delete_edge(graph *g, int x, int y, bool directed)
 	printf("Warning: deletion(%d,%d) not found in g.\n",x,y);
 }
 
-print_graph(graph *g)
+void print_graph(graph *g)
 {
 	int i;				/* counter */
 	edgenode *p;			/* temporary pointer */

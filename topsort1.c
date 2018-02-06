@@ -27,7 +27,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "graph.h"
 #include "stack.h"
@@ -42,16 +42,16 @@ extern int entry_time[];        /* time of vertex entry */
 extern int exit_time[];         /* time of vertex exit */
 
 
-process_vertex_early(int v)
+void process_vertex_early(int v)
 {
 }
 
-process_vertex_late(int v)
+void process_vertex_late(int v)
 {
 	push(&sorted,v);
 }
 
-process_edge(int x, int y)
+void process_edge(int x, int y)
 {
         int class;              /* edge class */
 
@@ -63,7 +63,7 @@ process_edge(int x, int y)
 
 
 
-topsort(graph *g)
+void topsort(graph *g)
 {
 	int i;				/* counter */
 
@@ -77,7 +77,7 @@ topsort(graph *g)
 }
 
 
-main()
+int main()
 {
 	graph g;
 

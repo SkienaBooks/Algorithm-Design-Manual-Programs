@@ -49,7 +49,7 @@ bool compare(item_type a, item_type b)
 
 /*	Swap the ith and jth elements of array s.	*/
 
-newswap(item_type s[], int i, int j)
+void newswap(item_type s[], int i, int j)
 {
 	item_type tmp;		/* placeholder */
 
@@ -58,7 +58,7 @@ newswap(item_type s[], int i, int j)
 	s[j] = tmp;
 }
 
-insertion_sort(item_type s[], int n)
+void insertion_sort(item_type s[], int n)
 {
 	int i,j;		/* counters */
 
@@ -72,7 +72,7 @@ insertion_sort(item_type s[], int n)
 }
 
 
-selection_sort(item_type s[], int n)
+void selection_sort(item_type s[], int n)
 {
         int i,j;                /* counters */
 	int min;		/* index of minimum */
@@ -87,7 +87,7 @@ selection_sort(item_type s[], int n)
 
 /*	quicksort array s from the index l to index h.	*/
 
-quicksort(item_type s[], int l, int h)
+void quicksort(item_type s[], int l, int h)
 {
 	int p;			/* index of partition */
 
@@ -117,7 +117,7 @@ int partition(item_type s[], int l, int h)
 }
 
 
-heapsort_(item_type s[], int n)
+void heapsort_(item_type s[], int n)
 {
         int i;			/* counters */
 	priority_queue q;	/* heap for heapsort */
@@ -145,22 +145,8 @@ int binary_search(item_type s[], item_type key, int low, int high)
 		return(binary_search(s,key,middle+1,high) );
 }
 
-mergesort_(item_type s[], int low, int high)
-{
-	int i;			/* counter */
-	int middle;		/* index of middle element */
 
-	if (low < high) {
-		middle = (low+high)/2;
-		mergesort_(s,low,middle);
-		mergesort_(s,middle+1,high);
-
-		merge(s, low, middle, high);
-	}
-}
-
-
-merge(item_type s[], int low, int middle, int high)
+void merge(item_type s[], int low, int middle, int high)
 {
 	int i;			/* counter */
 	queue buffer1, buffer2; /* buffers to hold elements for merging */
@@ -183,7 +169,23 @@ merge(item_type s[], int low, int middle, int high)
 	while (!empty_queue(&buffer2)) s[i++] = dequeue(&buffer2);
 }
 
-main()
+
+void mergesort_(item_type s[], int low, int high)
+{
+	int i;			/* counter */
+	int middle;		/* index of middle element */
+
+	if (low < high) {
+		middle = (low+high)/2;
+		mergesort_(s,low,middle);
+		mergesort_(s,middle+1,high);
+
+		merge(s, low, middle, high);
+	}
+}
+
+
+int main()
 {
 	int s[NELEM+2];
 	int n;
@@ -224,7 +226,7 @@ main()
         for (i=0; i<NELEM; i++) s[i] = NELEM-i;
         random_permutation(s,NELEM);
 
-printf("\n");
+	printf("\n");
         for (i=0; i<NELEM; i++) printf("%d ",s[i]);
         printf("\n");
 

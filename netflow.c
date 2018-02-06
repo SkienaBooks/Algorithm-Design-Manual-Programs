@@ -55,35 +55,7 @@ typedef struct {
 } flow_graph;
 
 
-
-main()
-{
-	flow_graph g;			/* graph to analyze */
-	int source, sink;		/* source and sink vertices */
-	int flow;			/* total flow */
-	edgenode *p;			/* temporary pointer */
-
-	scanf("%d %d",&source,&sink);
-	read_flow_graph(&g,TRUE);
-
-	netflow(&g,source,sink);
-
-	print_flow_graph(&g);
-
-	flow = 0;
-	p = g.edges[source];
-	while (p != NULL) {
-		flow += p->flow;
-		p = p->next;
-	}
-
-	printf("total flow = %d\n",flow);
-}
-
-
-
-initialize_graph(g)
-flow_graph *g;				/* graph to initialize */
+void initialize_graph(flow_graph *g)	/* graph to initialize */
 {
 	int i;				/* counter */
 
@@ -95,25 +67,8 @@ flow_graph *g;				/* graph to initialize */
 
 }
 
-read_flow_graph(g,directed)
-flow_graph *g;				/* graph to initialize */
-bool directed;				/* is this graph directed? */
-{
-	int i;				/* counter */
-	int m;				/* number of edges */
-	int x,y,w;			/* placeholder for edge and weight */
 
-	initialize_graph(g);
-
-	scanf("%d %d\n",&(g->nvertices),&m);
-
-	for (i=1; i<=m; i++) {
-		scanf("%d %d %d\n",&x,&y,&w);
-		insert_flow_edge(g,x,y,directed,w);
-	}
-}
-
-insert_flow_edge(flow_graph *g, int x, int y, bool directed, int w)
+void insert_flow_edge(flow_graph *g, int x, int y, bool directed, int w)
 {
         edgenode *p;                    /* temporary pointer */
 
@@ -135,6 +90,22 @@ insert_flow_edge(flow_graph *g, int x, int y, bool directed, int w)
 		g->nedges ++;
 }
 
+void read_flow_graph(flow_graph *g, bool directed)	/* graph to initialize */	/* is this graph directed? */
+{
+	int i;				/* counter */
+	int m;				/* number of edges */
+	int x,y,w;			/* placeholder for edge and weight */
+
+	initialize_graph(g);
+
+	scanf("%d %d\n",&(g->nvertices),&m);
+
+	for (i=1; i<=m; i++) {
+		scanf("%d %d %d\n",&x,&y,&w);
+		insert_flow_edge(g,x,y,directed,w);
+	}
+}
+
 
 edgenode *find_edge(flow_graph *g, int x, int y)
 {
@@ -151,7 +122,7 @@ edgenode *find_edge(flow_graph *g, int x, int y)
 }
 
 
-add_residual_edges(flow_graph *g)
+void add_residual_edges(flow_graph *g)
 {
 	int i,j;			/* counters */
 	edgenode *p;                    /* temporary pointer */
@@ -168,7 +139,7 @@ add_residual_edges(flow_graph *g)
 }
 
 
-print_flow_graph(flow_graph *g)
+void print_flow_graph(flow_graph *g)
 {
         int i;                          /* counter */
         edgenode *p;                    /* temporary pointer */
@@ -192,8 +163,7 @@ int parent[MAXV+1];		/* discovery relation */
 bool finished = FALSE;          /* if true, cut off search immediately */
 
 
-initialize_search(g)
-flow_graph *g;				/* graph to traverse */
+void initialize_search(flow_graph *g)	/* graph to traverse */
 {
         int i;                          /* counter */
 
@@ -204,8 +174,19 @@ flow_graph *g;				/* graph to traverse */
         }
 }
 
+void process_vertex_early(int v)	/* vertex to process */
+{
+}
 
-bfs(flow_graph *g, int start)
+void process_vertex_late(int v)		/* vertex to process */
+{
+}
+
+void process_edge(int x, int y)		/* edge to process */
+{
+}
+
+void bfs(flow_graph *g, int start)
 {
         queue q;                        /* queue of vertices to visit */
         int v;                          /* current vertex */
@@ -246,28 +227,11 @@ bool valid_edge(edgenode *e)
 	else return(FALSE);
 }
 
-process_vertex_early(v)
-int v;					/* vertex to process */
-{
-}
 
-process_vertex_late(v)
-int v;                                  /* vertex to process */
-{
-}
-
-process_edge(x,y)
-int x,y;                                /* edge to process */
-{
-}
-
-
-
-
-find_path(start,end,parents)
-int start;				/* first vertex on path */
-int end;				/* last vertex on path */
-int parents[];				/* array of parent pointers */
+void find_path(int start, int end, int parents[])
+/* first vertex on path */
+/* last vertex on path */
+/* array of parent pointers */
 {
 	if ((start == end) || (end == -1))
 		printf("\n%d",start);
@@ -311,7 +275,7 @@ void augment_path(flow_graph *g, int start, int end, int parents[], int volume)
 }
 
 
-netflow(flow_graph *g, int source, int sink)
+void netflow(flow_graph *g, int source, int sink)
 {
 	int volume;			/* weight of the augmenting path */
 
@@ -328,4 +292,29 @@ netflow(flow_graph *g, int source, int sink)
 		bfs(g,source);
 		volume = path_volume(g, source, sink, parent);
 	}
+}
+
+
+int main()
+{
+	flow_graph g;			/* graph to analyze */
+	int source, sink;		/* source and sink vertices */
+	int flow;			/* total flow */
+	edgenode *p;			/* temporary pointer */
+
+	scanf("%d %d",&source,&sink);
+	read_flow_graph(&g,TRUE);
+
+	netflow(&g,source,sink);
+
+	print_flow_graph(&g);
+
+	flow = 0;
+	p = g.edges[source];
+	while (p != NULL) {
+		flow += p->flow;
+		p = p->next;
+	}
+
+	printf("total flow = %d\n",flow);
 }

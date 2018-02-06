@@ -27,7 +27,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 */
 
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "graph.h"
 
@@ -36,24 +36,24 @@ extern bool processed[];	/* which vertices have been processed */
 extern bool discovered[];	/* which vertices have been found */
 extern int parent[];		/* discovery relation */
 
-process_vertex_early(int v)
+void process_vertex_early(int v)
 {
 	printf("processed vertex %d\n",v);
 }
 
-process_vertex_late(int v)
+void process_vertex_late(int v)
 {
 }
 
 
-process_edge(int x, int y)
+void process_edge(int x, int y)
 {
         printf("processed edge (%d,%d)\n",x,y);
 }
 
 
 
-main()
+int main()
 {
 	graph g;
 	int i;

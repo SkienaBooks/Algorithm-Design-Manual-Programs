@@ -25,12 +25,12 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "backtrack.h"
 
 
-process_solution(int a[], int k)
+void process_solution(int a[], int k)
 {
 	int i;				/* counter */
 
@@ -39,23 +39,23 @@ process_solution(int a[], int k)
 	printf("\n");
 }
 
-is_a_solution(int a[], int k, int n)
+int is_a_solution(int a[], int k, int n)
 {
 	return (k == n);
 }
 
-make_move(int a[], int k, int n)
+void make_move(int a[], int k, int n)
 {
 }
 
-unmake_move(int a[], int k, int n)
+void unmake_move(int a[], int k, int n)
 {
 }
 
 
 /*	What are possible elements of the next slot in the permutation?  */
 
-construct_candidates(int a[], int k, int n, int c[], int *ncandidates)
+void construct_candidates(int a[], int k, int n, int c[], int *ncandidates)
 {
 	int i;				/* counter */
 	bool in_perm[NMAX];		/* what is now in the permutation? */
@@ -73,7 +73,7 @@ construct_candidates(int a[], int k, int n, int c[], int *ncandidates)
 
 
 
-main()
+int main()
 {
 	int a[NMAX];			/* solution vector */
 

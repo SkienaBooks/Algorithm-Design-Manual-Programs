@@ -26,7 +26,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include <string.h>
 #include "bool.h"
 #include "tsp.h"
@@ -35,7 +35,7 @@ extern int solution_count;
 
 /**********************************************************************/
 
-read_tsp(tsp_instance *t)
+void read_tsp(tsp_instance *t)
 {
 	int i,j;			/* counters */
 
@@ -45,7 +45,7 @@ read_tsp(tsp_instance *t)
 		scanf("%d %d %d\n",&j,&(t->p[i].x),&(t->p[i].y));
 }
 
-print_tsp(tsp_instance *t)
+void print_tsp(tsp_instance *t)
 {
 	int i;				/* counter */
 
@@ -91,7 +91,7 @@ double solution_cost(tsp_solution *s, tsp_instance *t)
 	return(cost);
 }
 
-initialize_solution(int n, tsp_solution *s)
+void initialize_solution(int n, tsp_solution *s)
 {
 	int i;				/* counter */
 
@@ -100,7 +100,7 @@ initialize_solution(int n, tsp_solution *s)
 		s->p[i] = i;
 }
 
-copy_solution(tsp_solution *s, tsp_solution *t)
+void copy_solution(tsp_solution *s, tsp_solution *t)
 {
 	int i;				/* counter */
 	t->n = s->n;
@@ -109,7 +109,7 @@ copy_solution(tsp_solution *s, tsp_solution *t)
 }
 		
 
-print_solution(tsp_solution *s)
+void print_solution(tsp_solution *s)
 {
         int i;                          /* counter */
 
@@ -118,7 +118,7 @@ print_solution(tsp_solution *s)
 	printf("\n------------------------------------------------------\n");
 }
 
-read_solution(tsp_solution *s)
+void read_solution(tsp_solution *s)
 {
 	int i;				/* counter */
 
@@ -128,7 +128,7 @@ read_solution(tsp_solution *s)
 		scanf("%d",&(s->p[i]));
 }
 
-random_solution(tsp_solution *s)
+void random_solution(tsp_solution *s)
 {
 	random_permutation(&(s->p[1]),(s->n)-1);
 }
@@ -183,7 +183,7 @@ double transition(tsp_solution *s, tsp_instance *t, int i, int j)
 
 
 
-main()
+int main()
 {
 	tsp_instance t;			/* tsp points */
 	tsp_solution s;			/* tsp solution */

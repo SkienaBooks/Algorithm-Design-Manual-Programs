@@ -25,7 +25,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include <string.h>
 #include "editdistance.h"
 #include "bool.h"
@@ -80,7 +80,7 @@ void reconstruct_path(char *s, char *t, int i, int j)
         }
 }
 
-print_matrix(char *s, char *t, bool costQ)
+void print_matrix(char *s, char *t, bool costQ)
 {
 	int i,j;			/* counters */
 	int x,y;			/* string lengths */

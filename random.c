@@ -34,8 +34,17 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 /*      These functions generate random numbers in the designated ranges */
 
-random_int(low,high)
-int low,high;                                   /*lower/upper bounds on numb*/
+void swap(int *a, int *b)
+{
+        int x;
+
+        x = *a;
+        *a = *b;
+        *b = x;
+}
+
+
+int random_int(int low, int high)                      /*lower/upper bounds on numb*/
 {
         int rand();
         int i,j,r;                                      /*random number*/
@@ -56,9 +65,7 @@ int low,high;                                   /*lower/upper bounds on numb*/
         given array.
 */
 
-random_permutation(a,n)
-int a[];
-int n;
+void random_permutation(int a[], int n)
 {
         int i;
 
@@ -66,19 +73,8 @@ int n;
                 swap(&a[i-1],&a[random_int(0,i-1)]);
 }
 
-swap(a,b)
-int *a,*b;
-{
-        int x;
 
-        x = *a;
-        *a = *b;
-        *b = x;
-}
-
-
-double random_float(low,high)
-int low,high;                                   /*lower/upper bounds on numb*/
+double random_float(int low, int high)          /*lower/upper bounds on numb*/
 {
         int rand();
         double i,j;                             /* avoid arithmetic trouble */

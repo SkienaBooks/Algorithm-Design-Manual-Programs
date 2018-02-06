@@ -4,18 +4,18 @@
 	begun: August 14, 2006
 	by: Steven Skiena
 */
-
+#include <stdio.h>
 #define	MAXN	45		/* largest number of books */
 #define MAXK	10		/* largest number of dividers */
 #define MAXINT	100000		/* infinity */
 
 
-max(int a, int b)
+int max(int a, int b)
 {
 	return( (a > b) ? a : b );
 } 
 
-read_partition(int s[], int *n, int *k)
+void read_partition(int s[], int *n, int *k)
 {
 	int i;			/* counter */
 
@@ -24,7 +24,7 @@ read_partition(int s[], int *n, int *k)
 		scanf("%d\n",&(s[i]));
 }
 
-print_books(int s[], int start, int end)
+void print_books(int s[], int start, int end)
 {
 	int i;			/* counter */
 
@@ -33,7 +33,7 @@ print_books(int s[], int start, int end)
 	printf("}\n");
 }
 
-print_matrix(int m[MAXN+1][MAXK+1], int n, int k)
+void print_matrix(int m[MAXN+1][MAXK+1], int n, int k)
 {
 	int i,j;		/* counters */
 
@@ -46,7 +46,7 @@ print_matrix(int m[MAXN+1][MAXK+1], int n, int k)
 	}
 }
 
-reconstruct_partition(int s[],int d[MAXN+1][MAXK+1], int n, int k)
+void reconstruct_partition(int s[],int d[MAXN+1][MAXK+1], int n, int k)
 {
 	if (k==1)
 		print_books(s,1,n);
@@ -56,7 +56,7 @@ reconstruct_partition(int s[],int d[MAXN+1][MAXK+1], int n, int k)
 	}
 }
 
-partition(int s[], int n, int k)
+void partition(int s[], int n, int k)
 {
 	int p[MAXN+1];				/* prefix sums array */
 	int m[MAXN+1][MAXK+1];			/* DP table for values */
@@ -91,7 +91,7 @@ partition(int s[], int n, int k)
 
 
 
-main()
+int main()
 {
 	int s[MAXN+1];			/* book thicknesses to partition */
 	int n;				/* how many books? */

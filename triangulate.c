@@ -26,13 +26,27 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "geometry.h"
 #include <math.h>
 
 
-triangulate(polygon *p, triangulation *t)
+void add_triangle(triangulation *t, int i, int j, int k, polygon *p)
+{
+	int n;				/* number of triangles in t */
+
+	n = t->n;
+
+	t->t[n][0] = i;
+	t->t[n][1] = j;
+	t->t[n][2] = k;
+
+	t->n = n + 1;
+}
+
+
+void triangulate(polygon *p, triangulation *t)
 {
 	int l[MAXPOLY], r[MAXPOLY];	/* left/right neighbor indices */
 	int i;				/* counter */
@@ -54,18 +68,6 @@ triangulate(polygon *p, triangulation *t)
 	}
 }
 
-add_triangle(triangulation *t, int i, int j, int k, polygon *p)
-{
-	int n;				/* number of triangles in t */
-
-	n = t->n;
-
-	t->t[n][0] = i;
-	t->t[n][1] = j;
-	t->t[n][2] = k;
-
-	t->n = n + 1;
-}
 
 bool ear_Q(int i, int j, int k, polygon *p)
 {
@@ -129,7 +131,7 @@ double area(polygon *p)
 
 
 
-main(){
+int main(){
 	polygon p;			/* input polygon */
 	triangulation t;		/* output triangulation */
 	int i;				/* counter */

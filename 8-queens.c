@@ -25,30 +25,31 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
+#include <stdlib.h>
 #include "backtrack.h"
 #include "bool.h"
 
 int solution_count;			/* how many solutions are there? */
 
 
-process_solution(int a[], int k)
+void process_solution(int a[], int k)
 {
 	int i;				/* counter */
 
 	solution_count ++;
 }
 
-is_a_solution(int a[], int k, int n)
+int is_a_solution(int a[], int k, int n)
 {
 	return (k == n);
 }
 
-make_move(int a[], int k, int n)
+void make_move(int a[], int k, int n)
 {
 }
 
-unmake_move(int a[], int k, int n)
+void unmake_move(int a[], int k, int n)
 {
 }
 
@@ -58,7 +59,7 @@ unmake_move(int a[], int k, int n)
 	problem?
 */
 
-construct_candidates(int a[], int k, int n, int c[], int *ncandidates)
+void construct_candidates(int a[], int k, int n, int c[], int *ncandidates)
 {
 	int i,j;			/* counters */
 	bool legal_move;		/* might the move be legal? */
@@ -81,7 +82,7 @@ construct_candidates(int a[], int k, int n, int c[], int *ncandidates)
 
 
 
-main()
+int main()
 {
 	int a[NMAX];			/* solution vector */
 	int i;				/* counter */

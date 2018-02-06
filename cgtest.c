@@ -34,7 +34,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 
 
-main()
+int main()
 {
 	point p1,p2,q1,q2,i;
 	line l1,l2;

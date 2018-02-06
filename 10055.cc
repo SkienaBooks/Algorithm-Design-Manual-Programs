@@ -1,5 +1,5 @@
 
-#include<iostream.h>
+#include <iostream.h>
 
 void main()
 {

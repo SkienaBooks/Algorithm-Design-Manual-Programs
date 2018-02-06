@@ -38,19 +38,8 @@ typedef char string[MAXLEN];
 string mergers[MAXCHANGES][2];	/* store before/after corporate names */
 int nmergers;			/* the number of different name changes */
 
-read_changes()
-{
-	int i;			/* counter */
 
-	scanf("%d\n",&nmergers);
-	for (i=0; i<nmergers; i++) {
-		read_quoted_string(&(mergers[i][0]));
-		read_quoted_string(&(mergers[i][1]));
-		/*printf("%s to %s\n",mergers[i][0], mergers[i][1]);*/
-	}
-}
-
-read_quoted_string(char *s)
+void read_quoted_string(char *s)
 {
 	int i=0;		/* counter */
 	char c;			/* latest character */
@@ -65,7 +54,42 @@ read_quoted_string(char *s)
 	s[i] = '\0';
 }
 
-main()
+
+void read_changes()
+{
+	int i;			/* counter */
+
+	scanf("%d\n",&nmergers);
+	for (i=0; i<nmergers; i++) {
+		read_quoted_string(&(mergers[i][0]));
+		read_quoted_string(&(mergers[i][1]));
+		/*printf("%s to %s\n",mergers[i][0], mergers[i][1]);*/
+	}
+}
+
+
+/*	Replace the substring of length xlen starting at position pos in
+	string s with the contents of string y.
+*/
+
+void replace_x_with_y(char *s, int pos, int xlen, char *y)
+{
+	int i;				/* counter */
+	int slen,ylen;			/* lengths of relevant strings */
+
+	slen = strlen(s);
+	ylen = strlen(y);
+
+	if (xlen >= ylen)
+		for (i=(pos+xlen); i<=slen; i++) s[i+(ylen-xlen)] = s[i]; 
+	else
+		for (i=slen; i>=(pos+xlen); i--) s[i+(ylen-xlen)] = s[i];
+
+	for (i=0; i<ylen; i++) s[pos+i] = y[i];
+}
+
+
+int main()
 {
 	string s;		/* input string */
 	char c;			/* input character */
@@ -117,26 +141,5 @@ int findmatch(char *p, char *t)
 	}
 
 	return(-1);
-}
-
-
-/*	Replace the substring of length xlen starting at position pos in
-	string s with the contents of string y.
-*/
-
-replace_x_with_y(char *s, int pos, int xlen, char *y)
-{
-	int i;				/* counter */
-	int slen,ylen;			/* lengths of relevant strings */
-
-	slen = strlen(s);
-	ylen = strlen(y);
-
-	if (xlen >= ylen)
-		for (i=(pos+xlen); i<=slen; i++) s[i+(ylen-xlen)] = s[i]; 
-	else
-		for (i=slen; i>=(pos+xlen); i--) s[i+(ylen-xlen)] = s[i];
-
-	for (i=0; i<ylen; i++) s[pos+i] = y[i];
 }
 

@@ -78,7 +78,7 @@ void insert_list(list **l, item_type x)
 	*l = p;
 }
 
-print_list(list *l)
+void print_list(list *l)
 {
         while (l != NULL) {
                 printf("%d ",l->item);
@@ -89,7 +89,7 @@ print_list(list *l)
 }
 
 
-delete_list(list **l, item_type x)
+void delete_list(list **l, item_type x)
 {
 	list *p;			/* item pointer */
 	list *pred;			/* predecessor pointer */
@@ -109,7 +109,7 @@ delete_list(list **l, item_type x)
 
 
 
-main()
+int main()
 {
 	char c;			/* input character */
 	item_type d;		/* input item */

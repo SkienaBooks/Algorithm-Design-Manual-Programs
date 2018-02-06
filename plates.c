@@ -28,8 +28,8 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 */
 
 
-#include        <stdio.h>
-#include        <math.h>
+#include <stdio.h>
+#include <math.h>
 
 
 /*	how many triangular-lattice layers of radius r balls fit in height h? 
@@ -88,13 +88,13 @@ int grid_plates(double w, double h, double r)
 	such a point is a function of the radius of the disk $r$.
 */
 
-hex_to_geo(int xh, int yh, double r, double *xg, double *yg)
+void hex_to_geo(int xh, int yh, double r, double *xg, double *yg)
 {
 	*yg = (2.0 * r) * xh * (sqrt(3)/2.0);
 	*xg = (2.0 * r) * xh * (1.0/2.0) + (2.0 * r) * yh;
 }
 
-geo_to_hex(double xg, double yg, double r, double *xh, double *yh)
+void geo_to_hex(double xg, double yg, double r, double *xh, double *yh)
 {
 	*xh = (2.0/sqrt(3)) * yg / (2.0 * r);
 	*yh = (xg - (2.0 * r) * (*xh) * (1.0/2.0) ) / (2.0 * r);
@@ -108,13 +108,13 @@ geo_to_hex(double xg, double yg, double r, double *xh, double *yh)
 	rectangle with (0,0) as the lower righthand point in the matrix.
 */
 
-array_to_hex(int xa, int ya, int *xh, int *yh)
+void array_to_hex(int xa, int ya, int *xh, int *yh)
 {
 	*xh = xa;
 	*yh = ya - xa + ceil(xa/2.0);
 }
 
-hex_to_array(int xh, int yh, int *xa, int *ya)
+void hex_to_array(int xh, int yh, int *xa, int *ya)
 {
 	*xa = xh;
 	*ya = yh + xh - ceil(xh/2.0);
@@ -148,7 +148,7 @@ int plates_on_top(int xh, int yh, double w, double l, double r)
 	return(number_on_top);
 }
 
-main()
+int main()
 {
 	double w;			/* box width */
 	double l;			/* box length */

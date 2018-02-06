@@ -26,7 +26,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "graph.h"
 
@@ -37,15 +37,15 @@ extern int parent[];		/* discovery relation */
 extern bool finished;		/* flag for early search cutoff */
 
 
-process_vertex_early(int v)
+void process_vertex_early(int v)
 {
 }
 
-process_vertex_late(int v)
+void process_vertex_late(int v)
 {
 }
 
-process_edge(int x, int y)
+void process_edge(int x, int y)
 {
 	if (parent[x] != y) {	/* found back edge! */
 		printf("Cycle from %d to %d:",y,x);
@@ -56,7 +56,7 @@ process_edge(int x, int y)
 }
 
 
-main()
+int main()
 {
 	graph g;
 	int i;

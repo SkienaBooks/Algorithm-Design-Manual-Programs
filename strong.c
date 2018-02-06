@@ -25,7 +25,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "graph.h"
 #include "stack.h"
@@ -43,27 +43,14 @@ int scc[MAXV+1];		/* strong component number for each vertex */
 stack active;			/* active vertices of unassigned component */
 int components_found;		/* number of strong components identified */
 
-process_vertex_early(int v)
+void process_vertex_early(int v)
 {
 	/*printf("entered vertex %d at time %d\n",v, entry_time[v]);*/
 
 	push(&active,v);
 }
 
-process_vertex_late(int v)
-{
-        /*printf("exit vertex %d at time %d\n",v, exit_time[v]);*/
-
-	if (low[v] == v) { 		/* edge (parent[v],v) cuts off scc */
-/*printf("strong commonent started backtracking from %d\n",v);*/
-		pop_component(v);
-	}
-
-	if (entry_time[low[v]] < entry_time[low[parent[v]]])
-		low[parent[v]] = low[v];
-}
-
-pop_component(int v)
+void pop_component(int v)
 {
         int t;                  /* vertex placeholder */
 
@@ -77,7 +64,21 @@ pop_component(int v)
 	}
 }
 
-process_edge(int x, int y)
+void process_vertex_late(int v)
+{
+        /*printf("exit vertex %d at time %d\n",v, exit_time[v]);*/
+
+	if (low[v] == v) { 		/* edge (parent[v],v) cuts off scc */
+/*printf("strong commonent started backtracking from %d\n",v);*/
+		pop_component(v);
+	}
+
+	if (entry_time[low[v]] < entry_time[low[parent[v]]])
+		low[parent[v]] = low[v];
+}
+
+
+void process_edge(int x, int y)
 {
 	int class;		/* edge class */
 
@@ -102,7 +103,7 @@ process_edge(int x, int y)
 
 
 
-strong_components(graph *g)
+void strong_components(graph *g)
 {
 	int i;				/* counter */
 
@@ -123,7 +124,7 @@ strong_components(graph *g)
 		}
 }
 
-main()
+int main()
 {
 	graph g;
 	int i;

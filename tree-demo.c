@@ -218,7 +218,7 @@ tree *delete_tree(tree *t, item_type x)
 /* 	return(troot); */
 
 
-main()
+int main()
 {
 	char c;			/* input character */
 	item_type d;			/* input item */

@@ -25,14 +25,14 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "geometry.h"
 #include <math.h>
 
 point first_point;		/* first hull point */
 
-convex_hull(point in[], int n, polygon *hull)
+void convex_hull(point in[], int n, polygon *hull)
 {
 	int i;			/* input counter */
 	int top;		/* current hull size */
@@ -71,7 +71,7 @@ convex_hull(point in[], int n, polygon *hull)
 }
 
 
-sort_and_remove_duplicates(point in[], int *n)
+void sort_and_remove_duplicates(point in[], int *n)
 {
         int i;                  /* counter */
         int oldn;               /* number of points before deletion */
@@ -93,7 +93,7 @@ sort_and_remove_duplicates(point in[], int *n)
         copy_point(in[oldn-1],in[hole]);
 }
 
-mwt(polygon p)
+void mwt(polygon p)
 {
 	double t[MAXN+1][MAXN+1];		/* DP table for values */
 	int i, j, k, gap;			/* counters */
@@ -106,7 +106,7 @@ mwt(polygon p)
 			t[i][j] = INFINITY;
 			f
 
-main(){
+int main(){
 	point in[MAXPOLY];		/* input points */
 	polygon hull;			/* convex hull */
 	int n;				/* number of points */

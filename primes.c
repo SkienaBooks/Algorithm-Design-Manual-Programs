@@ -27,11 +27,11 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 */
 
 
-#include<stdio.h>
-#include<math.h>
+#include <stdio.h>
+#include <math.h>
 
 
-prime_factorization(long x)
+void prime_factorization(long x)
 {
 	long i;			/* counter */
 	long c;			/* remaining product to factor */
@@ -59,7 +59,7 @@ prime_factorization(long x)
 
 
 
-main() {
+int main() {
       long p;
 
       while (scanf("%ld",&p)!=EOF) {

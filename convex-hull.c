@@ -26,12 +26,36 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "geometry.h"
 #include <math.h>
 
 point first_point;		/* first hull point */
+
+
+void sort_and_remove_duplicates(point in[], int *n)
+{
+        int i;                  /* counter */
+        int oldn;               /* number of points before deletion */
+        int hole;               /* index marked for potential deletion */
+	bool leftlower();
+
+	qsort(in, *n, sizeof(point), leftlower);
+
+        oldn = *n;
+	hole = 1;
+        for (i=1; i<oldn; i++) {
+		if ((in[hole-1][X] == in[i][X]) && (in[hole-1][Y] == in[i][Y])) 
+                        (*n)--;
+                else {
+                        copy_point(in[i],in[hole]);
+                        hole = hole + 1;
+                }
+        }
+        copy_point(in[oldn-1],in[hole]);
+}
+
 
 void convex_hull(point in[], int n, polygon *hull)
 {
@@ -73,30 +97,7 @@ void convex_hull(point in[], int n, polygon *hull)
 }
 
 
-sort_and_remove_duplicates(point in[], int *n)
-{
-        int i;                  /* counter */
-        int oldn;               /* number of points before deletion */
-        int hole;               /* index marked for potential deletion */
-	bool leftlower();
-
-	qsort(in, *n, sizeof(point), leftlower);
-
-        oldn = *n;
-	hole = 1;
-        for (i=1; i<oldn; i++) {
-		if ((in[hole-1][X] == in[i][X]) && (in[hole-1][Y] == in[i][Y])) 
-                        (*n)--;
-                else {
-                        copy_point(in[i],in[hole]);
-                        hole = hole + 1;
-                }
-        }
-        copy_point(in[oldn-1],in[hole]);
-}
-
-
-main(){
+int main(){
 	point in[MAXPOLY];		/* input points */
 	polygon hull;			/* convex hull */
 	int n;				/* number of points */

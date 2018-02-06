@@ -26,7 +26,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include <stdlib.h>
 #include "bool.h"
 
@@ -47,7 +47,7 @@ typedef struct {
 } matrix;
 
 
-initialize_matrix(matrix *m)
+void initialize_matrix(matrix *m)
 {
 	int i,j;			/* counters */
 
@@ -56,7 +56,7 @@ initialize_matrix(matrix *m)
 			m->m[i][j] = 0;
 }
 
-read_matrix(matrix *m)
+void read_matrix(matrix *m)
 {
 	int i,j;			/* counters */
 
@@ -70,7 +70,7 @@ read_matrix(matrix *m)
 }
 
 
-print_matrix(matrix *g)
+void print_matrix(matrix *g)
 {
 	int i,j;			/* counters */
 
@@ -104,7 +104,7 @@ void multiply(matrix *a, matrix *b, matrix *c)
 }
 
 
-main()
+int main()
 {
 	matrix a,b,c;
 

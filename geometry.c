@@ -26,12 +26,12 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "geometry.h"
 #include <math.h>
 
-points_to_line(point p1, point p2, line *l)
+void points_to_line(point p1, point p2, line *l)
 {
 	if (p1[X] == p2[X]) {
 		l->a = 1;
@@ -44,7 +44,7 @@ points_to_line(point p1, point p2, line *l)
 	}
 }
 
-point_and_slope_to_line(point p, double m, line *l)
+void point_and_slope_to_line(point p, double m, line *l)
 {
 	l->a = -m;
 	l->b = 1;
@@ -119,14 +119,14 @@ double distance(point a, point b)
 
 /***********************************************************************/
 
-copy_point(point a, point b)
+void copy_point(point a, point b)
 {
 	int i;			/* counter */
 
 	for (i=0; i<DIMENSION; i++) b[i] = a[i];
 }
 
-swap_point(point a, point b)
+void swap_point(point a, point b)
 {
 	point c;		/* temporary point */
 
@@ -136,13 +136,13 @@ swap_point(point a, point b)
 }
 
 
-points_to_segment(point a, point b, segment *s)
+void points_to_segment(point a, point b, segment *s)
 {
 	copy_point(a,s->p1);
 	copy_point(b,s->p2);
 }
 
-segment_to_points(segment s, point p1, point p2)
+void segment_to_points(segment s, point p1, point p2)
 {
 	copy_point(s.p1,p1);
 	copy_point(s.p2,p2);
@@ -208,7 +208,7 @@ bool collinear(point a, point b, point c)
 	return (fabs(signed_triangle_area(a,b,c)) <= EPSILON);
 }
 
-print_points(point p[], int n)
+void print_points(point p[], int n)
 {
         int i;                  /* counter */
 
@@ -216,7 +216,7 @@ print_points(point p[], int n)
                 printf("(%lf,%lf)\n",p[i][X],p[i][Y]);
 }
 
-print_polygon(polygon *p)
+void print_polygon(polygon *p)
 {
 	int i;			/* counter */
 
@@ -224,17 +224,17 @@ print_polygon(polygon *p)
                 printf("(%lf,%lf)\n",p->p[i][X],p->p[i][Y]);
 }
 
-print_point(point p)
+void print_point(point p)
 {
 	printf("%7.3lf %7.3lf\n",p[X],p[Y]);
 }
 
-print_line(line l)
+void print_line(line l)
 {
 	printf("(a=%7.3lf,b=%7.3lf,c=%7.3lf)\n",l.a,l.b,l.c);
 }
 
-print_segment(segment s)
+void print_segment(segment s)
 {
 	printf("segment: ");
 	print_point(s.p1);

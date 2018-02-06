@@ -26,6 +26,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
+#include <stdio.h>
 
 #define	NFLOORS		25	/* the height of the building in floors */
 #define MAX_RIDERS	50	/* what is the capacity of the elevator? */
@@ -87,7 +88,7 @@ int optimize_floors()
 
 
 
-floors_walked(int previous, int current)
+int floors_walked(int previous, int current)
 {
 	int nsteps=0;		/* total distance traveled */
 	int i;			/* counter */
@@ -100,7 +101,7 @@ floors_walked(int previous, int current)
 }
 
 
-reconstruct_path(int lastfloor, int stops_to_go)
+void reconstruct_path(int lastfloor, int stops_to_go)
 {
 	if (stops_to_go > 1)
 		reconstruct_path( p[lastfloor][stops_to_go], stops_to_go-1);
@@ -108,8 +109,7 @@ reconstruct_path(int lastfloor, int stops_to_go)
 	printf("%d\n",lastfloor);
 }
 
-print_matrix(m)
-int m[NFLOORS+1][MAX_RIDERS];
+void print_matrix(int m[NFLOORS+1][MAX_RIDERS])
 {
 	int i,j;                        /* counters */
 
@@ -121,7 +121,7 @@ int m[NFLOORS+1][MAX_RIDERS];
 }
 
 
-main()
+int main()
 {
 	int i,j;			/* counters */
 	int laststop;

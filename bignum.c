@@ -41,7 +41,7 @@ typedef struct {
 
 void add_bignum(bignum *a, bignum *b, bignum *c);
 
-print_bignum(bignum *n)
+void print_bignum(bignum *n)
 {
 	int i;
 
@@ -52,7 +52,16 @@ print_bignum(bignum *n)
 	printf("\n");
 }
 
-int_to_bignum(int s, bignum *n)
+void zero_justify(bignum *n)
+{
+	while ((n->lastdigit > 0) && (n->digits[ n->lastdigit ] == 0))
+		n->lastdigit --;
+
+        if ((n->lastdigit == 0) && (n->digits[0] == 0))
+		n->signbit = PLUS;	/* hack to avoid -0 */
+}
+
+void int_to_bignum(int s, bignum *n)
 {
 	int i;				/* counter */
 	int t;				/* int to work with */
@@ -75,7 +84,7 @@ int_to_bignum(int s, bignum *n)
 	if (s == 0) n->lastdigit = 0;
 }
 
-initialize_bignum(bignum *n)
+void initialize_bignum(bignum *n)
 {
 	int_to_bignum(0,n);
 }
@@ -164,7 +173,7 @@ void add_bignum(bignum *a, bignum *b, bignum *c)
 
 
 
-compare_bignum(bignum *a, bignum *b)
+int compare_bignum(bignum *a, bignum *b)
 {
 	int i;				/* counter */
 
@@ -180,15 +189,6 @@ compare_bignum(bignum *a, bignum *b)
 	}
 
 	return(0);
-}
-
-zero_justify(bignum *n)
-{
-	while ((n->lastdigit > 0) && (n->digits[ n->lastdigit ] == 0))
-		n->lastdigit --;
-
-        if ((n->lastdigit == 0) && (n->digits[0] == 0))
-		n->signbit = PLUS;	/* hack to avoid -0 */
 }
 
 
@@ -208,7 +208,7 @@ void digit_shift(bignum *n, int d)	/* multiply n by 10^d */
 
 
 
-multiply_bignum(bignum *a, bignum *b, bignum *c)
+void multiply_bignum(bignum *a, bignum *b, bignum *c)
 {
 	bignum row;			/* represent shifted row */
 	bignum tmp;			/* placeholder bignum */
@@ -232,7 +232,7 @@ multiply_bignum(bignum *a, bignum *b, bignum *c)
 }
 
 
-divide_bignum(bignum *a, bignum *b, bignum *c)
+void divide_bignum(bignum *a, bignum *b, bignum *c)
 {
         bignum row;                     /* represent shifted row */
         bignum tmp;                     /* placeholder bignum */
@@ -273,7 +273,7 @@ divide_bignum(bignum *a, bignum *b, bignum *c)
 
 
 
-main()
+int main()
 {
 	int a,b;
 	bignum n1,n2,n3,zero;

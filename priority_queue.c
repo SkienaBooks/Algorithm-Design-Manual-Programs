@@ -27,26 +27,36 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "priority_queue.h"
 #include "bool.h"
 
 
-pq_init(priority_queue *q)
+void pq_init(priority_queue *q)
 {
         q->n = 0;
 }
 
 
-pq_parent(int n)
+int pq_parent(int n)
 {
 	if (n == 1) return(-1);
 	else return((int) n/2);		/* implicitly take floor(n/2) */
 }
 
-pq_young_child(int n)
+int pq_young_child(int n)
 {
 	return(2 * n);
+}
+
+
+void pq_swap(priority_queue *q, int i, int j)
+{
+	item_type temp;			/* placeholder */
+
+	temp = q->q[i];
+	q->q[i] = q->q[j];
+	q->q[j] = temp;
 }
 
 
@@ -60,7 +70,7 @@ void bubble_up(priority_queue *q, int p)
 	}
 }
 
-bubble_down(priority_queue *q, int p)
+void bubble_down(priority_queue *q, int p)
 {
 	int c;				/* child index */
 	int i;				/* counter */
@@ -82,7 +92,7 @@ bubble_down(priority_queue *q, int p)
 
 
 
-pq_insert(priority_queue *q, item_type x)
+void pq_insert(priority_queue *q, item_type x)
 {
         if (q->n >= PQ_SIZE)
 		printf("Warning: priority queue overflow insert x=%d\n",x);
@@ -91,15 +101,6 @@ pq_insert(priority_queue *q, item_type x)
 		q->q[ q->n ] = x;
 		bubble_up(q, q->n);
         }
-}
-
-pq_swap(priority_queue *q, int i, int j)
-{
-	item_type temp;			/* placeholder */
-
-	temp = q->q[i];
-	q->q[i] = q->q[j];
-	q->q[j] = temp;
 }
 
 
@@ -125,7 +126,7 @@ int empty_pq(priority_queue *q)
         else return (FALSE);
 }
 
-print_pq(priority_queue *q)
+void print_pq(priority_queue *q)
 {
         int i;                          /* counter */
 
@@ -135,7 +136,7 @@ print_pq(priority_queue *q)
         printf("\n");
 }
 
-make_heap(priority_queue *q, item_type s[], int n)
+void make_heap(priority_queue *q, item_type s[], int n)
 {
         int i;                          /* counter */
 
@@ -147,7 +148,7 @@ make_heap(priority_queue *q, item_type s[], int n)
 		bubble_down(q,i);
 }
 
-make_heap1(priority_queue *q, item_type s[], int n)
+void make_heap1(priority_queue *q, item_type s[], int n)
 {
         int i;                          /* counter */
 

@@ -26,7 +26,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "graph.h"
 #include "queue.h"
@@ -41,7 +41,7 @@ int time;                       /* current event time */
 
 bool finished = FALSE;	/* if true, cut off search immediately */
 
-initialize_search(graph *g)
+void initialize_search(graph *g)
 {
         int i;                          /* counter */
 
@@ -53,7 +53,7 @@ initialize_search(graph *g)
         }
 }
 
-bfs(graph *g, int start)
+void bfs(graph *g, int start)
 {
 	queue q;			/* queue of vertices to visit */
 	int v;				/* current vertex */
@@ -135,7 +135,7 @@ void dfs(graph *g, int v)
 }
 
 
-find_path(int start, int end, int parents[])
+void find_path(int start, int end, int parents[])
 {
 	if ((start == end) || (end == -1))
 		printf("\n%d",start);

@@ -24,17 +24,17 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "distance.h"
 
 
-// main(){
-// 	point a={6,2,3};
-// 	point b={6,3,4};
-// 	double distance();
+int main(){
+ 	point a={6,2,3};
+ 	point b={6,3,4};
+ 	double distance();
 
-// 	printf("distance = %f\n",distance(a,b));
-// }
+ 	printf("distance = %f\n",distance(a,b));
+ }
 
 double distance(point a, point b)
 {

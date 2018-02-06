@@ -4,11 +4,10 @@
 	begun: February 10, 2002
 	by: Steven Skiena
 */
-
+#include <stdio.h>
 #define	MAXN	100		/* largest n or m */
 
-long binomial_coefficient(n,m)
-int n,m;			/* computer n choose m */
+long binomial_coefficient(int n, int m) /* computer n choose m */
 {
 	int i,j;		/* counters */
 	long bc[MAXN][MAXN];	/* table of binomial coefficient values */
@@ -25,7 +24,7 @@ int n,m;			/* computer n choose m */
 	return( bc[n][m] );
 }
 
-main()
+int main()
 {
 	int a, b;
 	long binomial_coefficient();

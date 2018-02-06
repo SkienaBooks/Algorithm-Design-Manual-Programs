@@ -24,7 +24,7 @@ This book can be ordered from Amazon.com at
 http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
-
+#include <stdio.h>
 #include "graph.h"
 #include "backtrack.h"
 #include "bool.h"
@@ -33,7 +33,7 @@ int solution_count;			/* how many solutions are there? */
 
 graph g;				/* graph to traverse */
 
-process_solution(int a[], int k)
+void process_solution(int a[], int k)
 {
 	int i;				/* counter */
 
@@ -46,16 +46,16 @@ process_solution(int a[], int k)
 
 }
 
-is_a_solution(int a[], int k, int t)
+int is_a_solution(int a[], int k, int t)
 {
 	return (a[k] == t);
 }
 
-make_move(int a[], int k, int n)
+void make_move(int a[], int k, int n)
 {
 }
 
-unmake_move(int a[], int k, int n)
+void unmake_move(int a[], int k, int n)
 {
 }
 
@@ -63,7 +63,7 @@ unmake_move(int a[], int k, int n)
 /*	What are possible elements of the next slot in the path
 */
 
-construct_candidates(int a[], int k, int n, int c[], int *ncandidates)
+void construct_candidates(int a[], int k, int n, int c[], int *ncandidates)
 {
 	int i;				/* counters */
 	bool in_sol[NMAX];		/* what's already in the solution? */
@@ -93,7 +93,7 @@ construct_candidates(int a[], int k, int n, int c[], int *ncandidates)
 
 
 
-main()
+int main()
 {
 	int a[NMAX];			/* solution vector */
 	int i;				/* counter */

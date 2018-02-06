@@ -30,6 +30,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 #define	MAXN	100		/* maximum number of circles */
 
+#include <stdio.h>
 #include "bool.h"
 #include "geometry.h"
 #include <math.h>
@@ -39,7 +40,7 @@ point t;			/* target position */
 int ncircles;			/* number of circles */
 circle c[MAXN];			/* circles data structure */
 
-superman()
+void superman()
 {
 	line l;			/* line from start to target position */
 	point close;		/* closest point */
@@ -72,7 +73,7 @@ i,c[i].c[X],c[i].c[Y],c[i].r,d,xray,around,angle);
 }
 
 
-main(){
+int main(){
 	int i;			/* counter */
 
 	scanf("%lf %lf",&s[X],&s[Y]);

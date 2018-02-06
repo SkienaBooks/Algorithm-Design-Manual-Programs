@@ -25,7 +25,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include <string.h>
 #include "editdistance.h"
 #include "bool.h"
@@ -37,7 +37,7 @@ extern cell m[MAXLEN+1][MAXLEN+1];         /* dynamic programming table */
 
 /*	For normal edit distance computation  */
 
-goal_cell(char *s, char *t, int *i, int *j)
+void goal_cell(char *s, char *t, int *i, int *j)
 {
 	int k;			/* counter */
 
@@ -59,13 +59,13 @@ int indel(char c)
 	return(1);
 }
 
-row_init(int i)		/* what is m[0][i]? */
+void row_init(int i)		/* what is m[0][i]? */
 {
 	m[0][i].cost = 0;		/* NOTE CHANGE */
 	m[0][i].parent = -1;		/* NOTE CHANGE */
 }
 
-column_init(int i)	/* what is m[i][0]? */
+void column_init(int i)	/* what is m[i][0]? */
 {
         m[i][0].cost = i;
 	if (i>0)
@@ -76,18 +76,18 @@ column_init(int i)	/* what is m[i][0]? */
 
 /**********************************************************************/
 
-match_out(char *s, char *t, int i, int j)
+void match_out(char *s, char *t, int i, int j)
 {
 	if (s[i] == t[j]) printf("M");
 	else printf("S");
 }
 
-insert_out(char *t, int j)
+void insert_out(char *t, int j)
 {
 	printf("I");
 }
 
-delete_out(char *s, int i)
+void delete_out(char *s, int i)
 {
         printf("D");
 }
@@ -96,7 +96,7 @@ delete_out(char *s, int i)
 
 /**********************************************************************/
 
-main(){
+int main(){
 	int i,j;
 	char s[MAXLEN],t[MAXLEN];		/* input strings */
 

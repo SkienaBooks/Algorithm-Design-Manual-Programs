@@ -25,13 +25,13 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "graph.h"
 
-initialize_graph(g,directed)
-graph *g;				/* graph to initialize */
-bool directed;				/* is this graph directed? */
+void initialize_graph(graph *g, bool directed)
+/* graph to initialize */
+/* is this graph directed? */
 {
 
 	int i;				/* counter */
@@ -44,9 +44,33 @@ bool directed;				/* is this graph directed? */
 	for (i=1; i<=MAXV; i++) g->edges[i] = NULL;
 }
 
-read_graph(g,directed)
-graph *g;                               /* graph to initialize */
-bool directed;				/* is this graph directed? */
+
+void insert_edge(graph *g, int x, int y, bool directed, int w)
+/* graph to initialize */
+/* placeholder for edge (x,y) */
+/* is this edge directed? */
+/* edge weight */
+{
+        edgenode *p;                    /* temporary pointer */
+
+        p = malloc(sizeof(edgenode));
+        p->y = y;
+        p->weight = w;
+
+        p->next = g->edges[x];
+        g->edges[x] = p;
+        g->degree[x] ++;
+
+        if (directed == FALSE)
+                insert_edge(g,y,x,TRUE,w);
+        else
+                g->nedges ++;
+}
+
+
+void read_graph(graph *g, bool directed)
+/* graph to initialize */
+/* is this graph directed? */
 {
 	int i;				/* counter */
 	int m;				/* number of edges */
@@ -60,28 +84,6 @@ bool directed;				/* is this graph directed? */
 		scanf("%d %d %d\n",&x,&y,&w);
 		insert_edge(g,x,y,directed,w);
 	}
-}
-
-insert_edge(g,x,y,directed,w)
-graph *g;                               /* graph to initialize */
-int x, y;                       	/* placeholder for edge (x,y) */
-bool directed;                          /* is this edge directed? */
-int w;					/* edge weight */
-{
-	edgenode *p;			/* temporary pointer */
-
-	p = malloc(sizeof(edgenode));
-	p->y = y;
-	p->weight = w;
-
-	p->next = g->edges[x];
-	g->edges[x] = p;
-	g->degree[x] ++;
-
-	if (directed == FALSE)
-		insert_edge(g,y,x,TRUE,w);
-	else
-		g->nedges ++;
 }
 
 
@@ -116,7 +118,7 @@ void delete_edge(graph *g, int x, int y, bool directed)
 }
 
 
-print_graph(graph *g)
+void print_graph(graph *g)
 {
         int i;                          /* counter */
         edgenode *p;                    /* temporary pointer */
@@ -144,7 +146,7 @@ int time;                       /* current event time */
 bool finished = FALSE;  /* if true, cut off search immediately */
 
 
-initialize_search(graph *g)
+void initialize_search(graph *g)
 {
         int i;                          /* counter */
 
@@ -154,6 +156,21 @@ initialize_search(graph *g)
                 processed[i] = discovered[i] = FALSE;
                 parent[i] = -1;
         }
+}
+
+
+void process_vertex_early(int v)         /* vertex to process */
+{
+        printf(" %d",v);
+}
+
+void process_vertex_late(int v)         /* vertex to process */
+{
+}
+
+
+void process_edge(int x, int y)         /* edge to process */
+{
 }
 
 
@@ -197,30 +214,10 @@ void dfs(graph *g, int v)
 }
 
 
-process_vertex_early(v)
-int v;					/* vertex to process */
-{
-	printf(" %d",v);
-}
-
-process_vertex_late(v)
-int v;                                  /* vertex to process */
-{
-}
-
-
-process_edge(x,y)
-int x,y;                                /* edge to process */
-{
-}
-
-
-
-
-find_path(start,end,parents)
-int start;				/* first vertex on path */
-int end;				/* last vertex on path */
-int parents[];				/* array of parent pointers */
+void find_path(int start, int end, int parents[])
+/* first vertex on path */
+/* last vertex on path */
+/* array of parent pointers */
 {
 	if ((start == end) || (end == -1))
 		printf("\n%d",start);
@@ -230,8 +227,7 @@ int parents[];				/* array of parent pointers */
 	}
 }
 
-connected_components(g)
-graph *g;				/* graph to analyze */
+void connected_components(graph *g)     /* graph to analyze */
 {
 	int c;				/* component number */
 	int i;				/* counter */

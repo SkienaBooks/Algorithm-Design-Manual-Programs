@@ -26,7 +26,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include <stdlib.h>
 #include "bool.h"
 #include "graph.h"
@@ -43,7 +43,7 @@ typedef struct {
 /************************************************************/
 
 
-to_edge_array(graph *g, edge_pair e[])
+void to_edge_array(graph *g, edge_pair e[])
 {
 	int i,m;			/* counters */
 	edgenode *p;			/* temporary pointer */
@@ -72,7 +72,7 @@ bool weight_compare(edge_pair *x, edge_pair *y)
 }
 
 
-kruskal(graph *g)
+void kruskal(graph *g)
 {
 	int i;				/* counter */
 	set_union s;			/* set union data structure */
@@ -94,7 +94,7 @@ printf("initialized set union\n");
 	}
 }
 
-main()
+int main()
 {
 	graph g;
 

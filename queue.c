@@ -27,20 +27,20 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "queue.h"
 #include "item.h"
 #include "bool.h"
 
 
-init_queue(queue *q)
+void init_queue(queue *q)
 {
         q->first = 0;
         q->last = QUEUESIZE-1;
         q->count = 0;
 }
 
-enqueue(queue *q, item_type x)
+void enqueue(queue *q, item_type x)
 {
         if (q->count >= QUEUESIZE)
 		printf("Warning: queue overflow enqueue x=%d\n",x);
@@ -76,7 +76,7 @@ int empty_queue(queue *q)
         else return (FALSE);
 }
 
-print_queue(queue *q)
+void print_queue(queue *q)
 {
         int i,j;
 

@@ -27,13 +27,13 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "graph.h"
 #include "queue.h"
 
 
-compute_indegrees(graph *g, int in[])
+void compute_indegrees(graph *g, int in[])
 {
 	int i;				/* counter */
 	edgenode *p;			/* temporary pointer */
@@ -50,7 +50,7 @@ compute_indegrees(graph *g, int in[])
 }
 		
 
-topsort(graph *g, int sorted[])
+void topsort(graph *g, int sorted[])
 {
 	int indegree[MAXV+1];		/* indegree of each vertex */
 	queue zeroin;			/* vertices of indegree 0 */
@@ -82,7 +82,7 @@ topsort(graph *g, int sorted[])
 }
 
 
-main()
+int main()
 {
 	graph g;
 	int out[MAXV+1];

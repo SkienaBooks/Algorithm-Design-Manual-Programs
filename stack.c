@@ -27,19 +27,19 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "stack.h"
 #include "bool.h"
 
 
-init_stack(stack *s)
+void init_stack(stack *s)
 {
         s->top = -1;
         s->count = 0;
 }
 
 
-push(stack *s, int x)
+void push(stack *s, int x)
 {
         if (s->count >= STACKSIZE)
 		printf("Warning: stack overflow push x=%d\n",x);
@@ -70,7 +70,7 @@ int empty_stack(stack *s)
         else return (FALSE);
 }
 
-print_stack(stack *s)
+void print_stack(stack *s)
 {
         int i;				/* counter */
 

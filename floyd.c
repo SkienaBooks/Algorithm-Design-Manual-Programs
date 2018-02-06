@@ -26,7 +26,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include <stdlib.h>
 #include "bool.h"
 
@@ -59,7 +59,7 @@ typedef struct {
 } adjacency_matrix;
 
 
-initialize_adjacency_matrix(adjacency_matrix *g)
+void initialize_adjacency_matrix(adjacency_matrix *g)
 {
 	int i,j;			/* counters */
 
@@ -70,7 +70,7 @@ initialize_adjacency_matrix(adjacency_matrix *g)
 			g->weight[i][j] = MAXINT;
 }
 
-read_adjacency_matrix(adjacency_matrix *g, bool directed)
+void read_adjacency_matrix(adjacency_matrix *g, bool directed)
 {
 	int i;				/* counter */
 	int m;				/* number of edges */
@@ -88,7 +88,7 @@ read_adjacency_matrix(adjacency_matrix *g, bool directed)
 }
 
 
-print_graph(adjacency_matrix *g)
+void print_graph(adjacency_matrix *g)
 {
 	int i,j;			/* counters */
 
@@ -101,7 +101,7 @@ print_graph(adjacency_matrix *g)
 	}
 }
 
-print_adjacency_matrix(adjacency_matrix *g)
+void print_adjacency_matrix(adjacency_matrix *g)
 {
         int i,j;                        /* counters */
 
@@ -115,7 +115,7 @@ print_adjacency_matrix(adjacency_matrix *g)
 
 
 
-floyd(adjacency_matrix *g)
+void floyd(adjacency_matrix *g)
 {
 	int i,j;			/* dimension counters */
 	int k;				/* intermediate vertex counter */
@@ -131,7 +131,7 @@ floyd(adjacency_matrix *g)
 }
 
 
-main()
+int main()
 {
 	adjacency_matrix g;
 

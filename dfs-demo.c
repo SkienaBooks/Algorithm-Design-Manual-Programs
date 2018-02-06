@@ -26,7 +26,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include "bool.h"
 #include "graph.h"
 #include "queue.h"
@@ -39,21 +39,21 @@ int entry_time[MAXV+1];		/* time of vertex entry */
 int exit_time[MAXV+1];		/* time of vertex exit */
 int time;			/* current event time */
 
-process_vertex_early(int v)
+void process_vertex_early(int v)
 {
 	time = time + 1;
 	entry_time[v] = time;
 	printf("entered vertex %d at time %d\n",v, entry_time[v]);
 }
 
-process_vertex_late(int v)
+void process_vertex_late(int v)
 {
 	time = time + 1;
 	exit_time[v] = time;
         printf("exit vertex %d at time %d\n",v, exit_time[v]);
 }
 
-process_edge(int x, int y)
+void process_edge(int x, int y)
 {
 	int class;		/* edge class */
 
@@ -68,7 +68,7 @@ process_edge(int x, int y)
 }
 
 
-main()
+int main()
 {
 	graph g;
 	int i;

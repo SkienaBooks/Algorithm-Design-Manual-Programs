@@ -7,7 +7,7 @@
 	selective assembly.
 
 */
-
+#include <stdio.h>
 #include "annealing.h"			/* type declarations for SA */
 #include "bool.h"
 #include "tsp.h"			/* type declarations for TSP */
@@ -17,7 +17,7 @@ int solution_count;                     /* how many solutions evaluated */
 
 /***********************************************************************/
 
-solution_count_update(tsp_solution *s, tsp_instance *t)
+void solution_count_update(tsp_solution *s, tsp_instance *t)
 {
 	// double solution_cost();
 
@@ -32,7 +32,7 @@ solution_count_update(tsp_solution *s, tsp_instance *t)
         optimization problem.
 */
 
-random_sampling(tsp_instance *t, int nsamples, tsp_solution *bestsol)
+void random_sampling(tsp_instance *t, int nsamples, tsp_solution *bestsol)
 {
         tsp_solution s;                 /* current tsp solution */
         double best_cost;               /* best cost so far */
@@ -61,7 +61,7 @@ random_sampling(tsp_instance *t, int nsamples, tsp_solution *bestsol)
         optimization problem.
 */
 
-hill_climbing(tsp_instance *t, tsp_solution *s)
+void hill_climbing(tsp_instance *t, tsp_solution *s)
 {
         double cost;                    /* best cost so far */
 	double delta;			/* swap cost */
@@ -103,7 +103,7 @@ printf("solution cost = %7.1f\n", solution_cost(s,t));
 }
 
 
-repeated_hill_climbing(tsp_instance *t, int nsamples, tsp_solution *bestsol)
+void repeated_hill_climbing(tsp_instance *t, int nsamples, tsp_solution *bestsol)
 {
         tsp_solution s;                 /* current tsp solution */
         double best_cost;               /* best cost so far */
@@ -136,7 +136,7 @@ repeated_hill_climbing(tsp_instance *t, int nsamples, tsp_solution *bestsol)
 	We are seeking to *minimize* the current_value.
 */
 
-anneal(tsp_instance *t, tsp_solution *s)
+void anneal(tsp_instance *t, tsp_solution *s)
 {
 	int i1, i2;				/* pair of items to swap */
 	int i,j;				/* counters */
@@ -201,7 +201,7 @@ anneal(tsp_instance *t, tsp_solution *s)
 
 
 
-repeated_annealing(tsp_instance *t, int nsamples, tsp_solution *bestsol)
+void repeated_annealing(tsp_instance *t, int nsamples, tsp_solution *bestsol)
 {
         tsp_solution s;                 /* current tsp solution */
         double best_cost;               /* best cost so far */

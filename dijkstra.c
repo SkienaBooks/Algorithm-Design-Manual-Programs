@@ -26,7 +26,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include <stdlib.h>
 #include "bool.h"
 #include "graph.h"
@@ -37,7 +37,7 @@ int parent[MAXV+1];               /* discovery relation */
 
 
 
-dijkstra(graph *g, int start)		/* WAS prim(g,start) */
+void dijkstra(graph *g, int start)	/* WAS prim(g,start) */
 {
 	int i;				/* counter */
 	edgenode *p;                    /* temporary pointer */
@@ -81,7 +81,7 @@ dijkstra(graph *g, int start)		/* WAS prim(g,start) */
 /*for (i=1; i<=g->nvertices; i++) printf("%d %d\n",i,distance[i]);*/
 }
 
-main()
+int main()
 {
 	graph g;
 	int i;

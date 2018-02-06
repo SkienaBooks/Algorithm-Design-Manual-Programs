@@ -26,12 +26,11 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 */
 
 
-#include<stdio.h>
-#include<math.h>
+#include <stdio.h>
+#include <math.h>
 
 
-long gcd1(p,q)
-long p,q;				/* integers to compute the GCD of */
+long gcd1(long p, long q)	/* integers to compute the GCD of */
 {
 	if (q > p) return(gcd1(q,p));
 
@@ -67,7 +66,7 @@ long gcd(long p, long q, long *x, long *y)
 
 
 
-main() {
+int main() {
       long p,q;
       long gcd(), gcd2();
       long x,y,g1,g2;

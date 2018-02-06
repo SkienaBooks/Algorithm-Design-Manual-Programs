@@ -26,7 +26,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
+#include <stdio.h>
 #include <string.h>
 #include "bool.h"
 
@@ -54,7 +54,7 @@ bool smart;				/* quickly test for unfillable squares?*/
 
 /**********************************************************************/
 
-possible_values(int x, int y, boardtype *board, bool possible[])
+void possible_values(int x, int y, boardtype *board, bool possible[])
 {
         int i,j;			/* counters */
 	int xlow,ylow;			/* origin of box with (x,y) */
@@ -81,7 +81,7 @@ possible_values(int x, int y, boardtype *board, bool possible[])
 		     if (board->m[i][j] != 0) possible[ board->m[i][j] ] = FALSE;
 }
 
-print_possible(bool possible[])
+void print_possible(bool possible[])
 {
 	int i;				/* counter */
 
@@ -103,7 +103,7 @@ int possible_count(int x, int y, boardtype *board)
 	return(cnt);
 }
 
-fill_square(int x, int y, int v, boardtype *board)
+void fill_square(int x, int y, int v, boardtype *board)
 {
 	if (board->m[x][y] == 0)
 		board->freecount=board->freecount-1;
@@ -113,7 +113,7 @@ fill_square(int x, int y, int v, boardtype *board)
 	board->m[x][y] = v;
 }
 
-free_square(int x, int y, boardtype *board)
+void free_square(int x, int y, boardtype *board)
 {
 	if (board->m[x][y] != 0)
 		board->freecount=board->freecount+1;
@@ -124,7 +124,7 @@ free_square(int x, int y, boardtype *board)
 }
 	
 
-next_square(int *x, int *y, boardtype* board)
+void next_square(int *x, int *y, boardtype* board)
 {
 	int i,j;			/* counters */
 	int bestcnt, newcnt;		/* the best and latest square counts */
@@ -162,7 +162,7 @@ next_square(int *x, int *y, boardtype* board)
 }
 
 
-print_board(boardtype *board)
+void print_board(boardtype *board)
 {
 	int i,j;			/* counters */
 
@@ -187,7 +187,7 @@ print_board(boardtype *board)
 	}
 }
 
-init_board(boardtype* board)
+void init_board(boardtype* board)
 {
 	int i,j;			/* counters */
 
@@ -197,7 +197,7 @@ init_board(boardtype* board)
 	board->freecount = DIMENSION*DIMENSION;
 }
 
-read_board(boardtype* board)
+void read_board(boardtype* board)
 {
 	int i,j;			/* counters */
 	char c;
@@ -216,7 +216,7 @@ read_board(boardtype* board)
 	}
 }
 
-copy_board(boardtype *a, boardtype *b)
+void copy_board(boardtype *a, boardtype *b)
 {
 	int i,j;
 
@@ -230,14 +230,14 @@ copy_board(boardtype *a, boardtype *b)
 
 /******************************************************************/
 
-process_solution(int a[], int k, boardtype *board)
+void process_solution(int a[], int k, boardtype *board)
 {
 	finished = TRUE;
-printf("process solution\n");
+	printf("process solution\n");
 	print_board(board);
 }
 
-is_a_solution(int a[], int k, boardtype *board)
+bool is_a_solution(int a[], int k, boardtype *board)
 {
 steps = steps+1;
 
@@ -249,13 +249,13 @@ steps = steps+1;
 
 }
 
-make_move(int a[], int k, boardtype *board)
+void make_move(int a[], int k, boardtype *board)
 {
 	fill_square(board->move[k].x,board->move[k].y,a[k],board);
 }
 
 
-unmake_move(int a[], int k, boardtype *board)
+void unmake_move(int a[], int k, boardtype *board)
 {
 	free_square(board->move[k].x,board->move[k].y,board);
 }
@@ -283,7 +283,7 @@ void construct_candidates(int a[], int k, boardtype *board, int c[], int *ncandi
 		}
 }
 
-main()
+int main()
 {
 	int i,j;			/* counters */
 	int a[DIMENSION*DIMENSION+1];

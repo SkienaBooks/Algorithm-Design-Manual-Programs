@@ -4,7 +4,7 @@
 	begun: February 10, 2002
 	by: Steven Skiena
 */
-
+#include <stdio.h>
 #define	MAXN	45		/* largest n or m */
 #define UNKNOWN	-1		/* contents denote an empty cell */
 
@@ -93,7 +93,7 @@ long fib_dp2(int n)
 }
 
 
-main()
+int main()
 {
 	int i;
 	long fib_r(), fib_c_driver();
