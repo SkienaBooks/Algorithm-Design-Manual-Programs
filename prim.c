@@ -29,7 +29,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include <stdio.h>
 #include <stdlib.h>
 #include "bool.h"
-#include "graph.h"
+#include "bfs-dfs.h"
 
 #define MAXINT	100007
 

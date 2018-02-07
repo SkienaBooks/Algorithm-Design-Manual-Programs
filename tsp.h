@@ -15,3 +15,8 @@ typedef struct {
    int p[NMAX+1];			/* array if indices */
 } tsp_solution;
 
+double solution_cost(tsp_solution *s, tsp_instance *t);
+void initialize_solution(int n, tsp_solution *s);
+void copy_solution(tsp_solution *s, tsp_solution *t);
+void random_solution(tsp_solution *s);
+double transition(tsp_solution *s, tsp_instance *t, int i, int j);

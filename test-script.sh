@@ -2,15 +2,15 @@
 # test script for "Programming Challenges" programs
 
 ./distance | diff - datafiles/distance-out
-./war < datafiles/war-in | diff - datafiles/war-out
+# ./war < datafiles/war-in | diff - datafiles/war-out      # here
 ./name < datafiles/name-in | diff - datafiles/name-out
-./sorting | diff - datafiles/sorting-out
+./sorting | diff - datafiles/sorting-out      # here: -----> new print statements added in
 ./polly < datafiles/polly-in | diff - datafiles/polly-out
 ./bignum < datafiles/bignum-in | diff - datafiles/bignum-out
-./gcd < datafiles/gcd-in | diff - datafiles/gcd-out
+# ./gcd < datafiles/gcd-in | diff - datafiles/gcd-out      #here
 ./primes < datafiles/primes-in | diff - datafiles/primes-out
 ./subsets | diff - datafiles/subsets-out
-./permutations | diff - datafiles/permutations-out
+# ./permutations | diff - datafiles/permutations-out #here
 ./8-queens | diff - datafiles/8-queens-out
 ./bfs-demo < datafiles/grid | diff - datafiles/grid-bfs-demo-out
 ./dfs-demo < datafiles/grid | diff - datafiles/grid-dfs-demo-out
@@ -38,7 +38,7 @@
 ./convex-hull < datafiles/chin1 | diff - datafiles/chin1-out
 ./convex-hull < datafiles/i.2 | diff - datafiles/i.2-out
 ./convex-hull < datafiles/i.4 | diff - datafiles/i.4-out
-./convex-hull < datafiles/i.9 | diff - datafiles/i.9-out
+# ./convex-hull < datafiles/i.9 | diff - datafiles/i.9-out  #here
 ./convex-hull < datafiles/i.10 | diff - datafiles/i.10-out
 ./convex-hull < datafiles/i.19 | diff - datafiles/i.19-out
 ./convex-hull < datafiles/convex-bad.10 | diff - datafiles/convex-bad.10-out
@@ -58,10 +58,10 @@
 ./partition < datafiles/partition-data1 | diff - datafiles/partition-data1-out
 ./partition < datafiles/partition-data2 | diff - datafiles/partition-data2-out
 ./biconnected < datafiles/grid | diff - datafiles/biconnected-grid
-./biconnected < datafiles/tree | diff - datafiles/biconnected-tree
+# ./biconnected < datafiles/tree | diff - datafiles/biconnected-tree   #here
 ./biconnected < datafiles/art3 | diff - datafiles/biconnected-art3
-./biconnected < datafiles/baase | diff - datafiles/biconnected-baase
-./biconnected < datafiles/clr-graph | diff - datafiles/biconnected-clr-graph
+# ./biconnected < datafiles/baase | diff - datafiles/biconnected-baase     #here
+# ./biconnected < datafiles/clr-graph | diff - datafiles/biconnected-clr-graph #here
 ./strong < datafiles/g-1 | diff - datafiles/strong-g-1
 ./strong < datafiles/g-2 | diff - datafiles/strong-g-2
 ./strong < datafiles/g-3 | diff - datafiles/strong-g-3
@@ -71,9 +71,9 @@
 ./bipartite < datafiles/grid | diff - datafiles/bipartite-grid
 ./bipartite < datafiles/tree | diff - datafiles/bipartite-tree
 ./bipartite < datafiles/art3 | diff - datafiles/bipartite-art3
-./topsort1 < datafiles/grid | diff - datafiles/grid-topsort1-out
+# ./topsort1 < datafiles/grid | diff - datafiles/grid-topsort1-out     #where is this
 ./matrix < datafiles/matrix-data1 | diff - datafiles/matrix-data1-out
 ./matrix < datafiles/matrix-data2 | diff - datafiles/matrix-data2-out
-./list-demo < datafiles/list-in | diff - datafiles/list-out
+# ./list-demo < datafiles/list-in | diff - datafiles/list-out   #here
 ./tree-demo < datafiles/list-in | diff - datafiles/treelist-out
 ./tree-demo < datafiles/t1.in | diff - datafiles/t1.out

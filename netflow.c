@@ -32,6 +32,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include "bool.h"
 #include "queue.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include "geometry.h"
 
 
@@ -78,7 +79,7 @@ void insert_flow_edge(flow_graph *g, int x, int y, bool directed, int w)
 	p->capacity = w;
 	p->flow = 0;
 	p->residual = w;
-	p->next = g->edges[x];
+	p->next = (struct edgenode*)g->edges[x];
 
 	g->edges[x] = p;                /* insert at head of list */
 
@@ -115,7 +116,7 @@ edgenode *find_edge(flow_graph *g, int x, int y)
 
 	while (p != NULL) {
 		if (p->v == y) return(p);
-		p = p->next;
+		p = (edgenode*)p->next;
 	}
 
 	return(NULL);
@@ -133,7 +134,7 @@ void add_residual_edges(flow_graph *g)
 		while (p != NULL) {
 			if (find_edge(g,p->v,i) == NULL)
 				insert_flow_edge(g,p->v,i,TRUE,0);
-			p = p->next;
+			p = (edgenode*)p->next;
 		}
 	}
 }
@@ -150,7 +151,7 @@ void print_flow_graph(flow_graph *g)
                 while (p != NULL) {
 			printf(" %d(%d,%d,%d)",p->v, p->capacity,
 				p->flow, p->residual);
-			p = p->next;
+			p = (edgenode*)p->next;
 		}
 		printf("\n");
 	}
@@ -186,6 +187,13 @@ void process_edge(int x, int y)		/* edge to process */
 {
 }
 
+
+bool valid_edge(edgenode *e)
+{
+	if (e->residual > 0) return (TRUE);
+	else return(FALSE);
+}
+
 void bfs(flow_graph *g, int start)
 {
         queue q;                        /* queue of vertices to visit */
@@ -205,7 +213,7 @@ void bfs(flow_graph *g, int start)
                 while (p != NULL) {
                     y = p->v;
 		    if (valid_edge(p) == TRUE) {
-                        if ((processed[y] == FALSE) /*|| g->directed*/)
+                        if (processed[y] == FALSE /*|| g->directed*/)
                             process_edge(v,y);
                         if (discovered[y] == FALSE) {
                             enqueue(&q,y);
@@ -213,18 +221,10 @@ void bfs(flow_graph *g, int start)
                             parent[y] = v;
                         }
 		    }
-                    p = p->next;
+                    p = (edgenode*)p->next;
                 }
                 process_vertex_late(v);
         }
-}
-
-
-
-bool valid_edge(edgenode *e)
-{
-	if (e->residual > 0) return (TRUE);
-	else return(FALSE);
 }
 
 
@@ -313,7 +313,7 @@ int main()
 	p = g.edges[source];
 	while (p != NULL) {
 		flow += p->flow;
-		p = p->next;
+		p = (edgenode*)p->next;
 	}
 
 	printf("total flow = %d\n",flow);

@@ -49,7 +49,7 @@ BINARIES = 8-queens permutations subsets war sorting bfs-demo \
 	bipartite kruskal matrix tree-demo criterion_test
 INCLUDES = bool.h backtrack.h queue.h graph.h editdistance.h \
 	   geometry.h annealing.h tsp.h stack.h priority_queue.h set_union.h \
-	   list.h tree.h item.h
+	   list.h tree.h item.h random.h bfs-dfs.h editbrute.h
 
 
 CC = gcc
@@ -88,20 +88,20 @@ fib:		fib.c
 tsp:		annealing.o random.o tsp.o 
 		$(CC) -o $@ annealing.o random.o tsp.o $(LFLAGS)
 
-sudoku:		sudoku.o backtrack.o
-		$(CC) -o $@ sudoku.o backtrack.o $(LFLAGS)
+sudoku:		sudoku.o
+		$(CC) -o $@ sudoku.o $(LFLAGS)
 
-8-queens:	backtrack.o 8-queens.o
-		$(CC) -o $@ 8-queens.o backtrack.o $(LFLAGS)
+8-queens:	8-queens.o
+		$(CC) -o $@ 8-queens.o $(LFLAGS)
 
-paths:		backtrack.o paths.o graph.o
-		$(CC) -o $@ paths.o backtrack.o graph.o $(LFLAGS)
+paths:		paths.o graph.o
+		$(CC) -o $@ paths.o graph.o $(LFLAGS)
 
-permutations:	backtrack.o permutations.o
-		$(CC) -o $@ permutations.o backtrack.o $(LFLAGS)
+permutations:	permutations.o
+		$(CC) -o $@ permutations.o $(LFLAGS)
 
-subsets:	backtrack.o subsets.o
-		$(CC) -o $@ subsets.o backtrack.o $(LFLAGS)
+subsets:	subsets.o
+		$(CC) -o $@ subsets.o $(LFLAGS)
 
 sorting:	random.o queue.o priority_queue.o sorting.o
 		$(CC) -o $@ random.o queue.o priority_queue.o sorting.o $(LFLAGS)

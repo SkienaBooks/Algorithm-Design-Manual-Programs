@@ -45,27 +45,15 @@ void add_triangle(triangulation *t, int i, int j, int k, polygon *p)
 	t->n = n + 1;
 }
 
-
-void triangulate(polygon *p, triangulation *t)
+bool point_in_triangle(point p, triangle t)
 {
-	int l[MAXPOLY], r[MAXPOLY];	/* left/right neighbor indices */
 	int i;				/* counter */
+	bool cw();
 
-	for (i=0; i<p->n; i++) {	/* initialization */
-		l[i] = ((i-1) + p->n) % p->n;
-		r[i] = ((i+1) + p->n) % p->n;
-	}
+	for (i=0; i<3; i++)
+		if (cw(t[i],t[(i+1)%3],p)) return(FALSE);
 
-	t->n = 0;
-	i = p->n-1;
-	while (t->n < (p->n-2)) {
-		i = r[i];
-		if (ear_Q(l[i],i,r[i],p)) {
-			add_triangle(t,l[i],i,r[i],p);
-			l[ r[i] ] = l[i];
-			r[ l[i] ] = r[i];
-		}
-	}
+	return(TRUE);
 }
 
 
@@ -89,16 +77,26 @@ bool ear_Q(int i, int j, int k, polygon *p)
 	return(TRUE);
 }
 
-
-bool point_in_triangle(point p, triangle t)
+void triangulate(polygon *p, triangulation *t)
 {
+	int l[MAXPOLY], r[MAXPOLY];	/* left/right neighbor indices */
 	int i;				/* counter */
-	bool cw();
 
-	for (i=0; i<3; i++)
-		if (cw(t[i],t[(i+1)%3],p)) return(FALSE);
+	for (i=0; i<p->n; i++) {	/* initialization */
+		l[i] = ((i-1) + p->n) % p->n;
+		r[i] = ((i+1) + p->n) % p->n;
+	}
 
-	return(TRUE);
+	t->n = 0;
+	i = p->n-1;
+	while (t->n < (p->n-2)) {
+		i = r[i];
+		if (ear_Q(l[i],i,r[i],p)) {
+			add_triangle(t,l[i],i,r[i],p);
+			l[ r[i] ] = l[i];
+			r[ l[i] ] = r[i];
+		}
+	}
 }
 
 double area_triangulation(polygon *p)
@@ -152,7 +150,7 @@ int main(){
 
 }
 
-print_triangulation(triangulation *t)
+void print_triangulation(triangulation *t)
 {
 	int i, j;			/* counters */
 

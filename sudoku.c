@@ -34,6 +34,10 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #define DIMENSION  BASED*BASED		/* 9*9 board */
 #define NCELLS     DIMENSION*DIMENSION  /* 81 cells in a 9*9 problem */
 
+bool finished = FALSE;
+#define MAXCANDIDATES   100		/* max possible next extensions */
+#define NMAX            100		/* maximum solution size */
+
 typedef struct {
 	int x, y;			/* x and y coordinates of point */
 } point;
@@ -281,6 +285,28 @@ void construct_candidates(int a[], int k, boardtype *board, int c[], int *ncandi
 			c[*ncandidates] = i;
 			*ncandidates = *ncandidates + 1;
 		}
+}
+
+void backtrack(int a[], int k, boardtype *input)
+{
+        int c[MAXCANDIDATES];           /* candidates for next position */
+        int ncandidates;                /* next position candidate count */
+        int i;                          /* counter */
+
+        if (is_a_solution(a,k,input))
+                process_solution(a,k,input);
+        else {
+                k = k+1;
+                construct_candidates(a,k,input,c,&ncandidates);
+                for (i=0; i<ncandidates; i++) {
+                        a[k] = c[i];
+                        make_move(a,k,input);
+
+                        backtrack(a,k,input);
+                        unmake_move(a,k,input);
+                        if (finished) return;	/* terminate early */
+                }
+        }
 }
 
 int main()

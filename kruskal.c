@@ -64,10 +64,12 @@ void to_edge_array(graph *g, edge_pair e[])
 }
 
 
-bool weight_compare(edge_pair *x, edge_pair *y)
+int weight_compare(const void *x, const void *y)
 {
-	if (x->weight < y->weight) return(-1);
-	if (x->weight > y->weight) return(1);
+	edge_pair *_x = (edge_pair*)x;
+	edge_pair *_y = (edge_pair*)y;
+	if (_x->weight < _y->weight) return(-1);
+	if (_x->weight > _y->weight) return(1);
 	return(0);
 }
 
@@ -77,17 +79,17 @@ void kruskal(graph *g)
 	int i;				/* counter */
 	set_union s;			/* set union data structure */
 	edge_pair e[MAXV+1];		/* array of edges data structure */
-	bool weight_compare();
+	// bool weight_compare();
 
 	set_union_init(&s, g->nvertices);
 
 printf("initialized set union\n");
 	to_edge_array(g, e);
-	qsort(&e,g->nedges,sizeof(edge_pair),weight_compare);
+	qsort(&e,g->nedges,sizeof(edge_pair),&weight_compare);
 
 	for (i=0; i<(g->nedges); i++) {
 		print_set_union(&s);
-		if (!same_component(s,e[i].x,e[i].y)) {
+		if (!same_component(&s,e[i].x,e[i].y)) {
 			printf("edge (%d,%d) of weight %d in MST\n",e[i].x,e[i].y,e[i].weight);
 			union_sets(&s,e[i].x,e[i].y);
 		}

@@ -27,7 +27,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 #include <stdio.h>
 #include "bool.h"
-#include "graph.h"
+#include "bfs-dfs.h"
 #include "stack.h"
 
 extern bool processed[];	/* which vertices have been processed */
@@ -115,7 +115,7 @@ void strong_components(graph *g)
 	components_found = 0;
 
 	init_stack(&active);
-	initialize_search(&g);
+	initialize_search(g);
 
 	for (i=1; i<=(g->nvertices); i++)
 		if (discovered[i] == FALSE) {

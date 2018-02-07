@@ -49,6 +49,18 @@ int min(int a, int b)
 	if (a < b)  return(a); else return(b);
 }
 
+int floors_walked(int previous, int current)
+{
+	int nsteps=0;		/* total distance traveled */
+	int i;			/* counter */
+
+	for (i=1; i<=nriders; i++)
+		if ((stops[i] > previous) && (stops[i] <= current))
+			nsteps += min(stops[i]-previous, current-stops[i]);
+
+	return(nsteps);
+}
+
 /*	m[i][j] denotes the cost of serving all the riders using j stops,
 	the last of which is at floor i.  Zero is the originating floor.
 */
@@ -83,21 +95,6 @@ int optimize_floors()
 			laststop = i;
 	
 	return(laststop);
-}
-
-
-
-
-int floors_walked(int previous, int current)
-{
-	int nsteps=0;		/* total distance traveled */
-	int i;			/* counter */
-
-	for (i=1; i<=nriders; i++)
-		if ((stops[i] > previous) && (stops[i] <= current))
-			nsteps += min(stops[i]-previous, current-stops[i]);
-
-	return(nsteps);
 }
 
 
@@ -137,9 +134,9 @@ int main()
 
 	laststop = optimize_floors();
 
-	print_matrix(&m);
+	print_matrix(m);
 	printf("\n");
-	print_matrix(&p);
+	print_matrix(p);
 
 	printf("cost = %d\n",m[laststop][nstops]);
 

@@ -99,20 +99,20 @@ int main()
 	long fib_r(), fib_c_driver();
 
         for (i=0; i<MAXN; i++){
-                printf("fib_c(%d) = %d\n",i, fib_c_driver(i));
+                printf("fib_c(%d) = %ld\n",i, fib_c_driver(i));
         }
 
         for (i=0; i<MAXN; i++){
-                printf("fib_dp(%d) = %d\n",i, fib_dp(i));
+                printf("fib_dp(%d) = %ld\n",i, fib_dp(i));
         }
 
         for (i=0; i<MAXN; i++){
-                printf("fib_dp2(%d) = %d\n",i, fib_dp2(i));
+                printf("fib_dp2(%d) = %ld\n",i, fib_dp2(i));
         }
 
 
 	for (i=0; i<MAXN; i++){
-		printf("fib(%d) = %d\n",i, fib_r(i));
+		printf("fib(%d) = %ld\n",i, fib_r(i));
 	}
 }
 

@@ -1,7 +1,7 @@
 
-/*	set_union.h
+/*	editbrute.h
 
-	Header file for union-find data structure implementation
+	Header file for string comparison
 
 	by: Steven Skiena
 */
@@ -24,18 +24,19 @@ This book can be ordered from Amazon.com at
 http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
-
 #include "bool.h"
 
-#define SET_SIZE       1000
+#define MAXLEN          101     /* longest possible string */
+
+#define MATCH           0       /* enumerated type symbol for match */
+#define INSERT          1       /* enumerated type symbol for insert */
+#define DELETE          2       /* enumerated type symbol for delete */
 
 typedef struct {
-        int p[SET_SIZE+1]; 		/* parent element */
-        int size[SET_SIZE+1];           /* number of elements in subtree i */
-	int n;				/* number of elements in set */
-} set_union;
+        int cost;               /* cost of reaching this cell */
+        int parent;             /* parent cell */
+} cell;
 
-void set_union_init(set_union *s, int n);
-void union_sets(set_union *s, int s1, int s2);
-bool same_component(set_union *s, int s1, int s2);
-void print_set_union(set_union *s);
+int string_compare(char *s, char *t, int i, int j);
+void reconstruct_path(char *s, char *t, int i, int j);
+void print_matrix(char *s, char *t, bool costQ);

@@ -22,7 +22,7 @@ This book can be ordered from Amazon.com at
 http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
-
+#include "bool.h"
 
 #define	PI	3.1415926	/* ratio of circumference to diameter */
 #define EPSILON	0.000001	/* a quantity small enough to be zero */
@@ -68,4 +68,29 @@ typedef struct {
 
 #define	max(A, B)		((A) > (B) ? (A) : (B))
 #define min(A, B)		((A) < (B) ? (A) : (B))
+
+
+void points_to_line(point p1, point p2, line *l);
+void point_and_slope_to_line(point p, double m, line *l);
+bool parallelQ(line l1, line l2);
+bool same_lineQ(line l1, line l2);
+void intersection_point(line l1, line l2, point p);
+void closest_point(point p_in, line l, point p_c);
+double distance(point a, point b);
+void copy_point(point a, point b);
+void swap_point(point a, point b);
+void points_to_segment(point a, point b, segment *s);
+void segment_to_points(segment s, point p1, point p2);
+bool point_in_box(point p, point b1, point b2);
+bool segments_intersect(segment s1, segment s2);
+double signed_triangle_area(point a, point b, point c);
+double triangle_area(point a, point b, point c);
+bool ccw(point a, point b, point c);
+bool cw(point a, point b, point c);
+bool collinear(point a, point b, point c);
+void print_points(point p[], int n);
+void print_polygon(polygon *p);
+void print_point(point p);
+void print_line(line l);
+void print_segment(segment s);
 

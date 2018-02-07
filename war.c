@@ -35,6 +35,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include <stdlib.h>
 #include "bool.h"
 #include "queue.h"
+#include "random.h"
 
 #define NGAMES	50
 #define MAXSTEPS 100000
@@ -90,6 +91,7 @@ int rank_card(char value, char suit)
 					return( i*NSUITS + j );
 
 	printf("Warning: bad input value=%c, suit=%c\n",value,suit);
+	return -1;
 }
 
 
@@ -127,6 +129,15 @@ void random_init_decks(queue *a, queue *b)
 	print_card_queue(b);
 
 }
+
+
+void clear_queue(queue *a, queue *b)
+{
+	/*printf("war ends with %d cards \n",a->count);*/
+	while (!empty_queue(a))
+		enqueue(b,dequeue(a));
+}
+
 
 void war(queue *a, queue *b)
 {
@@ -177,14 +188,6 @@ print_card_queue(b);
 		printf("a and b tie in %d steps \n",steps);
 }
 
-
-clear_queue(queue *a, queue *b)
-{
-	/*printf("war ends with %d cards \n",a->count);*/
-	while (!empty_queue(a))
-		enqueue(b,dequeue(a));
-}
-
 int old_main(){
 	queue a,b;
 	int i;
@@ -195,6 +198,7 @@ int old_main(){
 		random_init_decks(&a,&b);
 		war(&a,&b);
 	}
+	return 0;
 }
 
 

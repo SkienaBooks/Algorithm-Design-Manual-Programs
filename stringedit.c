@@ -29,7 +29,6 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include <stdio.h>
 #include <string.h>
 #include "editdistance.h"
-#include "bool.h"
 
 extern cell m[MAXLEN+1][MAXLEN+1];         /* dynamic programming table */
 
@@ -90,8 +89,6 @@ void delete_out(char *s, int i)
 {
         printf("D");
 }
-
-
 
 /**********************************************************************/
 

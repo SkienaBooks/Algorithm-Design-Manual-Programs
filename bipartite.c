@@ -27,7 +27,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 #include <stdio.h>
 #include "bool.h"
-#include "graph.h"
+#include "bfs-dfs.h"
 #include "queue.h"
 
 extern bool processed[];	/* which vertices have been processed */
@@ -52,7 +52,13 @@ void process_vertex_late(int v)
 {
 }
 
-
+int complement(int color)
+{
+	if (color == WHITE) return(BLACK);
+	if (color == BLACK) return(WHITE);
+	
+	return(UNCOLORED);
+}
 
 void process_edge(int x, int y)
 {
@@ -64,15 +70,6 @@ void process_edge(int x, int y)
 	color[y] = complement(color[x]);
 }
 
-
-int complement(int color)
-{
-	if (color == WHITE) return(BLACK);
-	if (color == BLACK) return(WHITE);
-	
-	return(UNCOLORED);
-}
-
 void twocolor(graph *g)
 {
 	int i;				/* counter */
@@ -82,7 +79,7 @@ void twocolor(graph *g)
 
 	bipartite = TRUE;
  
-	initialize_search(&g);
+	initialize_search(g);
 
 	for (i=1; i<=(g->nvertices); i++)
 		if (discovered[i] == FALSE) {

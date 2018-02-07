@@ -29,5 +29,6 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #define NMAX            100		/* maximum solution size */
 
 typedef char* data;			/* type to pass data to backtrack */
+// typedef int data;			/* type to pass data to backtrack */
 
 void backtrack(int a[], int k, data input);

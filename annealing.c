@@ -10,7 +10,8 @@
 #include <stdio.h>
 #include "annealing.h"			/* type declarations for SA */
 #include "bool.h"
-#include "tsp.h"			/* type declarations for TSP */
+#include "random.h"
+// #include "tsp.h"			/* type declarations for TSP */
 
 int solution_count;                     /* how many solutions evaluated */
 

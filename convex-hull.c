@@ -27,6 +27,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "bool.h"
 #include "geometry.h"
 #include <math.h>
@@ -71,7 +72,7 @@ void convex_hull(point in[], int n, polygon *hull)
 	}
 
 	sort_and_remove_duplicates(in,&n);
-	copy_point(in[0],&first_point);
+	copy_point(in[0],(double*)&first_point);
 
 	qsort(&in[1], n-1, sizeof(point), smaller_angle);
 

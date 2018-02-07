@@ -28,7 +28,6 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include <stdio.h>
 #include <string.h>
 #include "editdistance.h"
-#include "bool.h"
 
 cell m[MAXLEN][MAXLEN];		/* dynamic programming table */
 
@@ -91,6 +90,7 @@ void print_matrix(char *s, char *t, bool costQ)
 	printf("   ");
 	for (i=0; i<y; i++)
 		printf("  %c",t[i]);
+
 	printf("\n");
 
 	for (i=0; i<x; i++) {

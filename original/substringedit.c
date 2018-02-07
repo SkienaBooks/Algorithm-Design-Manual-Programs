@@ -59,13 +59,13 @@ int indel(char c)
 	return(1);
 }
 
-row_init(int i)		/* what is m[0][i]? */
+row_init(int i, cell m[MAXLEN+1][MAXLEN+1])		/* what is m[0][i]? */
 {
 	m[0][i].cost = 0;		/* NOTE CHANGE */
 	m[0][i].parent = -1;		/* NOTE CHANGE */
 }
 
-column_init(int i)	/* what is m[i][0]? */
+column_init(int i, cell m[MAXLEN+1][MAXLEN+1])	/* what is m[i][0]? */
 {
         m[i][0].cost = i;
 	if (i>0)

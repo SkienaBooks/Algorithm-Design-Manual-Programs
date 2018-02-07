@@ -28,8 +28,8 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 
 #include <stdio.h>
+#include "bfs-dfs.h"
 #include "bool.h"
-#include "graph.h"
 
 
 extern bool processed[];	/* which vertices have been processed */

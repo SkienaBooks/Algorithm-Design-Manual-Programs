@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include "tsp.h"
 
 
 #define TRACE_OUTPUT	FALSE		/* print the swaps as they happen */
@@ -63,4 +64,6 @@
 #define ERROR		"ERROR"		/* string denoting error id */
 #define ERROR_VALUE	0.0		/* float denoting error value */
 
+
+void repeated_annealing(tsp_instance *t, int nsamples, tsp_solution *bestsol);
 

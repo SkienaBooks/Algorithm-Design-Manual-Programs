@@ -61,8 +61,8 @@ void read_changes()
 
 	scanf("%d\n",&nmergers);
 	for (i=0; i<nmergers; i++) {
-		read_quoted_string(&(mergers[i][0]));
-		read_quoted_string(&(mergers[i][1]));
+		read_quoted_string((char*)&(mergers[i][0]));
+		read_quoted_string((char*)&(mergers[i][1]));
 		/*printf("%s to %s\n",mergers[i][0], mergers[i][1]);*/
 	}
 }
@@ -86,6 +86,29 @@ void replace_x_with_y(char *s, int pos, int xlen, char *y)
 		for (i=slen; i>=(pos+xlen); i--) s[i+(ylen-xlen)] = s[i];
 
 	for (i=0; i<ylen; i++) s[pos+i] = y[i];
+}
+
+
+/*	Return the position of the first occurrence of the pattern p
+	in the text t, and -1 if it does not occur.
+*/
+
+int findmatch(char *p, char *t)
+{
+	int i,j;			/* counters */
+	int plen, tlen;			/* string lengths */
+
+	plen = strlen(p);
+	tlen = strlen(t);
+
+	for (i=0; i<=(tlen-plen); i=i+1) {
+		j=0;
+		while ((j<plen) && (t[i+j]==p[j]))
+			j = j+1;
+		if (j == plen) return(i);
+	}
+
+	return(-1);
 }
 
 
@@ -119,27 +142,3 @@ int main()
 		printf("%s\n",s);
 	}
 }
-
-
-/*	Return the position of the first occurrence of the pattern p
-	in the text t, and -1 if it does not occur.
-*/
-
-int findmatch(char *p, char *t)
-{
-	int i,j;			/* counters */
-	int plen, tlen;			/* string lengths */
-
-	plen = strlen(p);
-	tlen = strlen(t);
-
-	for (i=0; i<=(tlen-plen); i=i+1) {
-		j=0;
-		while ((j<plen) && (t[i+j]==p[j]))
-			j = j+1;
-		if (j == plen) return(i);
-	}
-
-	return(-1);
-}
-

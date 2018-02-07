@@ -27,7 +27,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 #include <stdio.h>
 #include "bool.h"
-#include "graph.h"
+#include "bfs-dfs.h"
 #include "queue.h"
 
 extern bool processed[];	/* which vertices have been processed */
@@ -100,7 +100,7 @@ void articulation_vertices(graph *g)
 	for (i=1; i<=(g->nvertices); i++) 
 		tree_out_degree[i] = 0;
 
-	initialize_search(&g);
+	initialize_search(g);
 
 	for (i=1; i<=(g->nvertices); i++)
 		if (discovered[i] == FALSE) dfs(g,i);

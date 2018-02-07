@@ -1,7 +1,5 @@
-
-/*	set_union.h
-
-	Header file for union-find data structure implementation
+/*	bfs-dfs.h
+	Header file for graph traversal functions
 
 	by: Steven Skiena
 */
@@ -24,18 +22,15 @@ This book can be ordered from Amazon.com at
 http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
+#ifndef BFS_DFS_H
+#define BFS_DFS_H
 
-#include "bool.h"
+#include "graph.h"
 
-#define SET_SIZE       1000
+void initialize_search(graph *g);
+void bfs(graph *g, int start);
+int edge_classification(int x, int y);
+void dfs(graph *g, int v);
+void find_path(int start, int end, int parents[]);
 
-typedef struct {
-        int p[SET_SIZE+1]; 		/* parent element */
-        int size[SET_SIZE+1];           /* number of elements in subtree i */
-	int n;				/* number of elements in set */
-} set_union;
-
-void set_union_init(set_union *s, int n);
-void union_sets(set_union *s, int s1, int s2);
-bool same_component(set_union *s, int s1, int s2);
-void print_set_union(set_union *s);
+#endif

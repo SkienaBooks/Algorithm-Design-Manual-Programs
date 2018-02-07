@@ -27,6 +27,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #define	MAXDIGITS	100		/* maximum length bignum */ 
 
@@ -96,6 +97,25 @@ int max(int a, int b)
 }
 
 
+int compare_bignum(bignum *a, bignum *b)
+{
+	int i;				/* counter */
+
+	if ((a->signbit == MINUS) && (b->signbit == PLUS)) return(PLUS);
+	if ((a->signbit == PLUS) && (b->signbit == MINUS)) return(MINUS);
+
+	if (b->lastdigit > a->lastdigit) return (PLUS * a->signbit);
+	if (a->lastdigit > b->lastdigit) return (MINUS * a->signbit);
+
+	for (i = a->lastdigit; i>=0; i--) {
+		if (a->digits[i] > b->digits[i]) return(MINUS * a->signbit);
+		if (b->digits[i] > a->digits[i]) return(PLUS * a->signbit);
+	}
+
+	return(0);
+}
+
+
 void subtract_bignum(bignum *a, bignum *b, bignum *c)
 {
 	int borrow;			/* has anything been borrowed? */
@@ -137,7 +157,7 @@ void subtract_bignum(bignum *a, bignum *b, bignum *c)
 
 
 
-/*	c = a +-/* b;	*/
+/*	c = a +- b;	*/
 
 void add_bignum(bignum *a, bignum *b, bignum *c)
 {
@@ -169,26 +189,6 @@ void add_bignum(bignum *a, bignum *b, bignum *c)
 	}
 
 	zero_justify(c);
-}
-
-
-
-int compare_bignum(bignum *a, bignum *b)
-{
-	int i;				/* counter */
-
-	if ((a->signbit == MINUS) && (b->signbit == PLUS)) return(PLUS);
-	if ((a->signbit == PLUS) && (b->signbit == MINUS)) return(MINUS);
-
-	if (b->lastdigit > a->lastdigit) return (PLUS * a->signbit);
-	if (a->lastdigit > b->lastdigit) return (MINUS * a->signbit);
-
-	for (i = a->lastdigit; i>=0; i--) {
-		if (a->digits[i] > b->digits[i]) return(MINUS * a->signbit);
-		if (b->digits[i] > a->digits[i]) return(PLUS * a->signbit);
-	}
-
-	return(0);
 }
 
 

@@ -27,8 +27,8 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 */
 
 #include <stdio.h>
+#include "bfs-dfs.h"
 #include "bool.h"
-#include "graph.h"
 #include "queue.h"
 
 bool processed[MAXV+1];	/* which vertices have been processed */
@@ -93,6 +93,7 @@ int edge_classification(int x, int y)
         if (processed[y] && (entry_time[y]<entry_time[x])) return(CROSS);
 
         printf("Warning: self loop (%d,%d)\n",x,y);
+        return -1;
 }
 
 void dfs(graph *g, int v)

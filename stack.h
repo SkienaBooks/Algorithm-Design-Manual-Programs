@@ -34,5 +34,6 @@ typedef struct {
         int count;                      /* number of stack elements */
 } stack;
 
-
-
+void init_stack(stack *s);
+void push(stack *s, int x);
+int pop(stack *s);

@@ -37,7 +37,7 @@ long gcd1(long p, long q)	/* integers to compute the GCD of */
 
 	if (q == 0) return(p);
 
-	printf(" gcd(%d,%d) &=& gcd(%d \\mod %d, %d) = gcd(%d,%d) \n",p,q,p,q,q,q,p%q);
+	printf(" gcd(%ld,%ld) &=& gcd(%ld \\mod %ld, %ld) = gcd(%ld,%ld) \n",p,q,p,q,q,q,p%q);
 	return( gcd1(q, p % q) );
 }
 
@@ -71,10 +71,10 @@ int main() {
       long gcd(), gcd2();
       long x,y,g1,g2;
 
-      while (scanf("%d %d",&p,&q)!=EOF) {
+      while (scanf("%ld %ld",&p,&q)!=EOF) {
 
-	printf("gcd of p=%d and q=%d = %d\n",p,q,g1=gcd1(p,q));
-	printf(" %d*%d + %d*%d = %d\n",p,x,q,y,g2=gcd(p,q,&x,&y));
+	printf("gcd of p=%ld and q=%ld = %ld\n",p,q,g1=gcd1(p,q));
+	printf(" %ld*%ld + %ld*%ld = %ld\n",p,x,q,y,g2=gcd(p,q,&x,&y));
 
 	if (g1 != g2) printf("ERROR: GCD\n");
 	if ((p*x + q*y) != g1) printf("ERROR: DIOPHONINE SOLUTION WRONG!\n");

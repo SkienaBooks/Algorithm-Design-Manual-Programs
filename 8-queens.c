@@ -27,13 +27,15 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "backtrack.h"
 #include "bool.h"
 
+bool finished = FALSE;
+#define MAXCANDIDATES   100		/* max possible next extensions */
+#define NMAX            100		/* maximum solution size */
 int solution_count;			/* how many solutions are there? */
 
 
-void process_solution(int a[], int k)
+void process_solution(int a[], int k, int input)
 {
 	int i;				/* counter */
 
@@ -80,7 +82,27 @@ void construct_candidates(int a[], int k, int n, int c[], int *ncandidates)
 	}
 }
 
+void backtrack(int a[], int k, int input)
+{
+        int c[MAXCANDIDATES];           /* candidates for next position */
+        int ncandidates;                /* next position candidate count */
+        int i;                          /* counter */
 
+        if (is_a_solution(a,k,input))
+                process_solution(a,k,input);
+        else {
+                k = k+1;
+                construct_candidates(a,k,input,c,&ncandidates);
+                for (i=0; i<ncandidates; i++) {
+                        a[k] = c[i];
+                        make_move(a,k,input);
+
+                        backtrack(a,k,input);
+                        unmake_move(a,k,input);
+                        if (finished) return;	/* terminate early */
+                }
+        }
+}
 
 int main()
 {

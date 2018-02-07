@@ -33,6 +33,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include <stdlib.h>
 #include "priority_queue.h"
 #include "queue.h"
+#include "random.h"
 
 #define NELEM	100		/* size of test arrays */
 
@@ -85,19 +86,6 @@ void selection_sort(item_type s[], int n)
         }
 }
 
-/*	quicksort array s from the index l to index h.	*/
-
-void quicksort(item_type s[], int l, int h)
-{
-	int p;			/* index of partition */
-
-	if ((h-l)>0) {
-		p = partition(s,l,h);
-		quicksort(s,l,p-1);
-		quicksort(s,p+1,h);
-	}
-}
-
 int partition(item_type s[], int l, int h)
 {
 	int i;			/* counter */
@@ -116,6 +104,18 @@ int partition(item_type s[], int l, int h)
 	return(firsthigh);
 }
 
+/*	quicksort array s from the index l to index h.	*/
+
+void quicksort(item_type s[], int l, int h)
+{
+	int p;			/* index of partition */
+
+	if ((h-l)>0) {
+		p = partition(s,l,h);
+		quicksort(s,l,p-1);
+		quicksort(s,p+1,h);
+	}
+}
 
 void heapsort_(item_type s[], int n)
 {
@@ -223,26 +223,28 @@ int main()
 	printf("\n\nHeapsort sort: \n");
 	for (i=0; i<NELEM; i++) printf("%d ",s[i]);
 
-        for (i=0; i<NELEM; i++) s[i] = NELEM-i;
-        random_permutation(s,NELEM);
-
 	printf("\n");
-        for (i=0; i<NELEM; i++) printf("%d ",s[i]);
-        printf("\n");
+
+ //        for (i=0; i<NELEM; i++) s[i] = NELEM-i;
+ //        random_permutation(s,NELEM);
+
+	// printf("\n");
+ //        for (i=0; i<NELEM; i++) printf("%d ",s[i]);
+ //        printf("\n");
 
 
-        mergesort_(s,0,NELEM-1);
-        printf("\n\nMergesort: \n");
-        for (i=0; i<NELEM; i++) printf("%d ",s[i]);
-        printf("\n");
+ //        mergesort_(s,0,NELEM-1);
+ //        printf("\n\nMergesort: \n");
+ //        for (i=0; i<NELEM; i++) printf("%d ",s[i]);
+ //        printf("\n");
 
-	/* test binary search */
-	for (i=0; i<NELEM; i++) s[i] = 2*(NELEM-i);
-        random_permutation(s,NELEM);
+	// /* test binary search */
+	// for (i=0; i<NELEM; i++) s[i] = 2*(NELEM-i);
+ //        random_permutation(s,NELEM);
 
-	heapsort_(s,NELEM);
-	for (i=0; i<2*NELEM+1; i++)
-		printf("%d found in %d\n",i,binary_search(s,i,0,NELEM-1));
+	// heapsort_(s,NELEM);
+	// for (i=0; i<2*NELEM+1; i++)
+	// 	printf("%d found in %d\n",i,binary_search(s,i,0,NELEM-1));
 
 
 }

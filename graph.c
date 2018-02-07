@@ -28,7 +28,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 */
 
 #include <stdio.h>
-#include "bool.h"
+#include <stdlib.h>
 #include "queue.h"
 #include "graph.h"
 
@@ -41,7 +41,7 @@ void initialize_graph(graph *g, bool directed)
 	g -> directed = directed;
 
 	for (i=1; i<=MAXV; i++) g->degree[i] = 0;
-	for (i=1; i<=MAXV; i++) g->edges[i] = NULL;
+	for (i=1; i<=MAXV; i++) g->edges[i] = _NULL;
 }
 
 
@@ -51,7 +51,7 @@ void insert_edge(graph *g, int x, int y, bool directed)
 
 	p = malloc(sizeof(edgenode));	/* allocate storage for edgenode */
 
-	p->weight = NULL;
+	p->weight = _NULL;
 	p->y = y;
 	p->next = g->edges[x];
 
@@ -89,12 +89,12 @@ void delete_edge(graph *g, int x, int y, bool directed)
 	edgenode *p, *p_back;		/* temporary pointers */
 
 	p = g->edges[x];
-	p_back = NULL;
+	p_back = _NULL;
 
-	while (p != NULL) 
+	while (p != _NULL) 
 		if (p->y == y) {
 			g->degree[x] --;
-			if (p_back != NULL) 
+			if (p_back != _NULL) 
 				p_back->next = p->next;
 			else
 				g->edges[x] = p->next;
@@ -122,7 +122,7 @@ void print_graph(graph *g)
 	for (i=1; i<=g->nvertices; i++) {
 		printf("%d: ",i);
 		p = g->edges[i];
-		while (p != NULL) {
+		while (p != _NULL) {
 			printf(" %d",p->y);
 			p = p->next;
 		}
