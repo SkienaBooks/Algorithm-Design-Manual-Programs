@@ -205,9 +205,6 @@ tree-demo:	tree-demo.o
 criterion_test:		criterion_test.o
 		$(CC) -o $@ criterion_test.o $(LFLAGS) -lcriterion
 
-#distance_test:		./tests/distance_test.o
-#		$(CC) -o $@ ./tests/distance_test.o distance.o $(LFLAGS) -lcriterion
-
 lint:	
 	lint -h $(SOURCES)
 
