@@ -30,12 +30,14 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include <string.h>
 #include "editdistance.h"
 
-extern cell m[MAXLEN+1][MAXLEN+1];         /* dynamic programming table */
+// extern cell m[MAXLEN+1][MAXLEN+1];         /* dynamic programming table */
 
 
 /******************************************************************/
 
 /*	For normal edit distance computation  */
+
+cell m[MAXLEN+1][MAXLEN+1];
 
 void goal_cell(char *s, char *t, int *i, int *j)
 {
@@ -54,7 +56,7 @@ int indel(char c)
 	return(1);
 }
 
-void row_init(int i)		/* what is m[0][i]? */
+void row_init(int i, cell m[MAXLEN+1][MAXLEN+1])		/* what is m[0][i]? */
 {
 	m[0][i].cost = i;
 	if (i>0)
@@ -63,7 +65,7 @@ void row_init(int i)		/* what is m[0][i]? */
 		m[0][i].parent = -1;
 }
 
-void column_init(int i)	/* what is m[i][0]? */
+void column_init(int i, cell m[MAXLEN+1][MAXLEN+1])	/* what is m[i][0]? */
 {
         m[i][0].cost = i;
 	if (i>0)
@@ -101,17 +103,18 @@ int main(){
 	scanf("%s",&(s[1]));
 	scanf("%s",&(t[1]));
 
-	printf("matching cost = %d \n", string_compare(s,t, strlen(s)-1,strlen(t)-1));
+	// printf("matching cost = %d \n", string_compare(s,t, strlen(s)-1,strlen(t)-1, m));
+	printf("matching cost = %d \n", string_compare(s,t,m));
 
-	print_matrix(s,t,TRUE);
+	print_matrix(s,t,TRUE,m);
 	printf("\n");
-	print_matrix(s,t,FALSE);
+	print_matrix(s,t,FALSE,m);
 
 	goal_cell(s,t,&i,&j);
 
 	printf("%d %d\n",i,j);
 
-	reconstruct_path(s,t,i,j);
+	reconstruct_path(s,t,i,j,m);
 	printf("\n");
 }
 

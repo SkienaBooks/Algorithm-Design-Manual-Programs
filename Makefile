@@ -43,9 +43,9 @@ OBJECTS = backtrack.o 8-queens.o permutations.o subsets.o queue.o war.o \
 	tree-demo.o matrix.o criterion_test.o
 BINARIES = 8-queens permutations subsets war sorting bfs-demo \
 	dfs-demo connected topsort prim dijkstra floyd findcycle stringedit \
-	lcs substringedit superman convex-hull triangulate 10055 distance name \
-	polly gcd primes bignum editbrute elevator order plates geotest cgtest \
-	netflow paths sudoku tsp fib partition biconnected strong topsort \
+	superman editbrute convex-hull triangulate 10055 distance name \
+	polly gcd substringedit primes bignum elevator order plates geotest cgtest \
+	netflow lcs paths sudoku tsp fib partition biconnected strong topsort \
 	bipartite kruskal matrix tree-demo criterion_test
 INCLUDES = bool.h backtrack.h queue.h graph.h editdistance.h \
 	   geometry.h annealing.h tsp.h stack.h priority_queue.h set_union.h \
@@ -136,8 +136,8 @@ dijkstra:	wgraph.o dijkstra.o
 floyd:		floyd.o
 		$(CC) -o $@ floyd.o $(LFLAGS)
 
-editbrute:	editbrute.o stringedit.o
-		$(CC) -o $@ editbrute.o stringedit.o $(LFLAGS)
+editbrute:	editbrute.o
+		$(CC) -o $@ editbrute.o $(LFLAGS)
 
 stringedit:	editdistance.o stringedit.o
 		$(CC) -o $@ editdistance.o stringedit.o $(LFLAGS)

@@ -29,12 +29,64 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include <string.h>
 #include "editdistance.h"
 
-cell m[MAXLEN][MAXLEN];		/* dynamic programming table */
+cell m[MAXLEN+1][MAXLEN+1];		/* dynamic programming table */
 
 
 /**********************************************************************/
+void goal_cell(char *s, char *t, int *i, int *j)
+{
+	*i = strlen(s) - 1;
+	*j = strlen(t) - 1;
+}
 
-int string_compare(char *s, char *t, int i, int j)
+int match(char c, char d)
+{
+	if (c == d) return(0);
+	else return(1);
+}
+
+int indel(char c)
+{
+	return(1);
+}
+
+void row_init(int i, cell m[MAXLEN+1][MAXLEN+1])		/* what is m[0][i]? */
+{
+	m[0][i].cost = i;
+	if (i>0)
+		m[0][i].parent =  INSERT;
+	else
+		m[0][i].parent = -1;
+}
+
+void column_init(int i, cell m[MAXLEN+1][MAXLEN+1])	/* what is m[i][0]? */
+{
+        m[i][0].cost = i;
+	if (i>0)
+		m[i][0].parent = DELETE;
+	else
+		m[0][i].parent = -1;
+}
+
+/**********************************************************************/
+
+void match_out(char *s, char *t, int i, int j)
+{
+	if (s[i] == t[j]) printf("M");
+	else printf("S");
+}
+
+void insert_out(char *t, int j)
+{
+	printf("I");
+}
+
+void delete_out(char *s, int i)
+{
+        printf("D");
+}
+
+int string_compare2(char *s, char *t, int i, int j, cell m[MAXLEN+1][MAXLEN+1])
 {
 	int k;			/* counter */
 	int opt[3];		/* cost of the three options */
@@ -43,9 +95,9 @@ int string_compare(char *s, char *t, int i, int j)
 	if (i == 0) return(j * indel(' '));
 	if (j == 0) return(i * indel(' '));
 
-	opt[MATCH] = string_compare(s,t,i-1,j-1) + match(s[i],t[j]);
-	opt[INSERT] = string_compare(s,t,i,j-1) + indel(t[j]);
-	opt[DELETE] = string_compare(s,t,i-1,j) + indel(s[i]);
+	opt[MATCH] = string_compare2(s,t,i-1,j-1,m) + match(s[i],t[j]);
+	opt[INSERT] = string_compare2(s,t,i,j-1,m) + indel(t[j]);
+	opt[DELETE] = string_compare2(s,t,i-1,j,m) + indel(s[i]);
 
 	lowest_cost = opt[MATCH];
 	for (k=INSERT; k<=DELETE; k++)
@@ -56,30 +108,30 @@ int string_compare(char *s, char *t, int i, int j)
 	return( lowest_cost );
 } 
 
-void reconstruct_path(char *s, char *t, int i, int j)
+void reconstruct_path(char *s, char *t, int i, int j, cell m[MAXLEN+1][MAXLEN+1])
 {
 /*printf("trace (%d,%d)\n",i,j);*/
 
 	if (m[i][j].parent == -1) return;
 
 	if (m[i][j].parent == MATCH) {
-		reconstruct_path(s,t,i-1,j-1);
+		reconstruct_path(s,t,i-1,j-1,m);
 		match_out(s, t, i, j);
 		return;
 	}
         if (m[i][j].parent == INSERT) {
-                reconstruct_path(s,t,i,j-1);
+                reconstruct_path(s,t,i,j-1,m);
 		insert_out(t,j);
 		return;
         }
         if (m[i][j].parent == DELETE) {
-                reconstruct_path(s,t,i-1,j);
+                reconstruct_path(s,t,i-1,j,m);
 		delete_out(s,i);
 		return;
         }
 }
 
-void print_matrix(char *s, char *t, bool costQ)
+void print_matrix(char *s, char *t, bool costQ, cell m[MAXLEN+1][MAXLEN+1])
 {
 	int i,j;			/* counters */
 	int x,y;			/* string lengths */
@@ -104,5 +156,28 @@ void print_matrix(char *s, char *t, bool costQ)
 		}
 		printf("\n");
 	}
+}
+
+int main(){
+	int i,j;
+	char s[MAXLEN],t[MAXLEN];		/* input strings */
+
+	s[0] = t[0] = ' ';
+
+	scanf("%s",&(s[1]));
+	scanf("%s",&(t[1]));
+
+	printf("matching cost = %d \n", string_compare2(s,t,strlen(s)-1,strlen(t)-1,m));
+
+	print_matrix(s,t,TRUE,m);
+	printf("\n");
+	print_matrix(s,t,FALSE,m);
+
+	goal_cell(s,t,&i,&j);
+
+	printf("%d %d\n",i,j);
+
+	reconstruct_path(s,t,i,j,m);
+	printf("\n");
 }
 

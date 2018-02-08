@@ -30,19 +30,20 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include <string.h>
 #include "editdistance.h"
 
-cell m[MAXLEN+1][MAXLEN+1];	/* dynamic programming table */
+// cell m[MAXLEN+1][MAXLEN+1];	/* dynamic programming table */
+// extern cell m[MAXLEN+1][MAXLEN+1];
 
 
 /**********************************************************************/
 
-int string_compare(char *s, char *t)
+int string_compare(char *s, char *t, cell m[MAXLEN+1][MAXLEN+1])
 {
 	int i,j,k;		/* counters */
 	int opt[3];		/* cost of the three options */
 
 	for (i=0; i<=MAXLEN; i++) {
-		row_init(i);
-		column_init(i);
+		row_init(i,m);
+		column_init(i,m);
 	}
 
 	for (i=1; i<strlen(s); i++)
@@ -64,30 +65,30 @@ int string_compare(char *s, char *t)
 	return( m[i][j].cost );
 } 
 
-void reconstruct_path(char *s, char *t, int i, int j)
+void reconstruct_path(char *s, char *t, int i, int j, cell m[MAXLEN+1][MAXLEN+1])
 {
 /*printf("trace (%d,%d)\n",i,j);*/
 
 	if (m[i][j].parent == -1) return;
 
 	if (m[i][j].parent == MATCH) {
-		reconstruct_path(s,t,i-1,j-1);
+		reconstruct_path(s,t,i-1,j-1,m);
 		match_out(s, t, i, j);
 		return;
 	}
         if (m[i][j].parent == INSERT) {
-                reconstruct_path(s,t,i,j-1);
+                reconstruct_path(s,t,i,j-1,m);
 		insert_out(t,j);
 		return;
         }
         if (m[i][j].parent == DELETE) {
-                reconstruct_path(s,t,i-1,j);
+                reconstruct_path(s,t,i-1,j,m);
 		delete_out(s,i);
 		return;
         }
 }
 
-void print_matrix(char *s, char *t, bool costQ)
+void print_matrix(char *s, char *t, bool costQ, cell m[MAXLEN+1][MAXLEN+1])
 {
 	int i,j;			/* counters */
 	int x,y;			/* string lengths */
