@@ -27,9 +27,10 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
-#include "list.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include "list.h"
 #include "bool.h"
 
 
@@ -57,7 +58,7 @@ list *search_list(list *l, item_type x)
 list *predecessor_list(list *l, item_type x)
 {
         if ((l == NULL) || (l->next == NULL)) {
-		printf("Error: predecessor sought on null list.\n");
+		// printf("Error: predecessor sought on null list.\n");
 		return(NULL);
 	}
 

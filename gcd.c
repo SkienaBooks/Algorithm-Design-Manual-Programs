@@ -72,9 +72,11 @@ int main() {
       long x,y,g1,g2;
 
       while (scanf("%ld %ld",&p,&q)!=EOF) {
+      	g1 = gcd1(p,q);
+      	g2 = gcd(p,q,&x,&y);
 
-	printf("gcd of p=%ld and q=%ld = %ld\n",p,q,g1=gcd1(p,q));
-	printf(" %ld*%ld + %ld*%ld = %ld\n",p,x,q,y,g2=gcd(p,q,&x,&y));
+	printf("gcd of p=%ld and q=%ld = %ld\n",p,q,g1);
+	printf(" %ld*%ld + %ld*%ld = %ld\n",p,x,q,y,g2);
 
 	if (g1 != g2) printf("ERROR: GCD\n");
 	if ((p*x + q*y) != g1) printf("ERROR: DIOPHONINE SOLUTION WRONG!\n");

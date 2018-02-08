@@ -37,3 +37,4 @@ typedef struct {
 void init_stack(stack *s);
 void push(stack *s, int x);
 int pop(stack *s);
+void print_stack(stack *s);

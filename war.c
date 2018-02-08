@@ -90,7 +90,7 @@ int rank_card(char value, char suit)
 				if (suits[j]==suit) 
 					return( i*NSUITS + j );
 
-	printf("Warning: bad input value=%c, suit=%c\n",value,suit);
+	printf("Warning: bad input value=%d, suit=%d\n",value,suit);
 	return -1;
 }
 

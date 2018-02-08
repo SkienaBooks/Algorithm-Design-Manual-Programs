@@ -223,29 +223,31 @@ int main()
 	printf("\n\nHeapsort sort: \n");
 	for (i=0; i<NELEM; i++) printf("%d ",s[i]);
 
-	printf("\n");
+	// printf("\n");
 
- //        for (i=0; i<NELEM; i++) s[i] = NELEM-i;
- //        random_permutation(s,NELEM);
+        for (i=0; i<NELEM; i++) s[i] = NELEM-i;
+        random_permutation(s,NELEM);
 
 	// printf("\n");
  //        for (i=0; i<NELEM; i++) printf("%d ",s[i]);
  //        printf("\n");
 
 
- //        mergesort_(s,0,NELEM-1);
- //        printf("\n\nMergesort: \n");
- //        for (i=0; i<NELEM; i++) printf("%d ",s[i]);
- //        printf("\n");
+        mergesort_(s,0,NELEM-1);
+        printf("\n\nMergesort: \n");
+        for (i=0; i<NELEM; i++) printf("%d ",s[i]);
+        printf("\n");
+
+	printf("\n");
 
 	// /* test binary search */
-	// for (i=0; i<NELEM; i++) s[i] = 2*(NELEM-i);
- //        random_permutation(s,NELEM);
+	printf("Binary Search: \n");
+	for (i=0; i<NELEM; i++) s[i] = 2*(NELEM-i);
+        random_permutation(s,NELEM);
 
-	// heapsort_(s,NELEM);
-	// for (i=0; i<2*NELEM+1; i++)
-	// 	printf("%d found in %d\n",i,binary_search(s,i,0,NELEM-1));
-
+	heapsort_(s,NELEM);
+	for (i=2; i<2*NELEM+1; i+=2)
+		printf("%d found in %d\n",i,binary_search(s,i,0,NELEM-1));
 
 }
 

@@ -46,7 +46,7 @@ BINARIES = 8-queens permutations subsets war sorting bfs-demo \
 	superman editbrute convex-hull triangulate 10055 distance name \
 	polly gcd substringedit primes bignum elevator order plates geotest cgtest \
 	netflow lcs paths sudoku tsp fib partition biconnected strong topsort \
-	bipartite kruskal matrix tree-demo criterion_test
+	bipartite kruskal matrix tree-demo criterion_test topsort1 list-demo
 INCLUDES = bool.h backtrack.h queue.h graph.h editdistance.h \
 	   geometry.h annealing.h tsp.h stack.h priority_queue.h set_union.h \
 	   list.h tree.h item.h random.h bfs-dfs.h editbrute.h
