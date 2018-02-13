@@ -62,6 +62,10 @@
 ./biconnected < datafiles/art3 | diff - datafiles/biconnected-art3
 ./biconnected < datafiles/baase | diff - datafiles/biconnected-baase
 ./biconnected < datafiles/clr-graph | diff - datafiles/biconnected-clr-graph
+./biconnected < datafiles/bridge-tree | diff - datafiles/biconnected-bridge-tree
+./biconnected < datafiles/backedge-tree | diff - datafiles/biconnected-backedge-tree
+./biconnected < datafiles/backedge-parent-tree | diff - datafiles/biconnected-backedge-parent-tree
+./biconnected < datafiles/complete-4-graph | diff - datafiles/biconnected-complete-4-graph
 ./strong < datafiles/g-1 | diff - datafiles/strong-g-1
 ./strong < datafiles/g-2 | diff - datafiles/strong-g-2
 ./strong < datafiles/g-3 | diff - datafiles/strong-g-3
