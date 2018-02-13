@@ -3,9 +3,6 @@
 3:  1
 4:  2
 5:  2
-parent articulation vertex: 1 via bridge
-parent articulation vertex: 2 via bridge
-parent articulation vertex: 2 via bridge
-parent articulation vertex: 1 via bridge
-non-leaf articulation vertex: 2 
+bridge articulation vertex: 2 
+bridge articulation vertex: 2 
 root articulation vertex: 1 

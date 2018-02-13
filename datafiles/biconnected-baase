@@ -10,5 +10,5 @@
 10:  6 4
 parent articulation vertex: 2 
 parent articulation vertex: 5 
-parent articulation vertex: 6 via bridge
+bridge articulation vertex: 6 
 non-leaf articulation vertex: 5 

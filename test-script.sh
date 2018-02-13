@@ -58,10 +58,10 @@
 ./partition < datafiles/partition-data1 | diff - datafiles/partition-data1-out
 ./partition < datafiles/partition-data2 | diff - datafiles/partition-data2-out
 ./biconnected < datafiles/grid | diff - datafiles/biconnected-grid
-# ./biconnected < datafiles/tree | diff - datafiles/biconnected-tree           # Articulation Vertex related issue
+./biconnected < datafiles/tree | diff - datafiles/biconnected-tree
 ./biconnected < datafiles/art3 | diff - datafiles/biconnected-art3
-# ./biconnected < datafiles/baase | diff - datafiles/biconnected-baase         # Articulation Vertex related issue
-# ./biconnected < datafiles/clr-graph | diff - datafiles/biconnected-clr-graph # Articulation Vertex related issue
+./biconnected < datafiles/baase | diff - datafiles/biconnected-baase
+./biconnected < datafiles/clr-graph | diff - datafiles/biconnected-clr-graph
 ./strong < datafiles/g-1 | diff - datafiles/strong-g-1
 ./strong < datafiles/g-2 | diff - datafiles/strong-g-2
 ./strong < datafiles/g-3 | diff - datafiles/strong-g-3
