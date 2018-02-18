@@ -25,8 +25,8 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
 #include <stdio.h>
+
 #include "backtrack.h"
 #include "bool.h"
 
@@ -38,25 +38,25 @@ void make_move(int a[], int k, data input);
 void unmake_move(int a[], int k, data input);
 int is_a_solution(int a[], int k, data input);
 
-void backtrack(int a[], int k, data input)
-{
-        int c[MAXCANDIDATES];           /* candidates for next position */
-        int ncandidates;                /* next position candidate count */
-        int i;                          /* counter */
+void backtrack(int a[], int k, data input) {
+    int c[MAXCANDIDATES];           /* candidates for next position */
+    int ncandidates;                /* next position candidate count */
+    int i;                          /* counter */
 
-        if (is_a_solution(a,k,input))
-                process_solution(a,k,input);
-        else {
-                k = k+1;
-                construct_candidates(a,k,input,c,&ncandidates);
-                for (i=0; i<ncandidates; i++) {
-                        a[k] = c[i];
-                        make_move(a,k,input);
+    if (is_a_solution(a, k, input)) {
+        process_solution(a, k,input);
+    } else {
+        k = k + 1;
+        construct_candidates(a, k, input, c, &ncandidates);
+        for (i = 0; i < ncandidates; i++) {
+            a[k] = c[i];
+            make_move(a, k, input);
+            backtrack(a, k, input);
+            unmake_move(a, k, input);
 
-                        backtrack(a,k,input);
-                        unmake_move(a,k,input);
-                        if (finished) return;	/* terminate early */
-                }
+            if (finished == TRUE) {
+                return;	/* terminate early */
+            }
         }
+    }
 }
-

@@ -25,62 +25,69 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 
+/* integers to compute the GCD of */
 
-long gcd1(long p, long q)	/* integers to compute the GCD of */
-{
-	if (q > p) return(gcd1(q,p));
+long gcd1(long p, long q) {
+    if (q > p) {
+        return(gcd1(q, p));
+    }
 
+    if (q == 0) {
+        return(p);
+    }
 
-	if (q == 0) return(p);
+    printf(" gcd(%ld,%ld) &=& gcd(%ld \\mod %ld, %ld) = gcd(%ld,%ld) \n",
+            p, q, p, q, q, q, p % q);
 
-	printf(" gcd(%ld,%ld) &=& gcd(%ld \\mod %ld, %ld) = gcd(%ld,%ld) \n",p,q,p,q,q,q,p%q);
-	return( gcd1(q, p % q) );
+    return(gcd1(q, p % q));
 }
 
 /*	Find the gcd(p,q) and x,y such that p*x + q*y = gcd(p,q)	*/
 
-long gcd(long p, long q, long *x, long *y)
-{
-	long x1,y1;			/* previous coefficients */
-	long g;				/* value of gcd(p,q) */
+long gcd(long p, long q, long *x, long *y) {
+    long x1, y1;        /* previous coefficients */
+    long g;             /* value of gcd(p,q) */
 
-        if (q > p) return(gcd(q,p,y,x));
+    if (q > p) {
+        return(gcd(q, p, y, x));
+    }
 
-        if (q == 0) {
-		*x = 1;
-		*y = 0;
-		return(p);
-	}
+    if (q == 0) {
+        *x = 1;
+        *y = 0;
+        return(p);
+    }
 
-        g = gcd(q, p%q, &x1, &y1);
+    g = gcd(q, p%q, &x1, &y1);
 	
-	*x = y1;
-	*y = (x1 - floor(p/q)*y1);
+    *x = y1;
+    *y = (x1 - floor(p/q)*y1);
 
-	return(g);
+    return(g);
 }
 
+int main(void) {
+    long p, q;
+    long x, y, g1, g2;
 
+    while (scanf("%ld %ld", &p, &q) != EOF) {
+        g1 = gcd1(p, q);
+        g2 = gcd(p, q, &x, &y);
 
-int main() {
-      long p,q;
-      long gcd(), gcd2();
-      long x,y,g1,g2;
+        printf("gcd of p=%ld and q=%ld = %ld\n", p, q, g1);
+        printf(" %ld*%ld + %ld*%ld = %ld\n", p, x, q, y, g2);
 
-      while (scanf("%ld %ld",&p,&q)!=EOF) {
-      	g1 = gcd1(p,q);
-      	g2 = gcd(p,q,&x,&y);
+        if (g1 != g2) {
+            printf("ERROR: GCD\n");
+        }
+        
+        if ((p*x + q*y) != g1) {
+            printf("ERROR: DIOPHONINE SOLUTION WRONG!\n");
+        }
+    }
 
-	printf("gcd of p=%ld and q=%ld = %ld\n",p,q,g1);
-	printf(" %ld*%ld + %ld*%ld = %ld\n",p,x,q,y,g2);
-
-	if (g1 != g2) printf("ERROR: GCD\n");
-	if ((p*x + q*y) != g1) printf("ERROR: DIOPHONINE SOLUTION WRONG!\n");
-
-      }
+    return 0;
 }
-

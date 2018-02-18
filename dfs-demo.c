@@ -28,59 +28,62 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 #include <stdio.h>
 #include "bool.h"
+
 #include "bfs-dfs.h"
 #include "queue.h"
 
-extern bool processed[];	/* which vertices have been processed */
-extern bool discovered[];	/* which vertices have been found */
-extern int parent[];		/* discovery relation */
+extern bool processed[];    /* which vertices have been processed */
+extern bool discovered[];   /* which vertices have been found */
+extern int parent[];        /* discovery relation */
 
-int entry_time[MAXV+1];		/* time of vertex entry */
-int exit_time[MAXV+1];		/* time of vertex exit */
-int time;			/* current event time */
+int entry_time[MAXV+1];     /* time of vertex entry */
+int exit_time[MAXV+1];      /* time of vertex exit */
+int time;                   /* current event time */
 
-void process_vertex_early(int v)
-{
-	time = time + 1;
-	entry_time[v] = time;
-	printf("entered vertex %d at time %d\n",v, entry_time[v]);
+void process_vertex_early(int v) {
+    time = time + 1;
+    entry_time[v] = time;
+    printf("entered vertex %d at time %d\n",v, entry_time[v]);
 }
 
-void process_vertex_late(int v)
-{
-	time = time + 1;
-	exit_time[v] = time;
-        printf("exit vertex %d at time %d\n",v, exit_time[v]);
+void process_vertex_late(int v) {
+    time = time + 1;
+    exit_time[v] = time;
+    printf("exit vertex %d at time %d\n",v, exit_time[v]);
 }
 
-void process_edge(int x, int y)
-{
-	int class;		/* edge class */
+void process_edge(int x, int y) {
+    int class;    /* edge class */
 
-	class = edge_classification(x,y);
+    class = edge_classification(x, y);
 
-	if (class == BACK) printf("back edge (%d,%d)\n",x,y);
-	else if (class == TREE) printf("tree edge (%d,%d)\n",x,y);
-	else if (class == FORWARD) printf("forward edge (%d,%d)\n",x,y);
-	else if (class == CROSS) printf("cross edge (%d,%d)\n",x,y);
-	else printf("edge (%d,%d)\n not in valid class=%d",x,y,class);
-
+    if (class == BACK) {
+        printf("back edge (%d,%d)\n", x, y);
+    } else if (class == TREE) {
+        printf("tree edge (%d,%d)\n", x, y);
+    } else if (class == FORWARD) {
+        printf("forward edge (%d,%d)\n", x, y);
+    } else if (class == CROSS) {
+        printf("cross edge (%d,%d)\n", x, y);
+    } else {
+        printf("edge (%d,%d)\n not in valid class=%d", x, y, class);
+    }
 }
 
+int main(void) {
+    graph g;
+    int i;
 
-int main()
-{
-	graph g;
-	int i;
+    read_graph(&g, FALSE);
+    print_graph(&g);
 
-	read_graph(&g,FALSE);
-	print_graph(&g);
+    initialize_search(&g);
+    dfs(&g, 1);
 
-	initialize_search(&g);
-	dfs(&g,1);
+    for (i = 1; i <= g.nvertices; i++) {
+        find_path(1, i, parent);
+    }
+    printf("\n");
 
-        for (i=1; i<=g.nvertices; i++)
-                find_path(1,i,parent);
-        printf("\n");
-
+    return 0;
 }

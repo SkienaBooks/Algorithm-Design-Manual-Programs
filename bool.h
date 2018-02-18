@@ -6,4 +6,3 @@
 #define FALSE   0
 
 typedef int bool;
-

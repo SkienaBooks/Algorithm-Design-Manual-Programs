@@ -27,17 +27,14 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include "bool.h"
 
 #define MAXLEN          101     /* longest possible string */
-
 #define MATCH           0       /* enumerated type symbol for match */
 #define INSERT          1       /* enumerated type symbol for insert */
 #define DELETE          2       /* enumerated type symbol for delete */
 
 typedef struct {
-        int cost;               /* cost of reaching this cell */
-        int parent;             /* parent cell */
+    int cost;               /* cost of reaching this cell */
+    int parent;             /* parent cell */
 } cell;
-
-// extern cell m[MAXLEN+1][MAXLEN+1];
 
 void row_init(int i, cell m[MAXLEN+1][MAXLEN+1]);
 void column_init(int i, cell m[MAXLEN+1][MAXLEN+1]);
@@ -47,7 +44,6 @@ void goal_cell(char *s, char *t, int *i, int *j);
 void delete_out(char *s, int i);
 void insert_out(char *t, int j);
 void match_out(char *s, char *t, int i, int j);
-
 int string_compare(char *s, char *t, cell m[MAXLEN+1][MAXLEN+1]);
 int string_compare2(char *s, char *t, int i, int j, cell m[MAXLEN+1][MAXLEN+1]);
 void reconstruct_path(char *s, char *t, int i, int j, cell m[MAXLEN+1][MAXLEN+1]);

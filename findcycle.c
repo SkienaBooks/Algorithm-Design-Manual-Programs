@@ -27,46 +27,42 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 */
 
 #include <stdio.h>
+
 #include "bool.h"
 #include "bfs-dfs.h"
 
-extern bool processed[];	/* which vertices have been processed */
-extern bool discovered[];	/* which vertices have been found */
-extern int parent[];		/* discovery relation */
+extern bool processed[];    /* which vertices have been processed */
+extern bool discovered[];   /* which vertices have been found */
+extern int parent[];        /* discovery relation */
 
-extern bool finished;		/* flag for early search cutoff */
+extern bool finished;       /* flag for early search cutoff */
 
+void process_vertex_early(int v) {
 
-void process_vertex_early(int v)
-{
 }
 
-void process_vertex_late(int v)
-{
+void process_vertex_late(int v) {
+
 }
 
-void process_edge(int x, int y)
-{
-	if (parent[x] != y) {	/* found back edge! */
-		printf("Cycle from %d to %d:",y,x);
-		find_path(y,x,parent);
-		printf("\n\n");
-		finished = TRUE;
-	}
+void process_edge(int x, int y) {
+    if (parent[x] != y) {    /* found back edge! */
+        printf("Cycle from %d to %d:", y, x);
+        find_path(y, x, parent);
+        printf("\n\n");
+        finished = TRUE;
+    }
 }
 
+int main(void) {
+    graph g;
+    int i;
 
-int main()
-{
-	graph g;
-	int i;
+    read_graph(&g, FALSE);
+    print_graph(&g);
 
-	read_graph(&g,FALSE);
-	print_graph(&g);
+    initialize_search(&g);
+    dfs(&g, 1);
 
-	initialize_search(&g);
-	dfs(&g,1);
+    return 0;
 }
-
-
-

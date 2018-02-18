@@ -27,58 +27,54 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 */
 
 #include <stdio.h>
+
 #include "bool.h"
 #include "bfs-dfs.h"
 
-extern bool processed[];	/* which vertices have been processed */
-extern bool discovered[];	/* which vertices have been found */
-extern int parent[];		/* discovery relation */
+extern bool processed[];    /* which vertices have been processed */
+extern bool discovered[];   /* which vertices have been found */
+extern int parent[];        /* discovery relation */
 
-void process_vertex(int v)
-{
-        printf(" %d",v);
+void process_vertex(int v) {
+    printf(" %d", v);
 }
 
-
-void process_vertex_early(int v)
-{
-	printf(" %d",v);
+void process_vertex_early(int v) {
+    printf(" %d", v);
 }
 
-void process_vertex_late(int v)
-{
+void process_vertex_late(int v) {
+
 }
 
-void process_edge(int x, int y)
-{
+void process_edge(int x, int y) {
+
 }
 
+void connected_components(graph *g) {
+    int c;              /* component number */
+    int i;              /* counter */
 
+    initialize_search(g);
 
-void connected_components(graph *g)
-{
-	int c;				/* component number */
-	int i;				/* counter */
-
-	initialize_search(g);
-
-	c = 0;
-	for (i=1; i<=g->nvertices; i++)
-		if (discovered[i] == FALSE) {
-			c = c+1;
-			printf("Component %d:",c);
-			bfs(g,i);
-			printf("\n");
-		}
+    c = 0;
+    for (i = 1; i <= g->nvertices; i++) {
+        if (discovered[i] == FALSE) {
+            c = c + 1;
+            printf("Component %d:", c);
+            bfs(g, i);
+            printf("\n");
+        }
+    }
 }
 
-int main()
-{
-	graph g;
+int main(void) {
+    graph g;
 
-	read_graph(&g,FALSE);
-	print_graph(&g);
+    read_graph(&g, FALSE);
+    print_graph(&g);
 
-	connected_components(&g);
+    connected_components(&g);
+
+    return 0;
 }
-

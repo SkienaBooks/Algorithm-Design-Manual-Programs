@@ -28,86 +28,84 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "bool.h"
 #include "graph.h"
 #include "set_union.h"
 
-#define MAXINT	100007
+#define MAXINT  100007
 
 typedef struct {
-        int x, y;                       /* adjacency info */
-        int weight;                     /* edge weight, if any */
+    int x, y;       /* adjacency info */
+    int weight;     /* edge weight, if any */
 } edge_pair;
-
 
 /************************************************************/
 
+void to_edge_array(graph *g, edge_pair e[]) {
+    int i, m;       /* counters */
+    edgenode *p;    /* temporary pointer */
 
-void to_edge_array(graph *g, edge_pair e[])
-{
-	int i,m;			/* counters */
-	edgenode *p;			/* temporary pointer */
-
-	m = 0;
-        for (i=1; i<=g->nvertices; i++) {
-                p = g->edges[i];
-                while (p != NULL) {
-                        if (p->y > i) {
-				e[m].x = i;
-				e[m].y = p->y;
-				e[m].weight = p->weight;
-				m = m+1;
-			}
-                        p = p->next;
-                }
+    m = 0;
+    for (i = 1; i <= g->nvertices; i++) {
+        p = g->edges[i];
+        while (p != NULL) {
+            if (p->y > i) {
+                e[m].x = i;
+                e[m].y = p->y;
+                e[m].weight = p->weight;
+                m = m + 1;
+            }
+            p = p->next;
         }
+    }
 }
 
+int weight_compare(const void *x, const void *y) {
+    edge_pair *_x = (edge_pair*)x;
+    edge_pair *_y = (edge_pair*)y;
 
-int weight_compare(const void *x, const void *y)
-{
-	edge_pair *_x = (edge_pair*)x;
-	edge_pair *_y = (edge_pair*)y;
-	if (_x->weight < _y->weight) return(-1);
-	if (_x->weight > _y->weight) return(1);
-	return(0);
+    if (_x->weight < _y->weight) {
+        return(-1);
+    }
+
+    if (_x->weight > _y->weight) {
+        return(1);
+    }
+
+    return(0);
 }
 
+void kruskal(graph *g) {
+    int i;                  /* counter */
+    set_union s;            /* set union data structure */
+    edge_pair e[MAXV+1];    /* array of edges data structure */
 
-void kruskal(graph *g)
-{
-	int i;				/* counter */
-	set_union s;			/* set union data structure */
-	edge_pair e[MAXV+1];		/* array of edges data structure */
-	// bool weight_compare();
+    set_union_init(&s, g->nvertices);
 
-	set_union_init(&s, g->nvertices);
+    printf("initialized set union\n");
+    to_edge_array(g, e);
+    qsort(&e,g->nedges, sizeof(edge_pair), &weight_compare);
 
-printf("initialized set union\n");
-	to_edge_array(g, e);
-	qsort(&e,g->nedges,sizeof(edge_pair),&weight_compare);
-
-	for (i=0; i<(g->nedges); i++) {
-		print_set_union(&s);
-		if (!same_component(&s,e[i].x,e[i].y)) {
-			printf("edge (%d,%d) of weight %d in MST\n",e[i].x,e[i].y,e[i].weight);
-			union_sets(&s,e[i].x,e[i].y);
-		}
-	}
+    for (i = 0; i < (g->nedges); i++) {
+        print_set_union(&s);
+        if (!same_component(&s, e[i].x, e[i].y)) {
+            printf("edge (%d,%d) of weight %d in MST\n", e[i].x, e[i].y, e[i].weight);
+            union_sets(&s, e[i].x, e[i].y);
+        }
+    }
 }
 
-int main()
-{
-	graph g;
+int main(void) {
+    graph g;
 
-	read_graph(&g,FALSE);
+    read_graph(&g, FALSE);
 
-	print_graph(&g);
+    print_graph(&g);
 
-	kruskal(&g);
+    kruskal(&g);
 
-printf("Out of Kruskal\n");
+    printf("Out of Kruskal\n");
 
-
+    return 0;
 }
-

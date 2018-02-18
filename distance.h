@@ -3,9 +3,7 @@
 
 #include <math.h>
 
-
 #define	DIMENSION 3
-
 
 typedef int point[DIMENSION];
 

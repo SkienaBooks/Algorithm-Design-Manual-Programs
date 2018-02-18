@@ -22,53 +22,51 @@ This book can be ordered from Amazon.com at
 http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
+
 #include "bool.h"
 
-#define	PI	3.1415926	/* ratio of circumference to diameter */
-#define EPSILON	0.000001	/* a quantity small enough to be zero */
+#define	PI      3.1415926   /* ratio of circumference to diameter */
+#define EPSILON 0.000001    /* a quantity small enough to be zero */
 
 typedef struct {
-	double a;		/* x-coefficient */
-	double b;		/* y-coefficient */
-	double c;		/* constant term */
+    double a;       /* x-coefficient */
+    double b;       /* y-coefficient */
+    double c;       /* constant term */
 } line;
 
-#define DIMENSION	2	/* dimension of points */
-#define X		0	/* x-coordinate index */
-#define	Y		1	/* y-coordinate index */
+#define DIMENSION  2  /* dimension of points */
+#define X          0  /* x-coordinate index */
+#define	Y          1  /* y-coordinate index */
 
 typedef double point[DIMENSION];
 
-#define MAXPOLY		200	/* maximum number of points in a polygon */
+#define MAXPOLY    200 /* maximum number of points in a polygon */
 
 typedef struct {
-	int n;			/* number of points in polygon */
-	point p[MAXPOLY];	/* array of points in polygon */
+    int n;              /* number of points in polygon */
+    point p[MAXPOLY];   /* array of points in polygon */
 } polygon;
 
-
 typedef struct {
-	point p1,p2;		/* endpoints of line segment */
+    point p1, p2;       /* endpoints of line segment */
 } segment;
 
-typedef point triangle[3];	/* triangle datatype */
+typedef point triangle[3];  /* triangle datatype */
 
 typedef struct {
-	int n;			/* number of triangles in triangulation */
-	int t[MAXPOLY][3];	/* indicies of vertices in triangulation */
+    int n;              /* number of triangles in triangulation */
+    int t[MAXPOLY][3];  /* indicies of vertices in triangulation */
 } triangulation;
 
 typedef struct {
-	point c;		/* center of circle */
-	double r;		/* radius of circle */
+    point c;        /* center of circle */
+    double r;       /* radius of circle */
 } circle;
 
-
-/*	Comparison macros 	*/
+/*	Comparison macros  */
 
 #define	max(A, B)		((A) > (B) ? (A) : (B))
 #define min(A, B)		((A) < (B) ? (A) : (B))
-
 
 void points_to_line(point p1, point p2, line *l);
 void point_and_slope_to_line(point p, double m, line *l);
@@ -93,4 +91,3 @@ void print_polygon(polygon *p);
 void print_point(point p);
 void print_line(line l);
 void print_segment(segment s);
-

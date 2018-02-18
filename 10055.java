@@ -42,4 +42,3 @@ class Main {
     return (new String (lin, 0, lg));
   }
 }
-

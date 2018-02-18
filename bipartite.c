@@ -26,80 +26,86 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 */
 
 #include <stdio.h>
+
 #include "bool.h"
 #include "bfs-dfs.h"
 #include "queue.h"
 
-extern bool processed[];	/* which vertices have been processed */
-extern bool discovered[];	/* which vertices have been found */
-extern int parent[];		/* discovery relation */
+extern bool processed[];    /* which vertices have been processed */
+extern bool discovered[];   /* which vertices have been found */
+extern int parent[];        /* discovery relation */
 
-extern int entry_time[MAXV+1];	/* time of vertex entry */
-extern int exit_time[MAXV+1];	/* time of vertex exit */
+extern int entry_time[MAXV+1];  /* time of vertex entry */
+extern int exit_time[MAXV+1];   /* time of vertex exit */
 
-#define UNCOLORED	0	/* vertex not yet colored */
-#define WHITE		1	/* white vertex */
-#define BLACK		2	/* black vertex */
+#define UNCOLORED   0   /* vertex not yet colored */
+#define WHITE       1   /* white vertex */
+#define BLACK       2   /* black vertex */
 
-int color[MAXV+1];		/* assigned color of v */
-bool bipartite;			/* is the graph bipartite? */
+int color[MAXV+1];      /* assigned color of v */
+bool bipartite;         /* is the graph bipartite? */
 
-void process_vertex_early(int v)
-{
+void process_vertex_early(int v) {
+
 }
 
-void process_vertex_late(int v)
-{
+void process_vertex_late(int v) {
+
 }
 
-int complement(int color)
-{
-	if (color == WHITE) return(BLACK);
-	if (color == BLACK) return(WHITE);
+int complement(int color) {
+    if (color == WHITE) {
+        return(BLACK);
+    }
+
+    if (color == BLACK) {
+        return(WHITE);
+    }
 	
-	return(UNCOLORED);
+    return(UNCOLORED);
 }
 
-void process_edge(int x, int y)
-{
-	if (color[x] == color[y]) {
-		bipartite = FALSE;
-		printf("Warning: graph not bipartite, due to (%d,%d)\n",x,y);
-	}	
+void process_edge(int x, int y) {
+    if (color[x] == color[y]) {
+        bipartite = FALSE;
+        printf("Warning: graph not bipartite, due to (%d,%d)\n", x, y);
+    }
 
-	color[y] = complement(color[x]);
+    color[y] = complement(color[x]);
 }
 
-void twocolor(graph *g)
-{
-	int i;				/* counter */
+void twocolor(graph *g) {
+    int i;    /* counter */
 
-	for (i=1; i<=(g->nvertices); i++) 
-		color[i] = UNCOLORED;
+    for (i = 1; i <= (g->nvertices); i++) { 
+        color[i] = UNCOLORED;
+    }
 
-	bipartite = TRUE;
+    bipartite = TRUE;
  
-	initialize_search(g);
+    initialize_search(g);
 
-	for (i=1; i<=(g->nvertices); i++)
-		if (discovered[i] == FALSE) {
-			color[i] = WHITE;
-			bfs(g,i);
-		}
+    for (i = 1; i <= (g->nvertices); i++) {
+        if (discovered[i] == FALSE) {
+            color[i] = WHITE;
+            bfs(g, i);
+        }
+    }
 }
 
+int main(void) {
+    graph g;
+    int i;
 
-int main()
-{
-	graph g;
-	int i;
+    read_graph(&g, FALSE);
+    print_graph(&g);
 
-	read_graph(&g,FALSE);
-	print_graph(&g);
+    twocolor(&g);
 
-	twocolor(&g);
+    for (i = 1; i <= (g.nvertices); i++) {
+        printf(" %d", color[i]);
+    }
+    printf("\n");
 
-	for (i=1; i<=(g.nvertices); i++)
-		printf(" %d",color[i]);
-	printf("\n");
+    return 0;
 }

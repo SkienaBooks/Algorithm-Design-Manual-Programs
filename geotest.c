@@ -24,73 +24,69 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
-#include "bool.h"
-#include "geometry.h"
 #include <math.h>
 #include <stdio.h>
 
+#include "bool.h"
+#include "geometry.h"
 
+int main(void) {
+    point p1, p2, q1, q2, i;
+    line l1, l2, l3, l4;
 
-int main()
-{
-	point p1,p2,q1,q2,i;
-	line l1,l2,l3,l4;
+    while (scanf("%lf %lf", &p1[X], &p1[Y]) != EOF) {
+        scanf("%lf %lf", &p2[X], &p2[Y]);
+        scanf("%lf %lf", &q1[X], &q1[Y]);
+        scanf("%lf %lf", &q2[X], &q2[Y]);
 
-	while ( scanf("%lf %lf",&p1[X],&p1[Y]) != EOF ) {
-        	scanf("%lf %lf",&p2[X],&p2[Y]);
-		scanf("%lf %lf",&q1[X],&q1[Y]);
-		scanf("%lf %lf",&q2[X],&q2[Y]);
+        print_point(p1);
+        print_point(p2);
+        print_point(q1);
+        print_point(q2);
 
-	        print_point(p1);
-		print_point(p2);
-		print_point(q1);
-		print_point(q2);
+        points_to_line(p1, p2, &l1);
+        points_to_line(q1, q2, &l2);
 
-		points_to_line(p1,p2,&l1);
-		points_to_line(q1,q2,&l2);
-
-		print_line(l1);
-		print_line(l2);
+        print_line(l1);
+        print_line(l2);
 		
-		printf("slope and line tests\n");
-		point_and_slope_to_line(p1,-l1.a,&l3);
-		print_line(l3);
-                point_and_slope_to_line(p2,-l1.a,&l3);
-                print_line(l3);
-                point_and_slope_to_line(q1,-l2.a,&l3);
-                print_line(l3);
-                point_and_slope_to_line(q2,-l2.a,&l3);
-                print_line(l3);
+        printf("slope and line tests\n");
+        point_and_slope_to_line(p1, -l1.a, &l3);
+        print_line(l3);
+        point_and_slope_to_line(p2, -l1.a, &l3);
+        print_line(l3);
+        point_and_slope_to_line(q1, -l2.a, &l3);
+        print_line(l3);
+        point_and_slope_to_line(q2, -l2.a, &l3);
+        print_line(l3);
 
-		printf("parallel lines test\n");
-		printf("%d\n", parallelQ(l1,l2));
+        printf("parallel lines test\n");
+        printf("%d\n", parallelQ(l1, l2));
 
-		printf("intersection point\n");
-		intersection_point(l1,l2,i);
-		print_point(i);
+        printf("intersection point\n");
+        intersection_point(l1, l2, i);
+        print_point(i);
 
-		printf("closest point\n");
-		closest_point(p1,l1,i);
-		print_point(i);
-                closest_point(p2,l1,i);
-                print_point(i);
-                closest_point(q1,l1,i);
-                print_point(i);
-                closest_point(q2,l1,i);
-                print_point(i);
-                closest_point(p1,l2,i);
-                print_point(i);
-                closest_point(p2,l2,i);
-                print_point(i);
-                closest_point(q1,l2,i);
-                print_point(i);
-                closest_point(q2,l2,i);
-                print_point(i);
+        printf("closest point\n");
+        closest_point(p1, l1, i);
+        print_point(i);
+        closest_point(p2, l1, i);
+        print_point(i);
+        closest_point(q1, l1, i);
+        print_point(i);
+        closest_point(q2, l1, i);
+        print_point(i);
+        closest_point(p1, l2, i);
+        print_point(i);
+        closest_point(p2, l2, i);
+        print_point(i);
+        closest_point(q1, l2, i);
+        print_point(i);
+        closest_point(q2, l2, i);
+        print_point(i);
 
+        printf("--------------------------------\n");
+    }
 
-		printf("--------------------------------\n");
-	}
-
-
+    return 0;
 }

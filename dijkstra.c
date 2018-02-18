@@ -28,72 +28,70 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "bool.h"
 #include "bfs-dfs.h"
 
 #define MAXINT  100007
 
-int parent[MAXV+1];               /* discovery relation */
+int parent[MAXV+1];    /* discovery relation */
 
+/* WAS prim(g,start) */
 
+void dijkstra(graph *g, int start) {
+    int i;                  /* counter */
+    edgenode *p;            /* temporary pointer */
+    bool intree[MAXV+1];    /* is the vertex in the tree yet? */
+    int distance[MAXV+1];   /* distance vertex is from start */
+    int v;                  /* current vertex to process */
+    int w;                  /* candidate next vertex */
+    int weight;	            /* edge weight */
+    int dist;               /* best current distance from start */
 
-void dijkstra(graph *g, int start)	/* WAS prim(g,start) */
-{
-	int i;				/* counter */
-	edgenode *p;                    /* temporary pointer */
-	bool intree[MAXV+1];		/* is the vertex in the tree yet? */
-	int distance[MAXV+1];		/* distance vertex is from start */
-	int v;				/* current vertex to process */
-	int w;				/* candidate next vertex */
-	int weight;			/* edge weight */
-	int dist;			/* best current distance from start */
+    for (i = 1; i <= g->nvertices; i++) {
+        intree[i] = FALSE;
+        distance[i] = MAXINT;
+        parent[i] = -1;
+    }
 
-	for (i=1; i<=g->nvertices; i++) {
-		intree[i] = FALSE;
-		distance[i] = MAXINT;
-		parent[i] = -1;
-	}
+    distance[start] = 0;
+    v = start;
 
-	distance[start] = 0;
-	v = start;
+    while (intree[v] == FALSE) {
+        intree[v] = TRUE;
+        p = g->edges[v];
+        while (p != NULL) {
+            w = p->y;
+            weight = p->weight;
+            if (distance[w] > (distance[v]+weight)) { /* CHANGED */
+                distance[w] = distance[v]+weight;     /* CHANGED */
+                parent[w] = v;                        /* CHANGED */
+            }
+            p = p->next;
+        }
 
-	while (intree[v] == FALSE) {
-		intree[v] = TRUE;
-		p = g->edges[v];
-		while (p != NULL) {
-			w = p->y;
-			weight = p->weight;
-/* CHANGED */		if (distance[w] > (distance[v]+weight)) {
-/* CHANGED */			distance[w] = distance[v]+weight;
-/* CHANGED */			parent[w] = v;
-			}
-			p = p->next;
-		}
-
-		v = 1;
-		dist = MAXINT;
-		for (i=1; i<=g->nvertices; i++) 
-			if ((intree[i] == FALSE) && (dist > distance[i])) {
-				dist = distance[i];
-				v = i;
-			}
-	}
-/*for (i=1; i<=g->nvertices; i++) printf("%d %d\n",i,distance[i]);*/
+        v = 1;
+        dist = MAXINT;
+        for (i = 1; i <= g->nvertices; i++) {
+            if ((intree[i] == FALSE) && (dist > distance[i])) {
+                dist = distance[i];
+                v = i;
+            }
+        }
+    }
 }
 
-int main()
-{
-	graph g;
-	int i;
+int main(void) {
+    graph g;
+    int i;
 
-	read_graph(&g,FALSE);
-	dijkstra(&g,1);
+    read_graph(&g, FALSE);
+    dijkstra(&g, 1);
 
-        for (i=1; i<=g.nvertices; i++)
-                find_path(1,i,parent);
-        printf("\n");
+    for (i = 1; i <= g.nvertices; i++) {
+        find_path(1, i, parent);
+    }
+    printf("\n");
 
+    return 0;
 }
-
-
-
