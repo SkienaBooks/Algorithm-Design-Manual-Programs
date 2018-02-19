@@ -75,8 +75,8 @@ void bubble_down(priority_queue *q, int p) {
     min_index = p;
 
     for (i = 0; i <= 1; i++) { 
-        if ((c+i) <= q->n) {
-            if (q->q[min_index] > q->q[c+i]) {
+        if ((c + i) <= q->n) {
+            if (q->q[min_index] > q->q[c + i]) {
                 min_index = c + i;
             }
         }
@@ -93,7 +93,7 @@ void pq_insert(priority_queue *q, item_type x) {
         printf("Warning: priority queue overflow insert x=%d\n", x);
     } else {
         q->n = (q->n) + 1;
-        q->q[ q->n ] = x;
+        q->q[q->n] = x;
         bubble_up(q, q->n);
     }
 }
@@ -106,11 +106,10 @@ item_type extract_min(priority_queue *q) {
     } else {
         min = q->q[1];
 
-        q->q[1] = q->q[ q->n ];
+        q->q[1] = q->q[q->n];
         q->n = q->n - 1;
-        bubble_down(q,1);
+        bubble_down(q, 1);
     }
-
     return(min);
 }
 

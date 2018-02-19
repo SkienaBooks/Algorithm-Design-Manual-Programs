@@ -64,6 +64,21 @@ void read_suitors(void) {
     }
 }
 
+int main(void) {
+    int i;    /* counter */
+    int suitor_compare();
+
+    read_suitors();
+
+    qsort(suitors, nsuitors, sizeof(suitor), suitor_compare);
+
+    for (i = 0; i < nsuitors; i++) { 
+        printf("%s, %s\n",suitors[i].last, suitors[i].first);
+    }
+
+    return 0;
+}
+
 int suitor_compare(suitor *a, suitor *b) {
     int result;    /* result of comparsion */
 
@@ -88,19 +103,4 @@ int suitor_compare(suitor *a, suitor *b) {
     }
 
     return(strcmp(a->first, b->first));
-}
-
-int main(void) {
-    int i;    /* counter */
-    int suitor_compare();
-
-    read_suitors();
-
-    qsort(suitors, nsuitors, sizeof(suitor), suitor_compare);
-
-    for (i = 0; i < nsuitors; i++) { 
-        printf("%s, %s\n",suitors[i].last, suitors[i].first);
-    }
-
-    return 0;
 }

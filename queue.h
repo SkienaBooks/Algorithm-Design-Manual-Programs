@@ -25,18 +25,15 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
-#define QUEUESIZE       1000
-
-
 #include "item.h"
 
+#define QUEUESIZE 1000
 
 typedef struct {
-        int /*item_type*/ q[QUEUESIZE+1];	/* body of queue */
-        int first;                      /* position of first element */
-        int last;                       /* position of last element */
-        int count;                      /* number of queue elements */
+    int /*item_type*/ q[QUEUESIZE+1];   /* body of queue */
+    int first;                          /* position of first element */
+    int last;                           /* position of last element */
+    int count;                          /* number of queue elements */
 } queue;
 
 void init_queue(queue *q);

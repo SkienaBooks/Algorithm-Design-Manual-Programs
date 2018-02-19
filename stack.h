@@ -25,13 +25,12 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
-#define STACKSIZE       1000
+#define STACKSIZE 1000
 
 typedef struct {
-        int s[STACKSIZE+1];		/* body of queue */
-        int top;                        /* position of top element */
-        int count;                      /* number of stack elements */
+    int s[STACKSIZE+1];     /* body of queue */
+    int top;                /* position of top element */
+    int count;              /* number of stack elements */
 } stack;
 
 void init_stack(stack *s);

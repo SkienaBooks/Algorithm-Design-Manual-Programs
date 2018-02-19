@@ -1,9 +1,9 @@
 /*
-	sentinel.c
+    sentinel.c
 
-	Example search program using sentinels
+    Example search program using sentinels
 
-	by: Steven Skiena
+    by: Steven Skiena
 */
 
 
@@ -25,40 +25,47 @@ This book can be ordered from Amazon.com at
 http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
+
 #include <stdio.h>
-#define MAXINT	1000000
+
+#define MAXINT 1000000
+
 int a[100];
 
-int main() {
-	int i,n, x;
+int main(void) {
+    int i, n, x;
 
-	for (i=1; i<=20; i++) a[i]=i;
-	n=20;
-	x = -1;
+    for (i = 1; i <= 20; i++) {
+        a[i] = i;
+    }
+    n = 20;
+    x = -1;
 
-        i = n;
-        while ((a[i]>=x) && (i>=1)) {
-		a[i+1] = a[i];
-		i=i-1;
-	}
-        a[i+1] = x;
+    i = n;
+    while ((a[i] >= x) && (i >= 1)) {
+        a[i + 1] = a[i];
+        i = i - 1;
+    }
+    a[i + 1] = x;
 
-	printf("without sentinel, i=%d a[1]=%d\n",i,a[1]);
-	for (i=1; i<=25; i++) printf("%d ",a[i]);
-	x = -2;
+    printf("without sentinel, i=%d a[1]=%d\n", i, a[1]);
+    for (i = 1; i <= 25; i++) {
+        printf("%d ", a[i]);
+    }
+    x = -2;
 
-	n = 21;
-        i = n;
-        a[0] = - MAXINT;
-        while (a[i] >= x) {
-		a[i+1] = a[i];
-		i=i-1;
-	}
-        a[i+1] = x;
+    n = 21;
+    i = n;
+    a[0] = - MAXINT;
+    while (a[i] >= x) {
+        a[i + 1] = a[i];
+        i = i - 1;
+    }
+    a[i + 1] = x;
 
-	printf("\nwith sentinel, i=%d a[1]=%d\n",i,a[1]);
-        for (i=1; i<=25; i++) printf("%d ",a[i]);
-
-
+    printf("\nwith sentinel, i=%d a[1]=%d\n", i, a[1]);
+    for (i = 1; i <= 25; i++) {
+        printf("%d ", a[i]);
+    }
+    return 0;
 }
-

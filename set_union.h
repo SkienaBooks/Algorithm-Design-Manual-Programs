@@ -27,12 +27,12 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 #include "bool.h"
 
-#define SET_SIZE       1000
+#define SET_SIZE 1000
 
 typedef struct {
-        int p[SET_SIZE+1]; 		/* parent element */
-        int size[SET_SIZE+1];           /* number of elements in subtree i */
-	int n;				/* number of elements in set */
+    int p[SET_SIZE+1];      /* parent element */
+    int size[SET_SIZE+1];   /* number of elements in subtree i */
+    int n;                  /* number of elements in set */
 } set_union;
 
 void set_union_init(set_union *s, int n);
