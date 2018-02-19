@@ -25,14 +25,13 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
 #include "item.h"
 
-#define PQ_SIZE       1000
+#define PQ_SIZE 1000
 
 typedef struct {
-        item_type q[PQ_SIZE+1];		/* body of queue */
-        int n;                          /* number of queue elements */
+    item_type q[PQ_SIZE+1];	    /* body of queue */
+    int n;                      /* number of queue elements */
 } priority_queue;
 
 void pq_init(priority_queue *q);

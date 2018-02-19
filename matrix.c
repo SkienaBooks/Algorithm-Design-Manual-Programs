@@ -28,96 +28,88 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "bool.h"
 
+#include "bool.h"
 
 /************************************************************/
 
-
-
-#define	MAXV		100		/* maximum number of vertices */
-#define MAXDEGREE	50		/* maximum outdegree of a vertex */
-
-#define MAXINT	100007
+#define	MAXV        100     /* maximum number of vertices */
+#define MAXDEGREE   50      /* maximum outdegree of a vertex */
+#define MAXINT      100007
 
 typedef struct {
-        int m[MAXV+1][MAXV+1];    	/* adjacency/weight info */
-	int rows;			/* number of rows */
-	int columns;			/* number of columns */
+    int m[MAXV+1][MAXV+1];  /* adjacency/weight info */
+    int rows;               /* number of rows */
+    int columns;            /* number of columns */
 } matrix;
 
+void initialize_matrix(matrix *m) {
+    int i, j;    /* counters */
 
-void initialize_matrix(matrix *m)
-{
-	int i,j;			/* counters */
-
-	for (i=1; i<=m->rows; i++)
-		for (j=1; j<=m->columns; j++)
-			m->m[i][j] = 0;
+    for (i = 1; i <= m->rows; i++) {
+        for (j = 1; j <= m->columns; j++) {
+            m->m[i][j] = 0;
+        }
+    }
 }
 
-void read_matrix(matrix *m)
-{
-	int i,j;			/* counters */
+void read_matrix(matrix *m) {
+    int i, j;    /* counters */
 
+    scanf("%d %d\n", &(m->rows), &(m->columns));
 
-	scanf("%d %d\n",&(m->rows),&(m->columns));
-
-	for (i=1; i<=m->rows; i++) {
-		for (j=1; j<=m->columns; j++) 
-			scanf("%d",&m->m[i][j]);
-	}
+    for (i = 1; i <= m->rows; i++) {
+        for (j = 1; j <= m->columns; j++) {
+            scanf("%d", &m->m[i][j]);
+        }
+    }
 }
 
+void print_matrix(matrix *g) {
+    int i, j;    /* counters */
 
-void print_matrix(matrix *g)
-{
-	int i,j;			/* counters */
-
-	for (i=1; i<=g->rows; i++) {
-		for (j=1; j<=g->columns; j++)
-			printf(" %d",g->m[i][j]);
-		printf("\n");
-	}
-	printf("\n");
+    for (i = 1; i <= g->rows; i++) {
+        for (j = 1; j <= g->columns; j++) {
+            printf(" %d",g->m[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
 }
 
+void multiply(matrix *a, matrix *b, matrix *c) {
+    int i, j, k;    /* dimension counters */
 
-void multiply(matrix *a, matrix *b, matrix *c)
-{
-	int i,j,k;			/* dimension counters */
+    if (a->columns != b->rows) {
+        printf("Error: bounds dont match!\n");
+        return;
+    }
 
-	if (a->columns != b->rows) {
-		printf("Error: bounds dont match!\n");
-		return;
-	}
+    c->rows = a->rows;
+    c->columns = b->columns;
 
-	c->rows = a->rows;
-	c->columns = b->columns;
-
-	for (i=1; i<=a->rows; i++)
-		for (j=1; j<=b->columns; j++) {
-			c->m[i][j] = 0;
-	        	for (k=1; k<=b->rows; k++)
-		   		c->m[i][j] += a->m[i][k] * b->m[k][j];
-		}
+    for (i = 1; i <= a->rows; i++) {
+        for (j = 1; j <= b->columns; j++) {
+            c->m[i][j] = 0;
+            for (k = 1; k <= b->rows; k++) {
+                c->m[i][j] += a->m[i][k] * b->m[k][j];
+            }
+        }
+   }
 }
 
+int main(void) {
+    matrix a, b, c;
 
-int main()
-{
-	matrix a,b,c;
+    read_matrix(&a);
+    print_matrix(&a);
 
-	read_matrix(&a);
-	print_matrix(&a);
+    read_matrix(&b);
+    print_matrix(&b);
 
-        read_matrix(&b);
-        print_matrix(&b);
+    multiply(&a, &b, &c);
 
-	multiply(&a,&b,&c);
+    print_matrix(&c);
 
-	print_matrix(&c);
-
+    return 0;
 }
-
-

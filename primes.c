@@ -1,9 +1,9 @@
-/*	primes.c        
+/*    primes.c        
 
-	Compute the prime factorization of an integer.
+    Compute the prime factorization of an integer.
 
-	by: Steven Skiena
-	begun: February 18, 2002
+    by: Steven Skiena
+    begun: February 18, 2002
 */
 
 
@@ -26,47 +26,43 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 */
 
-
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 
+void prime_factorization(long x) {
+    long i;    /* counter */
+    long c;    /* remaining product to factor */
 
-void prime_factorization(long x)
-{
-	long i;			/* counter */
-	long c;			/* remaining product to factor */
+    c = x;
 
-	c = x;
+    while ((c % 2) == 0) {
+        printf("%d\n", 2);
+        c = c / 2;
+    }
 
-	while ((c % 2) == 0) {
-		printf("%d\n",2);
-		c = c / 2;
-	}
+    i = 3;
 
-	i = 3;
+    while (i <= (sqrt(c) + 1)) {
+        if ((c % i) == 0) {
+            printf("%ld\n", i);
+            c = c / i;
+        } else {
+            i = i + 2;
+        }
+    }
 
-	while (i <= (sqrt(c)+1)) {
-		if ((c % i) == 0) {
-			printf("%ld\n",i);
-			c = c / i;
-		}
-		else
-			i = i + 2;
-	}
-
-	if (c > 1) printf("%ld\n",c);
+    if (c > 1) {
+        printf("%ld\n", c);
+    }
 }
 
+int main(void) {
+    long p;
 
+    while (scanf("%ld", &p) != EOF) {
+        printf("prime factorization of p=%ld \n", p);
+        prime_factorization(p);
+    }
 
-int main() {
-      long p;
-
-      while (scanf("%ld",&p)!=EOF) {
-
-	printf("prime factorization of p=%ld \n",p);
-	prime_factorization(p);
-
-      }
+    return 0;
 }
-

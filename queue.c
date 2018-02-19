@@ -1,10 +1,10 @@
 
-/*	queue.c
+/*    queue.c
 
-	Implementation of a FIFO queue abstract data type.
+    Implementation of a FIFO queue abstract data type.
 
-	by: Steven Skiena
-	begun: March 27, 2002
+    by: Steven Skiena
+    begun: March 27, 2002
 */
 
 
@@ -28,22 +28,19 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 */
 
 #include <stdio.h>
-#include "queue.h"
-// #include "item.h"
+
 #include "bool.h"
+#include "queue.h"
 
-
-void init_queue(queue *q)
-{
+void init_queue(queue *q) {
         q->first = 0;
         q->last = QUEUESIZE-1;
         q->count = 0;
 }
 
-void enqueue(queue *q, item_type x)
-{
+void enqueue(queue *q, item_type x) {
         if (q->count >= QUEUESIZE)
-		printf("Warning: queue overflow enqueue x=%d\n",x);
+    printf("Warning: queue overflow enqueue x=%d\n",x);
         else {
                 q->last = (q->last+1) % QUEUESIZE;
                 q->q[ q->last ] = x;    
@@ -51,8 +48,7 @@ void enqueue(queue *q, item_type x)
         }
 }
 
-item_type dequeue(queue *q)
-{
+item_type dequeue(queue *q) {
         item_type x;
 
         if (q->count <= 0) printf("Warning: empty queue dequeue.\n");
@@ -67,17 +63,15 @@ item_type dequeue(queue *q)
 
 item_type headq(queue *q)
 {
-	return( q->q[ q->first ] );
+    return( q->q[ q->first ] );
 }
 
-int empty_queue(queue *q)
-{
+int empty_queue(queue *q) {
         if (q->count <= 0) return (TRUE);
         else return (FALSE);
 }
 
-void print_queue(queue *q)
-{
+void print_queue(queue *q) {
         int i,j;
 
         i=q->first; 
