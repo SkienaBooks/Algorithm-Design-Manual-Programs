@@ -1,10 +1,10 @@
 
-/*	topsort1.c
+/*    topsort1.c
 
-	Topologically sort a directed acyclic graph by DFS numbering (DAG)
+    Topologically sort a directed acyclic graph by DFS numbering (DAG)
 
-	by: Steven Skiena
-	begun: March 26, 2002
+    by: Steven Skiena
+    begun: March 26, 2002
 */
 
 
@@ -28,11 +28,12 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 */
 
 #include <stdio.h>
+
 #include "bool.h"
 #include "bfs-dfs.h"
 #include "stack.h"
 
-stack sorted;			/* topological ordering of vertices */
+stack sorted;    /* topological ordering of vertices */
 
 extern bool processed[];        /* which vertices have been processed */
 extern bool discovered[];       /* which vertices have been found */
@@ -42,49 +43,44 @@ extern int entry_time[];        /* time of vertex entry */
 extern int exit_time[];         /* time of vertex exit */
 
 
-void process_vertex_early(int v)
-{
-}
-
-void process_vertex_late(int v)
-{
-	push(&sorted,v);
-}
-
-void process_edge(int x, int y)
-{
-        int class;              /* edge class */
-
-        class = edge_classification(x,y);
-
-	if (class == BACK) 
-		printf("Warning: directed cycle found, not a DAG\n");
-}
-
-
-
-void topsort(graph *g)
-{
-	int i;				/* counter */
-
-	init_stack(&sorted);
-
-        for (i=1; i<=g->nvertices; i++)
-                if (discovered[i] == FALSE) 
-                        dfs(g,i);
-
-	print_stack(&sorted);		/* report topological order */
-}
-
-
-int main()
-{
-	graph g;
-
-	read_graph(&g,TRUE);
-	print_graph(&g);
-
-	topsort(&g);
+void process_vertex_early(int v) {
 
 }
 
+void process_vertex_late(int v) {
+    push(&sorted, v);
+}
+
+void process_edge(int x, int y) {
+    int class;    /* edge class */
+
+    class = edge_classification(x, y);
+
+    if (class == BACK) {
+        printf("Warning: directed cycle found, not a DAG\n");
+    }
+}
+
+void topsort(graph *g) {
+    int i;    /* counter */
+
+    init_stack(&sorted);
+
+    for (i = 1; i <= g->nvertices; i++) {
+        if (discovered[i] == FALSE) {
+            dfs(g, i);
+        }
+    }
+    print_stack(&sorted);    /* report topological order */
+}
+
+int main(void) {
+    graph g;
+
+    read_graph(&g, TRUE);
+    print_graph(&g);
+
+    topsort(&g);
+
+    return 0;
+}
