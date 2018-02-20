@@ -33,6 +33,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include "queue.h"
 #include "graph.h"
 
+/* [[[ init_graph_c */
 void initialize_graph(graph *g, bool directed) {
     int i;    /* counter */
 
@@ -48,7 +49,9 @@ void initialize_graph(graph *g, bool directed) {
         g->edges[i] = _NULL;
     }
 }
+/* ]]] */
 
+/* [[[ insert_edge_cut */
 void insert_edge(graph *g, int x, int y, bool directed) {
     edgenode *p;    /* temporary pointer */
 
@@ -68,7 +71,9 @@ void insert_edge(graph *g, int x, int y, bool directed) {
         g->nedges++;
     }
 }
+/* ]]] */
 
+/* [[[ read_graph_cut */
 void read_graph(graph *g, bool directed) {
     int i;              /* counter */
     int m;              /* number of edges */
@@ -83,6 +88,7 @@ void read_graph(graph *g, bool directed) {
         insert_edge(g, x, y, directed);
     }
 }
+/* ]]] */
 
 void delete_edge(graph *g, int x, int y, bool directed) {
     int i;                /* counter */
@@ -113,6 +119,7 @@ void delete_edge(graph *g, int x, int y, bool directed) {
     printf("Warning: deletion(%d,%d) not found in g.\n",x,y);
 }
 
+/* [[[ print_graph_cut */
 void print_graph(graph *g) {
     int i;        /* counter */
     edgenode *p;  /* temporary pointer */
@@ -127,3 +134,4 @@ void print_graph(graph *g) {
         printf("\n");
     }
 }
+/* ]]] */

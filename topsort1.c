@@ -47,10 +47,13 @@ void process_vertex_early(int v) {
 
 }
 
+/* [[[ pvlate_topsort_cut */
 void process_vertex_late(int v) {
     push(&sorted, v);
 }
+/* ]]] */
 
+/* [[[ pedge_topsort_cut */
 void process_edge(int x, int y) {
     int class;    /* edge class */
 
@@ -60,7 +63,9 @@ void process_edge(int x, int y) {
         printf("Warning: directed cycle found, not a DAG\n");
     }
 }
+/* ]]] */
 
+/* [[[ topsort_cut */
 void topsort(graph *g) {
     int i;    /* counter */
 
@@ -73,6 +78,7 @@ void topsort(graph *g) {
     }
     print_stack(&sorted);    /* report topological order */
 }
+/* ]]] */
 
 int main(void) {
     graph g;

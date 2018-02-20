@@ -45,6 +45,7 @@ void process_vertex_late(int v) {
 
 }
 
+/* [[[ cyclepedge_cut */
 void process_edge(int x, int y) {
     if (parent[x] != y) {    /* found back edge! */
         printf("Cycle from %d to %d:", y, x);
@@ -53,6 +54,7 @@ void process_edge(int x, int y) {
         finished = TRUE;
     }
 }
+/* ]]] */
 
 int main(void) {
     graph g;

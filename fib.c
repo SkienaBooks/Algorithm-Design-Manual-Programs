@@ -6,10 +6,11 @@
 */
 #include <stdio.h>
 
+/* [[[ fib_const_cut */
 #define	MAXN    45      /* largest n or m */
 #define UNKNOWN	-1      /* contents denote an empty cell */
-
 long f[MAXN+1];         /* array for caching computed fib values */
+/* ]]] */
 
 /* computer n choose m */
 
@@ -34,6 +35,7 @@ long binomial_coefficient(int n, int m) {
     return(bc[n][m]);
 }
 
+/* [[[ fib_r_cut */
 long fib_r(int n) {
     if (n == 0) {
         return(0);
@@ -45,8 +47,9 @@ long fib_r(int n) {
 
     return(fib_r(n-1) + fib_r(n-2));
 }
+/* ]]] */
 
-
+/* [[[ fib_c_cut */
 long fib_c(int n) {
     if (f[n] == UNKNOWN) { 
         f[n] = fib_c(n-1) + fib_c(n-2);
@@ -54,7 +57,9 @@ long fib_c(int n) {
 
     return(f[n]);
 }
+/* ]]] */
 
+/* [[[ fib_c_driver_cut */
 long fib_c_driver(int n) {
     int i;      /* counter */
 
@@ -67,7 +72,9 @@ long fib_c_driver(int n) {
 
     return(fib_c(n));
 }
+/* ]]] */
 
+/* [[[ fib_dp_cut */
 long fib_dp(int n) {
     int i;                  /* counter */
     long f[MAXN+1];         /* array for caching computed fib values */
@@ -81,6 +88,7 @@ long fib_dp(int n) {
 
     return(f[n]);
 }
+/* ]]] */
 
 long fib_dp2(int n) {
     int i;                      /* counter */

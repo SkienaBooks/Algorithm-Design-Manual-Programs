@@ -30,8 +30,9 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 #include "editdistance.h"
 
+/* [[[ cell_instance_cut */
 cell m[MAXLEN+1][MAXLEN+1];    /* dynamic programming table */
-
+/* ]]] */
 
 /**********************************************************************/
 void goal_cell(char *s, char *t, int *i, int *j) {
@@ -86,6 +87,7 @@ void delete_out(char *s, int i) {
     printf("D");
 }
 
+/* [[[ string_compare_cut */
 int string_compare2(char *s, char *t, int i, int j, cell m[MAXLEN+1][MAXLEN+1]) {
     int k;           /* counter */
     int opt[3];      /* cost of the three options */
@@ -113,7 +115,8 @@ int string_compare2(char *s, char *t, int i, int j, cell m[MAXLEN+1][MAXLEN+1]) 
     m[i][j].cost = lowest_cost;	/* REMOVE FROM PRINTED VERSION */
 
     return(lowest_cost);
-} 
+}
+/* ]]] */
 
 void reconstruct_path(char *s, char *t, int i, int j, cell m[MAXLEN+1][MAXLEN+1]) {
     if (m[i][j].parent == -1) {

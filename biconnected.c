@@ -38,13 +38,18 @@ extern int parent[];        /* discovery relation */
 extern int entry_time[MAXV+1];  /* time of vertex entry */
 extern int exit_time[MAXV+1];   /* time of vertex exit */
 
+/* [[[ ratod_cut */
 int reachable_ancestor[MAXV+1]; /* earliest reachable ancestor of v */
 int tree_out_degree[MAXV+1];    /* DFS tree outdegree of v */
+/* ]]] */
 
+/* [[[ pvearlydfs_cut */
 void process_vertex_early(int v) {
     reachable_ancestor[v] = v;
 }
+/* ]]] */
 
+/* [[[ pvlatedfs_cut */
 void process_vertex_late(int v) {
     bool root;       /* is a given vertex the root of the DFS tree? */
     int time_v;      /* earliest reachable time for v */
@@ -80,13 +85,14 @@ void process_vertex_late(int v) {
         reachable_ancestor[parent[v]] = reachable_ancestor[v];
     }
 }
+/* ]]] */
 
+/* [[[ pedgedfs_cut */
 void process_edge(int x, int y) {
     int class;    /* edge class */
 
     class = edge_classification(x, y);
 
-/*printf("(%d,%d) class %d tree_out_degree[%d]=%d\n", x,y,class,x,tree_out_degree[x]);*/
     if (class == TREE) {
         tree_out_degree[x] = tree_out_degree[x] + 1;
     }
@@ -97,6 +103,7 @@ void process_edge(int x, int y) {
         }
     }
 }
+/* ]]] */
 
 void articulation_vertices(graph *g) {
     int i;    /* counter */

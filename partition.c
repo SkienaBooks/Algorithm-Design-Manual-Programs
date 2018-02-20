@@ -24,6 +24,7 @@ void read_partition(int s[], int *n, int *k) {
     }
 }
 
+/* [[[ print_books_297_cut */
 void print_books(int s[], int start, int end) {
     int i;    /* counter */
 
@@ -33,6 +34,7 @@ void print_books(int s[], int start, int end) {
     }
     printf("}\n");
 }
+/* ]]] */
 
 void print_matrix(int m[MAXN+1][MAXK+1], int n, int k) {
     int i,j;    /* counters */
@@ -46,6 +48,7 @@ void print_matrix(int m[MAXN+1][MAXK+1], int n, int k) {
     }
 }
 
+/* [[[ reconstruct_partition_297_cut */
 void reconstruct_partition(int s[],int d[MAXN+1][MAXK+1], int n, int k) {
     if (k == 1) {
         print_books(s, 1, n);
@@ -54,7 +57,9 @@ void reconstruct_partition(int s[],int d[MAXN+1][MAXK+1], int n, int k) {
         print_books(s, d[n][k]+1, n);
     }
 }
+/* ]]] */
 
+/* [[[ partition_296_cut */
 void partition(int s[], int n, int k) {
     int p[MAXN+1];            /* prefix sums array */
     int m[MAXN+1][MAXK+1];    /* DP table for values */
@@ -89,8 +94,7 @@ void partition(int s[], int n, int k) {
     }  
     reconstruct_partition(s, d, n, k);    /* print book partition */
 }
-
-
+/* ]]] */
 
 int main(void) {
     int s[MAXN+1];    /* book thicknesses to partition */

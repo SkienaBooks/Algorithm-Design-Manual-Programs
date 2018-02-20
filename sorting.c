@@ -62,9 +62,11 @@ void newswap(item_type s[], int i, int j) {
     s[j] = tmp;
 }
 
+/* [[[ insertion_cut */
 void insertion_sort(item_type s[], int n) {
     int i, j;    /* counters */
 
+/* [[[ insertion_inner_cut */
     for (i = 1; i < n; i++) {
         j = i;
         while ((j > 0) && (s[j] < s[j - 1])) {
@@ -72,8 +74,11 @@ void insertion_sort(item_type s[], int n) {
             j = j-1;
         }
     }
+/* ]]] */
 }
+/* ]]] */
 
+/* [[[ selection_cut */
 void selection_sort(item_type s[], int n) {
     int i, j;   /* counters */
     int min;    /* index of minimum */
@@ -88,7 +93,9 @@ void selection_sort(item_type s[], int n) {
         swap(&s[i], &s[min]);
     }
 }
+/* ]]] */
 
+/* [[[ partition_cut */
 int partition(item_type s[], int l, int h) {
     int i;          /* counter */
     int p;          /* pivot element index */
@@ -106,9 +113,10 @@ int partition(item_type s[], int l, int h) {
 
     return(firsthigh);
 }
+/* ]]] */
 
 /*    quicksort array s from the index l to index h.    */
-
+/* [[[ quicksort_cut */
 void quicksort(item_type s[], int l, int h) {
     int p;    /* index of partition */
 
@@ -118,7 +126,9 @@ void quicksort(item_type s[], int l, int h) {
         quicksort(s, p + 1, h);
     }
 }
+/* ]]] */
 
+/* [[[ heapsort_cut */
 void heapsort_(item_type s[], int n) {
     int i;               /* counters */
     priority_queue q;    /* heap for heapsort */
@@ -129,7 +139,9 @@ void heapsort_(item_type s[], int n) {
         s[i] = extract_min(&q);
     }
 }
+/* ]]] */
 
+/* [[[ binary_search_cut */
 int binary_search(item_type s[], item_type key, int low, int high) {
     int middle;    /* index of middle element */
 
@@ -149,7 +161,9 @@ int binary_search(item_type s[], item_type key, int low, int high) {
         return(binary_search(s, key, middle + 1, high));
     }
 }
+/* ]]] */
 
+/* [[[ merge_cut */
 void merge(item_type s[], int low, int middle, int high) {
     int i;                  /* counter */
     queue buffer1, buffer2; /* buffers to hold elements for merging */
@@ -182,7 +196,9 @@ void merge(item_type s[], int low, int middle, int high) {
         s[i++] = dequeue(&buffer2);
     }
 }
+/* ]]] */
 
+/* [[[ mergesort_cut */
 void mergesort_(item_type s[], int low, int high) {
     int i;          /* counter */
     int middle;    /* index of middle element */
@@ -195,6 +211,7 @@ void mergesort_(item_type s[], int low, int high) {
         merge(s, low, middle, high);
     }
 }
+/* ]]] */
 
 int main(void) {
     int s[NELEM+2];

@@ -37,7 +37,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 int parent[MAXV+1];    /* discovery relation */
 
 /************************************************************/
-
+/* [[[ prim_cut */
 void prim(graph *g, int start) {
     int i;               /* counter */
     edgenode *p;         /* temporary pointer */
@@ -79,6 +79,7 @@ void prim(graph *g, int start) {
         }
     }
 }
+/* ]]] */
 
 int main(void) {
     graph g;

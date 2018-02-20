@@ -32,7 +32,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include "editdistance.h"
 
 /**********************************************************************/
-
+/* [[[ editdistance_str_compare_cut */
 int string_compare(char *s, char *t, cell m[MAXLEN+1][MAXLEN+1]) {
     int i, j, k;    /* counters */
     int opt[3];	    /* cost of the three options */
@@ -61,8 +61,10 @@ int string_compare(char *s, char *t, cell m[MAXLEN+1][MAXLEN+1]) {
 
     goal_cell(s, t, &i, &j);
     return(m[i][j].cost);
-} 
+}
+/* ]]] */
 
+/* [[[ reconstruct_path_ed_cut */
 void reconstruct_path(char *s, char *t, int i, int j, cell m[MAXLEN+1][MAXLEN+1]) {
     if (m[i][j].parent == -1) {
         return;
@@ -86,6 +88,7 @@ void reconstruct_path(char *s, char *t, int i, int j, cell m[MAXLEN+1][MAXLEN+1]
         return;
     }
 }
+/* ]]] */
 
 void print_matrix(char *s, char *t, bool costQ, cell m[MAXLEN+1][MAXLEN+1]) {
     int i, j;           /* counters */

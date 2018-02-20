@@ -38,16 +38,21 @@ extern int parent[];        /* discovery relation */
 extern int entry_time[];    /* time of vertex entry */
 extern int exit_time[];     /* time of vertex exit */
 
+/* [[[ sc_arrays_cut */
 int low[MAXV+1];    /* oldest vertex surely in component of v */
 int scc[MAXV+1];    /* strong component number for each vertex */
+/* ]]] */
 
 stack active;            /* active vertices of unassigned component */
 int components_found;    /* number of strong components identified */
 
+/* [[[ pvearly_strong_cut */
 void process_vertex_early(int v) {
     push(&active, v);
 }
+/* ]]] */
 
+/* [[[ pop_comp_strong_cut */
 void pop_component(int v) {
     int t;    /* vertex placeholder */
 
@@ -60,7 +65,9 @@ void pop_component(int v) {
         printf("%d is in component %d with %d \n", t, components_found, v);
     }
 }
+/* ]]] */
 
+/* [[[ pvlate_strong_cut */
 void process_vertex_late(int v) {
     if (low[v] == v) {
         pop_component(v);
@@ -70,7 +77,9 @@ void process_vertex_late(int v) {
         low[parent[v]] = low[v];
     }
 }
+/* ]]] */
 
+/* [[[ pedge_strong_cut */
 void process_edge(int x, int y) {
     int class;    /* edge class */
 
@@ -90,7 +99,9 @@ void process_edge(int x, int y) {
         }
     }
 }
+/* ]]] */
 
+/* [[[ strong_comp_cut */
 void strong_components(graph *g) {
     int i;    /* counter */
 
@@ -110,6 +121,7 @@ void strong_components(graph *g) {
         }
     }
 }
+/* ]]] */
 
 int main(void) 
 {

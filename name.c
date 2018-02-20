@@ -91,7 +91,7 @@ void replace_x_with_y(char *s, int pos, int xlen, char *y) {
 /*    Return the position of the first occurrence of the pattern p
       in the text t, and -1 if it does not occur.
 */
-
+/* [[[ findmatch_cut */
 int findmatch(char *p, char *t) {
     int i, j;          /* counters */
     int plen, tlen;    /* string lengths */
@@ -110,7 +110,7 @@ int findmatch(char *p, char *t) {
     }
     return(-1);
 }
-
+/* ]]] */
 
 int main(void) {
     string s;    /* input string */

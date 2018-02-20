@@ -32,6 +32,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include "bool.h"
 
 #define BASED       3                     /* base dimension, 3*3 blocks */
+/* [[[ sudoku_objects_cut */
 #define DIMENSION   BASED*BASED           /* 9*9 board */
 #define NCELLS      DIMENSION*DIMENSION   /* 81 cells in a 9*9 problem */
 
@@ -49,6 +50,7 @@ typedef struct {
 
    point move[NCELLS+1];
 } boardtype;
+/* ]]] */
 
 extern bool finished;    /* solution found, stop search */
 
@@ -249,13 +251,15 @@ void copy_board(boardtype *a, boardtype *b) {
 }
 
 /******************************************************************/
-
+/* [[[ process_solution_sudoku_cut */
 void process_solution(int a[], int k, boardtype *board) {
     finished = TRUE;
     printf("process solution\n");
     print_board(board);
 }
+/* ]]] */
 
+/* [[[ is_a_solution_sudoku_cut */
 bool is_a_solution(int a[], int k, boardtype *board) {
     steps = steps + 1;
 
@@ -265,15 +269,21 @@ bool is_a_solution(int a[], int k, boardtype *board) {
         return(FALSE);
     }
 }
+/* ]]] */
 
+/* [[[ make_move_sudoku_cut */
 void make_move(int a[], int k, boardtype *board) {
     fill_square(board->move[k].x, board->move[k].y, a[k],board);
 }
+/* ]]] */
 
+/* [[[ unmake_move_sudoku_cut */
 void unmake_move(int a[], int k, boardtype *board) {
     free_square(board->move[k].x, board->move[k].y, board);
 }
+/* ]]] */
 
+/* [[[ construct_candidates_sudoku_cut */
 void construct_candidates(int a[], int k, boardtype *board, int c[], int *ncandidates) {
     int x, y;                    /* position of next move */
     int i;                       /* counter */
@@ -298,6 +308,7 @@ void construct_candidates(int a[], int k, boardtype *board, int c[], int *ncandi
         }
     }
 }
+/* ]]] */
 
 void backtrack(int a[], int k, boardtype *input) {
     int c[MAXCANDIDATES];           /* candidates for next position */

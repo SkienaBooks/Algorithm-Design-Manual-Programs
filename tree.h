@@ -29,9 +29,11 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 #include "item.h"
 
+/* [[[ struct_tree_cut */
 typedef struct tree {
     item_type item;         /* data item */
     struct tree *parent;    /* pointer to parent */
     struct tree *left;      /* pointer to left child */
     struct tree *right;     /* pointer to right child */
 } tree;
+/* ]]] */

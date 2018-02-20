@@ -31,6 +31,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 #include "set_union.h"
 
+/* [[[ set_union_init_cut */
 void set_union_init(set_union *s, int n) {
     int i;    /* counter */
 
@@ -40,14 +41,18 @@ void set_union_init(set_union *s, int n) {
     }
     s->n = n;
 }
+/* ]]] */
 
+/* [[[ set_union_find_cut */
 int find(set_union *s, int x) {
     if (s->p[x] == x) {
         return(x);
     }
     return(find(s, s->p[x]));
 }
+/* ]]] */
 
+/* [[[ set_union_union_sets_cut */
 void union_sets(set_union *s, int s1, int s2) {
     int r1, r2;    /* roots of sets */
 
@@ -68,10 +73,13 @@ void union_sets(set_union *s, int s1, int s2) {
         s->p[r1] = r2;
     }
 }
+/* ]]] */
 
+/* [[[ same_component_cut */
 bool same_component(set_union *s, int s1, int s2) {
     return (find(s, s1) == find(s, s2));
 }
+/* ]]] */
 
 void print_set_union(set_union *s) {
     int i;    /* counter */

@@ -34,6 +34,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 bool finished = FALSE;
 
+/* [[[ process_solution_perms_cut */
 void process_solution(int a[], int k, int input) {
     int i;    /* counter */
 
@@ -42,10 +43,13 @@ void process_solution(int a[], int k, int input) {
     }
     printf("\n");
 }
+/* ]]] */
 
+/* [[[ is_a_solution_perms_cut */
 int is_a_solution(int a[], int k, int n) {
     return (k == n);
 }
+/* ]]] */
 
 void make_move(int a[], int k, int n) {
 
@@ -56,7 +60,7 @@ void unmake_move(int a[], int k, int n){
 }
 
 /*    What are possible elements of the next slot in the permutation?  */
-
+/* [[[ construct_candidates_perms_cut */
 void construct_candidates(int a[], int k, int n, int c[], int *ncandidates) {
     int i;                 /* counter */
     bool in_perm[NMAX];    /* what is now in the permutation? */
@@ -77,6 +81,7 @@ void construct_candidates(int a[], int k, int n, int c[], int *ncandidates) {
         }
     }
 }
+/* ]]] */
 
 void backtrack(int a[], int k, int input) {
     int c[MAXCANDIDATES];           /* candidates for next position */

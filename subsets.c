@@ -34,6 +34,7 @@ bool finished = FALSE;
 #define MAXCANDIDATES   100    /* max possible next extensions */
 #define NMAX            100    /* maximum solution size */
 
+/* [[[ process_solution_cut */
 void process_solution(int a[], int k, int input) {
     int i;    /* counter */
     
@@ -46,10 +47,13 @@ void process_solution(int a[], int k, int input) {
 
     printf(" }\n");
 }
+/* ]]] */
 
+/* [[[ is_a_solution_cut */
 int is_a_solution(int a[], int k, int n) {
     return (k == n);
 }
+/* ]]] */
 
 void make_move(int a[], int k, int n) {
 
@@ -60,12 +64,13 @@ void unmake_move(int a[], int k, int n) {
 }
 
 /*    What are possible elements of the next slot in the permutation?  */
-
+/* [[[ construct_candidates_cut */
 void construct_candidates(int a[], int k, int n, int c[], int *ncandidates) {
     c[0] = TRUE;
     c[1] = FALSE;
     *ncandidates = 2;
 }
+/* ]]] */
 
 void backtrack(int a[], int k, int input) {
     int c[MAXCANDIDATES];           /* candidates for next position */

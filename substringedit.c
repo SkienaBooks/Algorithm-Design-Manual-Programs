@@ -37,7 +37,7 @@ cell m[MAXLEN+1][MAXLEN+1];         /* dynamic programming table */
 /******************************************************************/
 
 /*    For normal edit distance computation  */
-
+/* [[[ goal_cell_288_cut */
 void goal_cell(char *s, char *t, int *i, int *j) {
     int k;    /* counter */
 
@@ -50,22 +50,27 @@ void goal_cell(char *s, char *t, int *i, int *j) {
         }
     }
 }
+/* ]]] */
 
+/* [[[ match_288_cut */
 int match(char c, char d) {
     if (c == d) {
         return(0);
     }
     return(1);
 }
+/* ]]] */
 
 int indel(char c) {
     return(1);
 }
 
+/* [[[ row_init_288_cut */
 void row_init(int i, cell m[MAXLEN+1][MAXLEN+1]) {      /* what is m[0][i]? */
     m[0][i].cost = 0;       /* NOTE CHANGE */
     m[0][i].parent = -1;    /* NOTE CHANGE */
 }
+/* ]]] */
 
 void column_init(int i, cell m[MAXLEN+1][MAXLEN+1]) {   /* what is m[i][0]? */
     m[i][0].cost = i;

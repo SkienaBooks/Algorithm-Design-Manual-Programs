@@ -37,6 +37,7 @@ int solution_count;            /* how many solutions are there? */
 
 graph g;                       /* graph to traverse */
 
+/* [[[ process_solution_paths_cut */
 void process_solution(int a[], int k, int input) {
     int i;    /* counter */
 
@@ -48,10 +49,13 @@ void process_solution(int a[], int k, int input) {
     }
     printf(" }\n");
 }
+/* ]]] */
 
+/* [[[ is_a_solution_paths_cut */
 int is_a_solution(int a[], int k, int t) {
     return (a[k] == t);
 }
+/* ]]] */
 
 void make_move(int a[], int k, int n) {
 
@@ -64,7 +68,7 @@ void unmake_move(int a[], int k, int n) {
 /*    
     What are possible elements of the next slot in the path
 */
-
+/* [[[ construct_candidates_paths_cut */
 void construct_candidates(int a[], int k, int n, int c[], int *ncandidates) {
     int i;                /* counters */
     bool in_sol[NMAX];    /* what's already in the solution? */
@@ -95,6 +99,7 @@ void construct_candidates(int a[], int k, int n, int c[], int *ncandidates) {
         }
     }
 }
+/* ]]] */
 
 void backtrack(int a[], int k, int input) {
     int c[MAXCANDIDATES];           /* candidates for next position */

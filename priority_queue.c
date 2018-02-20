@@ -32,20 +32,26 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include "bool.h"
 #include "priority_queue.h"
 
+/* [[[ pq_init_cut */
 void pq_init(priority_queue *q) {
     q->n = 0;
 }
+/* ]]] */
 
+/* [[[ pq_parent_cut */
 int pq_parent(int n) {
     if (n == 1) {
         return(-1);
     }
     return((int) n/2);     /* implicitly take floor(n/2) */
 }
+/* ]]] */
 
+/* [[[ pq_young_child */
 int pq_young_child(int n) {
     return(2 * n);
 }
+/* ]]] */
 
 void pq_swap(priority_queue *q, int i, int j) {
     item_type temp;    /* placeholder */
@@ -55,6 +61,7 @@ void pq_swap(priority_queue *q, int i, int j) {
     q->q[j] = temp;
 }
 
+/* [[[ bubble_up_cut */
 void bubble_up(priority_queue *q, int p) {
     if (pq_parent(p) == -1) {
         return;    /* at root of heap, no parent */
@@ -65,7 +72,9 @@ void bubble_up(priority_queue *q, int p) {
         bubble_up(q, pq_parent(p));
     }
 }
+/* ]]] */
 
+/* [[[ bubble_down_cut */
 void bubble_down(priority_queue *q, int p) {
     int c;          /* child index */
     int i;          /* counter */
@@ -87,7 +96,9 @@ void bubble_down(priority_queue *q, int p) {
         bubble_down(q, min_index);
     }
 }
+/* ]]] */
 
+/* [[[ pq_insert_cut */
 void pq_insert(priority_queue *q, item_type x) {
     if (q->n >= PQ_SIZE) {
         printf("Warning: priority queue overflow insert x=%d\n", x);
@@ -97,7 +108,9 @@ void pq_insert(priority_queue *q, item_type x) {
         bubble_up(q, q->n);
     }
 }
+/* ]]] */
 
+/* [[[ extract_min */
 item_type extract_min(priority_queue *q) {
     int min = -1;    /* minimum value */
 
@@ -112,6 +125,7 @@ item_type extract_min(priority_queue *q) {
     }
     return(min);
 }
+/* ]]] */
 
 int empty_pq(priority_queue *q) {
     if (q->n <= 0) {
@@ -130,6 +144,7 @@ void print_pq(priority_queue *q) {
     printf("\n");
 }
 
+/* [[[ make_heap_cut */
 void make_heap(priority_queue *q, item_type s[], int n) {
     int i;    /* counter */
 
@@ -142,6 +157,7 @@ void make_heap(priority_queue *q, item_type s[], int n) {
          bubble_down(q, i);
     }
 }
+/* ]]] */
 
 void make_heap1(priority_queue *q, item_type s[], int n) {
     int i;    /* counter */

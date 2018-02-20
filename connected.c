@@ -51,6 +51,7 @@ void process_edge(int x, int y) {
 
 }
 
+/* [[[ cc_cut */
 void connected_components(graph *g) {
     int c;              /* component number */
     int i;              /* counter */
@@ -67,6 +68,7 @@ void connected_components(graph *g) {
         }
     }
 }
+/* ]]] */
 
 int main(void) {
     graph g;

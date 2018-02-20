@@ -30,7 +30,9 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include "backtrack.h"
 #include "bool.h"
 
+/* [[[ backtrack_boolean_cut */
 bool finished = FALSE;                  /* found all solutions yet? */
+/* ]]] */
 
 void process_solution(int a[], int k, data input);
 void construct_candidates(int a[], int k, data input, int c[], int *ncandidates);
@@ -38,6 +40,7 @@ void make_move(int a[], int k, data input);
 void unmake_move(int a[], int k, data input);
 int is_a_solution(int a[], int k, data input);
 
+/* [[[ backtrack_cut */
 void backtrack(int a[], int k, data input) {
     int c[MAXCANDIDATES];           /* candidates for next position */
     int ncandidates;                /* next position candidate count */
@@ -60,3 +63,4 @@ void backtrack(int a[], int k, data input) {
         }
     }
 }
+/* ]]] */

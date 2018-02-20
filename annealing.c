@@ -28,7 +28,7 @@ void solution_count_update(tsp_solution *s, tsp_instance *t) {
 /*  Use random sampling to provide a heuristic solution to a given
     optimization problem.
 */
-
+/* [[[ random_sampling_cut */
 void random_sampling(tsp_instance *t, int nsamples, tsp_solution *bestsol) {
     tsp_solution s;                 /* current tsp solution */
     double best_cost;               /* best cost so far */
@@ -51,11 +51,13 @@ void random_sampling(tsp_instance *t, int nsamples, tsp_solution *bestsol) {
         solution_count_update(&s, t);
     }
 }
+/* ]]] */
 
 /*  Use hill climbing to provide a heuristic solution to a given
     optimization problem.
 */
 
+/* [[[ hill_climbing_cut */
 void hill_climbing(tsp_instance *t, tsp_solution *s) {
     double cost;            /* best cost so far */
     double delta;           /* swap cost */
@@ -83,6 +85,7 @@ void hill_climbing(tsp_instance *t, tsp_solution *s) {
     } while (stuck == TRUE);
 
 }
+/* ]]] */
 
 void repeated_hill_climbing(tsp_instance *t, int nsamples, tsp_solution *bestsol) {
     tsp_solution s;                 /* current tsp solution */
@@ -113,6 +116,7 @@ void repeated_hill_climbing(tsp_instance *t, int nsamples, tsp_solution *bestsol
 	We are seeking to *minimize* the current_value.
 */
 
+/* [[[ anneal_cut */
 void anneal(tsp_instance *t, tsp_solution *s) {
     int i1, i2;                 /* pair of items to swap */
     int i, j;                   /* counters */
@@ -172,6 +176,7 @@ void anneal(tsp_instance *t, tsp_solution *s) {
         }
     }
 }
+/* ]]] */
 
 void repeated_annealing(tsp_instance *t, int nsamples, tsp_solution *bestsol) {
     tsp_solution s;                 /* current tsp solution */

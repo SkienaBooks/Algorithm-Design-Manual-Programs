@@ -38,6 +38,7 @@ int parent[MAXV+1];    /* discovery relation */
 
 /* WAS prim(g,start) */
 
+/* [[[ dijkstra_cut */
 void dijkstra(graph *g, int start) {
     int i;                  /* counter */
     edgenode *p;            /* temporary pointer */
@@ -80,6 +81,7 @@ void dijkstra(graph *g, int start) {
         }
     }
 }
+/* ]]] */
 
 int main(void) {
     graph g;

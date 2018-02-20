@@ -32,9 +32,11 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include "bool.h"
 #include "queue.h"
 
+/* [[[ graph_arrays_cut */
 bool processed[MAXV+1];     /* which vertices have been processed */
 bool discovered[MAXV+1];    /* which vertices have been found */
 int parent[MAXV+1];         /* discovery relation */
+/* ]]] */
 
 int entry_time[MAXV+1];     /* time of vertex entry */
 int exit_time[MAXV+1];      /* time of vertex exit */
@@ -42,6 +44,7 @@ int time;                   /* current event time */
 
 bool finished = FALSE;      /* if true, cut off search immediately */
 
+/* [[[ init_search_cut */
 void initialize_search(graph *g) {
     int i;                  /* counter */
 
@@ -53,7 +56,9 @@ void initialize_search(graph *g) {
         parent[i] = -1;
     }
 }
+/* ]]] */
 
+/* [[[ bfs_cut */
 void bfs(graph *g, int start) {
     queue q;            /* queue of vertices to visit */
     int v;              /* current vertex */
@@ -84,7 +89,9 @@ void bfs(graph *g, int start) {
         process_vertex_late(v);
     }
 }
+/* ]]] */
 
+/* [[[ eclass_cut */
 int edge_classification(int x, int y) {
     if (parent[y] == x) {
         return(TREE);
@@ -106,7 +113,9 @@ int edge_classification(int x, int y) {
 
     return -1;
 }
+/* ]]] */
 
+/* [[[ dfs_cut */
 void dfs(graph *g, int v) {
     edgenode *p;        /* temporary pointer */
     int y;              /* successor vertex */
@@ -146,7 +155,9 @@ void dfs(graph *g, int v) {
 
     processed[v] = TRUE;
 }
+/* ]]] */
 
+/* [[[ find_path_cut */
 void find_path(int start, int end, int parents[]) {
     if ((start == end) || (end == -1)) {
         printf("\n%d", start);
@@ -155,3 +166,4 @@ void find_path(int start, int end, int parents[]) {
         printf(" %d", end);
     }
 }
+/* ]]] */

@@ -87,7 +87,7 @@ void multiply(matrix *a, matrix *b, matrix *c) {
 
     c->rows = a->rows;
     c->columns = b->columns;
-
+/* [[[ matrix_cut */
     for (i = 1; i <= a->rows; i++) {
         for (j = 1; j <= b->columns; j++) {
             c->m[i][j] = 0;
@@ -96,6 +96,7 @@ void multiply(matrix *a, matrix *b, matrix *c) {
             }
         }
    }
+/* ]]] */
 }
 
 int main(void) {

@@ -24,7 +24,10 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 */
 #include "bool.h"
 
+/* [[[ maxv_cut */
 #define	MAXV        100     /* maximum number of vertices */
+/* ]]] */
+
 #define _NULL       0       /* null pointer */
 
 /*	DFS edge types		*/
@@ -34,12 +37,15 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #define CROSS       2       /* cross edge */
 #define FORWARD     3       /* forward edge */
 
+/* [[[ graph_struct_cut */
+/* [[[ edge_struct_only_cut */
 typedef struct edgenode {
     int y;                   /* adjancency info */
     int weight;              /* edge weight, if any */
     struct edgenode *next;   /* next edge in list */
 } edgenode;
-
+/* ]]] */
+/* [[[ graph_struct_only_cut */
 typedef struct {
     edgenode *edges[MAXV+1];  /* adjacency info */
     int degree[MAXV+1];       /* outdegree of each vertex */
@@ -47,6 +53,8 @@ typedef struct {
     int nedges;               /* number of edges in the graph */
     int directed;             /* is the graph directed? */
 } graph;
+/* ]]] */
+/* ]]] */
 
 void process_vertex_early(int v);
 void process_vertex_late(int v);

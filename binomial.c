@@ -10,6 +10,7 @@
 
 /* computer n choose m */
 
+/* [[[ binomial_coeff_cut */
 long binomial_coefficient(int n, int m) {
     int i, j;               /* counters */
     long bc[MAXN][MAXN];    /* table of binomial coefficient values */
@@ -30,6 +31,7 @@ long binomial_coefficient(int n, int m) {
 
     return(bc[n][m]);
 }
+/* ]]] */
 
 int main(void) {
     int a, b;

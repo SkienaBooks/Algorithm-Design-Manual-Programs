@@ -35,18 +35,23 @@ extern bool processed[];    /* which vertices have been processed */
 extern bool discovered[];   /* which vertices have been found */
 extern int parent[];        /* discovery relation */
 
+/* [[[ pvearly_cut */
 void process_vertex_early(int v) {
     printf("processed vertex %d\n", v);
 }
+/* ]]] */
 
+/* [[[ pvlate_cut */
 void process_vertex_late(int v) {
 
 }
+/* ]]] */
 
-
+/* [[[ pedge_cut */
 void process_edge(int x, int y) {
     printf("processed edge (%d,%d)\n", x, y);
 }
+/* ]]] */
 
 int main(void) {
     graph g;

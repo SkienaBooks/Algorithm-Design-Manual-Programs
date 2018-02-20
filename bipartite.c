@@ -53,6 +53,7 @@ void process_vertex_late(int v) {
 
 }
 
+/* [[[ complement_cut */
 int complement(int color) {
     if (color == WHITE) {
         return(BLACK);
@@ -64,7 +65,9 @@ int complement(int color) {
 	
     return(UNCOLORED);
 }
+/* ]]] */
 
+/* [[[ pecolor_cut */
 void process_edge(int x, int y) {
     if (color[x] == color[y]) {
         bipartite = FALSE;
@@ -73,7 +76,9 @@ void process_edge(int x, int y) {
 
     color[y] = complement(color[x]);
 }
+/* ]]] */
 
+/* [[[ twocolor_cut */
 void twocolor(graph *g) {
     int i;    /* counter */
 
@@ -92,6 +97,7 @@ void twocolor(graph *g) {
         }
     }
 }
+/* ]]] */
 
 int main(void) {
     graph g;

@@ -38,7 +38,7 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #define MAXV         100    /* maximum number of vertices */
 #define MAXDEGREE    50     /* maximum outdegree of a vertex */
 
-
+/* [[[ netflow_edgenode_cut */
 typedef struct {
     int v;                  /* neighboring vertex */
     int capacity;           /* capacity of edge */
@@ -46,6 +46,7 @@ typedef struct {
     int residual;           /* residual capacity of edge */
     struct edgenode *next;  /* next edge in list */
 } edgenode;
+/* ]]] */
 
 typedef struct {
     edgenode *edges[MAXV+1];    /* adjacency info */
@@ -105,6 +106,7 @@ void read_flow_graph(flow_graph *g, bool directed) { /* graph to initialize */  
     }
 }
 
+/* [[[ netflow_fedge_cut */
 edgenode *find_edge(flow_graph *g, int x, int y) {
     edgenode *p;    /* temporary pointer */
 
@@ -119,6 +121,7 @@ edgenode *find_edge(flow_graph *g, int x, int y) {
 
     return(NULL);
 }
+/* ]]] */
 
 void add_residual_edges(flow_graph *g) {
     int i, j;    /* counters */
@@ -179,13 +182,14 @@ void process_edge(int x, int y) {   /* edge to process */
 
 }
 
-
+/* [[[ netflow_vedge_cut */
 bool valid_edge(edgenode *e) {
     if (e->residual > 0) {
         return (TRUE);
     }
     return(FALSE);
 }
+/* ]]] */
 
 void bfs(flow_graph *g, int start) {
     queue q;                        /* queue of vertices to visit */
@@ -230,6 +234,7 @@ void find_path(int start, int end, int parents[]) {
     }
 }
 
+/* [[[ path_volume_cut */
 int path_volume(flow_graph *g, int start, int end, int parents[]) {
     edgenode *e;    /* edge in question */
     edgenode *find_edge();
@@ -246,7 +251,9 @@ int path_volume(flow_graph *g, int start, int end, int parents[]) {
     return(min(path_volume(g, start, parents[end], parents), e->residual));
     }
 }
+/* ]]] */
 
+/* [[[ augment_path_cut */
 void augment_path(flow_graph *g, int start, int end, int parents[], int volume) {
     edgenode *e;    /* edge in question */
     edgenode *find_edge();
@@ -264,7 +271,9 @@ void augment_path(flow_graph *g, int start, int end, int parents[], int volume) 
 
     augment_path(g, start, parents[end], parents, volume);
 }
+/* ]]] */
 
+/* [[[ netflow_cut */
 void netflow(flow_graph *g, int source, int sink) {
     int volume;    /* weight of the augmenting path */
 
@@ -282,6 +291,7 @@ void netflow(flow_graph *g, int source, int sink) {
         volume = path_volume(g, source, sink, parent);
     }
 }
+/* ]]] */
 
 int main(void) {
     flow_graph g;        /* graph to analyze */

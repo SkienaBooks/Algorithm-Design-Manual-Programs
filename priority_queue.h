@@ -29,10 +29,12 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 
 #define PQ_SIZE 1000
 
+/* [[[ priority_queue_struct_cut */
 typedef struct {
     item_type q[PQ_SIZE+1];	    /* body of queue */
     int n;                      /* number of queue elements */
 } priority_queue;
+/* ]]] */
 
 void pq_init(priority_queue *q);
 int pq_parent(int n);

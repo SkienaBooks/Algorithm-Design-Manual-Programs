@@ -47,6 +47,7 @@ bool empty_tree(tree *t) {
     return (FALSE);
 }
 
+/* [[[ search_tree_cut */
 tree *search_tree(tree *l, item_type x) {
     if (l == NULL) {
         return(NULL);
@@ -62,7 +63,9 @@ tree *search_tree(tree *l, item_type x) {
         return(search_tree(l->right, x));
     }
 }
+/* ]]] */
 
+/* [[[ insert_tree_cut */
 void insert_tree(tree **l, item_type x, tree *parent) {
     tree *p;    /* temporary pointer */
 
@@ -81,7 +84,7 @@ void insert_tree(tree **l, item_type x, tree *parent) {
         insert_tree(&((*l)->right), x, *l);
     }
 }
-
+/* ]]] */
 
 void print_tree(tree *l) {
     if (l != NULL) {
@@ -105,6 +108,7 @@ tree *successor_descendant(tree *t) {
     return(succ);
 }
 
+/* [[[ find_minimum_cut */
 tree *find_minimum(tree *t) {
     tree *min;    /* pointer to minimum */
 
@@ -118,7 +122,7 @@ tree *find_minimum(tree *t) {
     }
     return(min);
 }
-
+/* ]]] */
 
 tree *predecessor_descendant(tree *t) {
     tree *pred;    /* predecessor pointer */

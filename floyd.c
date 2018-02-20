@@ -50,10 +50,12 @@ typedef struct {
     int nedges;                     /* number of edges in the graph */
 } graph;
 
+/* [[[ amatrix_cut */
 typedef struct {
     int weight[MAXV+1][MAXV+1];    	/* adjacency/weight info */
     int nvertices;                  /* number of vertices in the graph */
 } adjacency_matrix;
+/* ]]] */
 
 void initialize_adjacency_matrix(adjacency_matrix *g) {
     int i, j;    /* counters */
@@ -112,6 +114,7 @@ void print_adjacency_matrix(adjacency_matrix *g) {
     }
 }
 
+/* [[[ floyd_cut */
 void floyd(adjacency_matrix *g) {
     int i, j;           /* dimension counters */
     int k;              /* intermediate vertex counter */
@@ -128,6 +131,7 @@ void floyd(adjacency_matrix *g) {
 		}
     }
 }
+/* ]]] */
 
 int main(void) {
     adjacency_matrix g;

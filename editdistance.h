@@ -27,14 +27,19 @@ http://www.amazon.com/exec/obidos/ASIN/0387001638/thealgorithmrepo/
 #include "bool.h"
 
 #define MAXLEN          101     /* longest possible string */
+
+/* [[[ editdistance_mid_cut */
 #define MATCH           0       /* enumerated type symbol for match */
 #define INSERT          1       /* enumerated type symbol for insert */
 #define DELETE          2       /* enumerated type symbol for delete */
+/* ]]] */
 
+/* [[[ editdistance_cell_struct_cut */
 typedef struct {
     int cost;               /* cost of reaching this cell */
     int parent;             /* parent cell */
 } cell;
+/* ]]] */
 
 void row_init(int i, cell m[MAXLEN+1][MAXLEN+1]);
 void column_init(int i, cell m[MAXLEN+1][MAXLEN+1]);

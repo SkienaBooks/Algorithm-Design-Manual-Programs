@@ -76,6 +76,7 @@ int weight_compare(const void *x, const void *y) {
     return(0);
 }
 
+/* [[[ kruskal_cut */
 void kruskal(graph *g) {
     int i;                  /* counter */
     set_union s;            /* set union data structure */
@@ -95,6 +96,7 @@ void kruskal(graph *g) {
         }
     }
 }
+/* ]]] */
 
 int main(void) {
     graph g;
