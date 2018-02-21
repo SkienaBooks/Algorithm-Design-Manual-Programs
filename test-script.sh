@@ -13,13 +13,19 @@
 ./permutations | diff - datafiles/permutations-out
 ./8-queens | diff - datafiles/8-queens-out
 ./bfs-demo < datafiles/grid | diff - datafiles/grid-bfs-demo-out
+./bfs-demo < datafiles/regular-tree | diff - datafiles/regular-tree-bfs-demo-out
 ./dfs-demo < datafiles/grid | diff - datafiles/grid-dfs-demo-out
+./dfs-demo < datafiles/regular-tree | diff - datafiles/regular-tree-dfs-demo-out
 ./connected < datafiles/connected-in | diff - datafiles/connected-out
 ./connected < datafiles/grid | diff - datafiles/grid-connected-out
+./connected < datafiles/separate-comps | diff - datafiles/separate-comps-connected-out
 ./topsort < datafiles/grid | diff - datafiles/grid-topsort-out
+./topsort < datafiles/simple-acyclic | diff - datafiles/simple-acyclic-topsort-out
 ./prim < datafiles/wgrid | diff - datafiles/wgrid-prim-out
+./prim < datafiles/simple-wgraph | diff - datafiles/simple-wgraph-prim-out
 ./floyd < datafiles/wgrid | diff - datafiles/wgrid-floyd-out
 ./dijkstra < datafiles/wgrid | diff - datafiles/wgrid-dijkstra-out
+./dijkstra < datafiles/simple-wgraph | diff - datafiles/simple-wgraph-dijkstra-out
 ./editbrute <datafiles/editbrute-in | diff - datafiles/editbrute-out
 ./stringedit <datafiles/stringedit-in | diff - datafiles/stringedit-out
 ./lcs <datafiles/stringedit-in | diff - datafiles/lcs-out
@@ -72,6 +78,7 @@
 ./strong < datafiles/g-4 | diff - datafiles/strong-g-4
 ./strong < datafiles/g-5 | diff - datafiles/strong-g-5
 ./strong < datafiles/strong-clr | diff - datafiles/strong-clr-out
+./strong < datafiles/simple-strong | diff - datafiles/simple-strong-strong-out
 ./bipartite < datafiles/grid | diff - datafiles/bipartite-grid
 ./bipartite < datafiles/tree | diff - datafiles/bipartite-tree
 ./bipartite < datafiles/art3 | diff - datafiles/bipartite-art3
