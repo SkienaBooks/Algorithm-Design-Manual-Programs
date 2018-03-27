@@ -62,16 +62,16 @@ list *search_list(list *l, item_type x) {
 /* ]]] */
 
 /* [[[ predecessor_cut */
-list *predecessor_list(list *l, item_type x) {
+list *item_ahead(list *l, list *x) {
     if ((l == NULL) || (l->next == NULL)) {
 		// printf("Error: predecessor sought on null list.\n");
         return(NULL);
     }
 
-    if ((l->next)->item == x) {
+    if ((l->next) == x) {
         return(l);
     } else {
-        return(predecessor_list(l->next, x));
+        return(item_ahead(l->next, x));
     }
 }
 /* ]]] */
@@ -96,20 +96,19 @@ void print_list(list *l) {
 }
 
 /* [[[ delete_list_cut */
-void delete_list(list **l, item_type x) {
+void delete_list(list **l, list **x) {
     list *p;            /* item pointer */
     list *pred;         /* predecessor pointer */
 
-    p = search_list(*l, x);
-    if (p != NULL) {
-        pred = predecessor_list(*l, x);
-        if (pred == NULL) { /* splice out out list */
-            *l = p->next;
-        } else {
-            pred->next = p->next;
-        }
-        free(p);            /* free memory used by node */
+    p = *l;
+    pred = item_ahead(*l, *x);
+
+    if (pred == NULL) { /* splice out out list */
+        *l = p->next;
+    } else {
+        pred->next = (*x)->next;
     }
+    free(*x);            /* free memory used by node */
 }
 /* ]]] */
 
@@ -148,9 +147,9 @@ int main(void) {
             if (tmp == NULL) {
                 printf("item to delete %d not found\n", d);
             } else {
+                delete_list(&l, &tmp);
                 printf("item %d deleted\n", d);
             }
-            delete_list(&l, d);
         }
     }
     return 0;
